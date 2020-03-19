@@ -9,28 +9,28 @@
 <title>Insert title here</title>
 <link href="resources/css/text.css" rel="stylesheet" type="text/css">
 <style type="text/css">
-	.t_1{
-		width: 1100px;
-	}
-	.t_2{
-		width: 500px;
-		display: inline-block;
-		border: 3px solid black;
-	}
-	.t1{
-		width : 490px;
-		border: 1px solid red;
-	}
-	td{
-		border: 1px solid blue;
-	}
+   .t_1{
+      width: 1100px;
+   }
+   .t_2{
+      width: 500px;
+      display: inline-block;
+      border: 3px solid black;
+   }
+   .t1{
+      width : 490px;
+      border: 1px solid red;
+   }
+   td{
+      border: 1px solid blue;
+   }
 </style>
 </head>
 <body>
-	<div>
-	
-		<div>
-			 <p>
+   <div>
+   
+      <div>
+          <p>
                                          
                                          「동물보호법」 제17조, 시행령7조 및 동법 시행규칙 제20조에 따라 유기·유실동물을 보호하고 있는 경우에는 소유자 등이<br />
                     보호조치 사실을 알 수 있도록 7일 동안 공고하여야 합니다.<br />
@@ -39,10 +39,10 @@
                     또한 「동물보호법」 제17조에 따른 공고가 있는 날부터 10일이 경과하여도 소유자 등을 알 수 없는 경우에는 <br />
                                          「유실물법」 제12조 및 「민법」 제253조의 규정에도 불구하고 해당 시·도지사 또는 시장·군수·구청장이 그 동물의 소유권을 취득하게 됩니다. 
              </p>
-		</div>
-		
-		<div class="searchArea">
-			<ul class="searchList">
+      </div>
+      
+      <div class="searchArea">
+         <ul class="searchList">
                         <li>
                             <dl>
                                 <dt><label for="searchSDate">날짜</label></dt>
@@ -75,17 +75,17 @@
                                            <option value="6470000">경상북도 </option>                                           
                                            <option value="6480000">경상남도 </option>                                           
                                            <option value="6500000">제주특별자치도 </option>                                                                               
-                               	 </select>
+                                   </select>
                              </dd>
                              <dd>
-                             	<button type="button" value="조회" onclick="javascript:href='view.inc?desertionN0=${vo.desertionNo}'"></button>
+                                <button type="button" value="조회" onclick="javascript:href='view.inc?desertionN0=${vo.desertionNo}'"></button>
                              </dd>
                          </dl>
-                   	  </li>
+                        </li>
              </ul>
-		</div>
-		
-		<!-- 유의사항 -->
+      </div>
+      
+      <!-- 유의사항 -->
         <div class="note-txt">
             <ul>
                 <li> 검색시 유의사항 : 품종오류가 발생할 수 있으니 축종을 전체로 설정 후 한번 더 검색하시기 바랍니다.</li>
@@ -104,103 +104,102 @@
                 <ul class="list"><li>총 8,871 건</li></ul>
                 
           </div>
-	       	<div class="t_1">
-	       	
-	       	
-	       		<c:forEach var="vo" items="${ar }">
-	        	<div class="t_2">
-	              <!-- LIST -->
-	             
-	              <table class="t1">
-	              	<tbody>
-	              		<tr>
-	              			<td rowspan="5" width="60" height="60" class="img_td">
-	              				<!-- 사진 -->
-	              				<img src="${vo.popfile }" width="100%" height="100%"/>
-	              			</td>
-	              			<td height="20" align="center" bgcolor="#669AB3" width="70">
-	              				공고번호
-	  	              		</td>
-	              			<td>
-	              				<!-- 공고번호 -->	
-	              				${vo.noticeNo}
-	              			</td>
-	              		</tr>
-	              		<tr>
-	              			<td height="20" align="center" bgcolor="#669AB3" width="70">
-	              				접수일자
-	  	              		</td>
-	              			<td>
-	              				<!-- 접수일자 -->
-	              				${vo.happenDt}
-	              			</td>	
-	              		</tr>
-	              		<tr>
-	              			<td height="20" align="center" bgcolor="#669AB3" width="50">
-	              				품종
-	  	              		</td>
-	              			<td>
-	              				<!-- 품종 -->
-	              				${vo.kindCd}
-	              			</td>	
-	              		</tr>
-	              		<tr>
-	              			<td height="20" align="center" bgcolor="#669AB3" width="70">
-	              				성별
-	  	              		</td>
-	              			<td>
-	              				<!-- 성별 -->
-	              				${vo.sexCd}
-	              			</td>	
-	              		</tr>
-	              		<tr>
-	              			<td height="20" align="center" bgcolor="#669AB3" width="70">
-	              				발견장소
-	  	              		</td>
-	              			<td>
-	              				<!-- 발견장소 -->
-	              				${vo.happenPlace}
-	              			</td>	
-	              		</tr>
-	              		<tr>
-	              			<td rowspan="2">
-	              				<!-- 자세히보기 -->
-	              				<input type="button" value="자세히보기" onclick="javascript:location.href='view.inc?desertionNo=${vo.desertionNo}&nowPage
-	              				=${nowPage }'"/>
-	              			</td>
-	              			<td height="20" align="center" bgcolor="#669AB3" width="70">
-	              				특징
-	  	              		</td>
-	              			<td>
-	              				<!-- 특징 -->
-	              				${vo.specialMark }
-	              			</td>
-	              		</tr>
-	              		<tr>
-	              			<td height="20" align="center" bgcolor="#669AB3" width="70">
-	              				상태
-	  	              		</td>
-	              			<td>
-	              				<!-- 상태 -->
-	              				${vo.processState }
-	               			</td>
-	               		</tr>
-	               	</tbody>
-	               </table>
-	               
-			</div>
-			</c:forEach>
-			
-			<table>
-           		<tr>
-           			<td>
-           				${pageCode }
-           			</td>
-           		</tr>
+             <div class="t_1">
+             
+             
+                <c:forEach var="vo" items="${ar }">
+              <div class="t_2">
+                 <!-- LIST -->
+                
+                 <table class="t1">
+                    <tbody>
+                       <tr>
+                          <td rowspan="5" width="60" height="60" class="img_td">
+                             <!-- 사진 -->
+                             <img src="${vo.popfile }" width="100%" height="100%"/>
+                          </td>
+                          <td height="20" align="center" bgcolor="#669AB3" width="70">
+                             공고번호
+                            </td>
+                          <td>
+                             <!-- 공고번호 -->   
+                             ${vo.noticeNo}
+                          </td>
+                       </tr>
+                       <tr>
+                          <td height="20" align="center" bgcolor="#669AB3" width="70">
+                             접수일자
+                            </td>
+                          <td>
+                             <!-- 접수일자 -->
+                             ${vo.happenDt}
+                          </td>   
+                       </tr>
+                       <tr>
+                          <td height="20" align="center" bgcolor="#669AB3" width="50">
+                             품종
+                            </td>
+                          <td>
+                             <!-- 품종 -->
+                             ${vo.kindCd}
+                          </td>   
+                       </tr>
+                       <tr>
+                          <td height="20" align="center" bgcolor="#669AB3" width="70">
+                             성별
+                            </td>
+                          <td>
+                             <!-- 성별 -->
+                             ${vo.sexCd}
+                          </td>   
+                       </tr>
+                       <tr>
+                          <td height="20" align="center" bgcolor="#669AB3" width="70">
+                             발견장소
+                            </td>
+                          <td>
+                             <!-- 발견장소 -->
+                             ${vo.happenPlace}
+                          </td>   
+                       </tr>
+                       <tr>
+                          <td rowspan="2">
+                             <!-- 자세히보기 -->
+                             <input type="button" value="자세히보기" onclick="javascript:location.href='view.inc?desertionNo=${vo.desertionNo}&nowPage=${nowPage }'"/>
+                          </td>
+                          <td height="20" align="center" bgcolor="#669AB3" width="70">
+                             특징
+                            </td>
+                          <td>
+                             <!-- 특징 -->
+                             ${vo.specialMark }
+                          </td>
+                       </tr>
+                       <tr>
+                          <td height="20" align="center" bgcolor="#669AB3" width="70">
+                             상태
+                            </td>
+                          <td>
+                             <!-- 상태 -->
+                             ${vo.processState }
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  
+         </div>
+         </c:forEach>
+         
+         <table>
+                 <tr>
+                    <td>
+                       ${pageCode }
+                    </td>
+                 </tr>
            </table>
-			
-			
-		</div>
-	</div>
+         
+         
+      </div>
+   </div>
 </body>
 </html>

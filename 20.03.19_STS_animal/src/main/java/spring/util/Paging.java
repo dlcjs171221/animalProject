@@ -16,7 +16,7 @@ public class Paging {
 
 	public Paging(int nowPage, int rowTotal, 
 			int blockList, int blockPage) {
-		System.out.println(rowTotal);
+
 		this.nowPage = nowPage;
 		this.rowTotal = rowTotal;
 		this.blockList = blockList;
@@ -40,7 +40,7 @@ public class Paging {
 				if(nowPage > totalPage)
 					nowPage = totalPage;
 				
-				System.out.println(totalPage);
+				
 				//현재 블럭의 시작페이지 값과 마지막 페이지 값을 구한다.
 				startPage = (int)((nowPage-1)/blockPage*blockPage+1);
 				endPage = startPage + blockPage-1;
@@ -58,6 +58,8 @@ public class Paging {
 				//다음 기능 가능여부 확인
 				if(endPage < totalPage)
 					isNextPage = true;
+				
+				
 				
 				//이제 현재페이지 값도 알고, 시작 페이지와 
 				//마지막 페이지 값을 알았으니 페이지 기법에 사용할 코드를 
@@ -93,7 +95,7 @@ public class Paging {
 				}//for의 끝
 				
 				//다음 기능 가능여부 확인
-				if(isPrePage) {
+				if(isNextPage) {
 					sb.append("<li><a href='list.inc?nowPage=");
 					sb.append(nowPage+blockPage);
 					sb.append("'>&gt;</a></li>");

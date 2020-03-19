@@ -5,9 +5,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,6 +21,9 @@ import spring.util.Paging;
 
 @Controller
 public class ListAction {	
+	
+	@Autowired
+	HttpSession session;
 	
 	public final int BLOCK_LIST = 10; //한 페이지 당 보여질 게시물의 수
 	
@@ -85,7 +91,7 @@ public class ListAction {
 					
 					vo = new UgiVO();
 					vo.setAge(e.getChildText("age"));
-					vo.setCareAddr(e.getChildText("carAddr"));
+					vo.setCareAddr(e.getChildText("careAddr"));
 					vo.setCareNm(e.getChildText("careNm"));
 					vo.setCareTel(e.getChildText("careTel"));
 					vo.setChargeNm(e.getChildText("chargeNm"));
@@ -115,6 +121,7 @@ public class ListAction {
 		mv.addObject("nowPage",this.nowPage);
 		mv.addObject("pageCode", pageCode);
 		mv.setViewName("list");
+		session.setAttribute("ar", ar);
 		
 		return mv;
 	}
