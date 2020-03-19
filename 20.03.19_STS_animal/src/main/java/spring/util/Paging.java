@@ -16,7 +16,7 @@ public class Paging {
 
 	public Paging(int nowPage, int rowTotal, 
 			int blockList, int blockPage) {
-		
+		System.out.println(rowTotal);
 		this.nowPage = nowPage;
 		this.rowTotal = rowTotal;
 		this.blockList = blockList;
@@ -40,6 +40,7 @@ public class Paging {
 				if(nowPage > totalPage)
 					nowPage = totalPage;
 				
+				System.out.println(totalPage);
 				//현재 블럭의 시작페이지 값과 마지막 페이지 값을 구한다.
 				startPage = (int)((nowPage-1)/blockPage*blockPage+1);
 				endPage = startPage + blockPage-1;
