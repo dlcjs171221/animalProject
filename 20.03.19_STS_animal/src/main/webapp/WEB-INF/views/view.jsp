@@ -15,7 +15,7 @@
          <tr>
             <td colspan="3" width="400">
                <!-- 이미지 -->
-               <img src="${vo.popfile }">
+               <img src="${vo.popfile }"  width="400" >
             </td>
          </tr>
          <tr>
@@ -128,7 +128,7 @@
             </td>
             <td colspan="3">
             <!-- 보호장소 클릭시 map.inc로 보내 지도로 보내는 위도와 경도를 구하게 함 -->
-              <a href="javascript:location.href='map.inc?careAddr=${vo.careAddr }&nowPage=${param.nowPage}'"></a>
+              <a href="javascript:sendData('${vo.careAddr }','${param.nowPage}')">${vo.careAddr }</a>
             </td>
          </tr>
          <tr>
@@ -174,8 +174,21 @@
    </p>
    
    <div>
-      <input type="button" value="목록" onclick="javascript:location.href='view.inc?desertionNo=${vo.desertionNo}&nowPage=${param.nowPage}'">
+      <input type="button" value="목록" onclick="javascript:location.href='list.inc?nowPage=${param.nowPage}'">
    </div>
+   
+   <form name="frm" action="map.inc" method="post">
+   	<input type="hidden" name="careAddr" value="${vo.careAddr }"/>
+   	<input type="hidden" name="nowPage" value="${param.nowPage }"/>
+   </form>
+   <script>
+   
+   	function sendData(addr, np){
+   		document.frm.careAddr.value = addr;
+   		document.frm.nowPage.value = np;
+   		document.frm.submit();
+   	}
+   </script>
 </body>
 </html>
 

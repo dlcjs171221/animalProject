@@ -29,7 +29,6 @@ public class ViewAction {
 			
 			for(UgiVO vo : ar) {
 				if(	vo.getDesertionNo().equals(desertionNo)) {
-					System.out.println(vo.getCareAddr());
 					mv.addObject("vo", vo);
 					
 					mv.setViewName("view");
