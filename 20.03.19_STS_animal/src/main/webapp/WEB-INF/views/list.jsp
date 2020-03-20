@@ -24,6 +24,22 @@
    td{
       border: 1px solid blue;
    }
+    .searchArea ul{
+   	
+   }
+   .searchArea li{
+   	 
+   	  
+   }
+   .searchArea li dl{
+   	  
+   }
+   .searchArea li dl dt {
+   		display: inline-block;
+   }
+   .searchArea li dl dd {
+   		display: inline-block;
+   }
 </style>
 </head>
 <body>
@@ -78,7 +94,7 @@
                                    </select>
                              </dd>
                              <dd>
-                                <button type="button" value="조회" onclick="javascript:href='view.inc?desertionN0=${vo.desertionNo}'"></button>
+                                <button type="button" value="조회" onclick="searchDate()">조회</button>
                              </dd>
                          </dl>
                         </li>
@@ -88,7 +104,7 @@
       <!-- 유의사항 -->
         <div class="note-txt">
             <ul>
-                <li> 검색시 유의사항 : 품종오류가 발생할 수 있으니 축종을 전체로 설정 후 한번 더 검색하시기 바랍니다.</li>
+                <li> 검색시 유의사항 : 날짜와 지역을 모두 선택하여야 검색이 가능합니다.</li>
                 <li>
                     <span class="red regular"> 공고중인 동물 소유자는 "자세히 보기"를 참고하시어 해당 </span><span class="blue">시군구</span><span style="color:#8c0000;"> 및 </span>
                     <span style="color:blue;">동물보호센터</span><span style="color:#8c0000;"> 또는 <br/></span>
@@ -201,5 +217,39 @@
          
       </div>
    </div>
+   
+   <form name="frm" method="post">
+   		<input type="hidden" name="startdate" id="s_date"/>
+   		<input type="hidden" name="enddate" id="e_date"/>
+   		<input type="hidden" name="uprcd" id="u_city"/>
+   </form>
+   
+<script src="resources/js/jquery-3.4.1.min.js"></script> 
+<script type="text/javascript">
+	function searchDate(){
+		
+		//유효성 검사...
+		if($("#searchSDate").val().length < 1 || $("#searchEDate").val().length < 1) {
+			alert("날짜를 선택하세요")
+			
+			return;
+		}	
+		if($("#searchUprCd").val().length < 1) {
+			alert("지역을 선택하세요")
+			
+			return;
+		}	
+		
+		//모든 조건을 선택하였을 때
+		if($("#searchSDate").val().length > 0 && $("#searchEDate").val().length > 0 && $("#searchUprCd").val().length > 0){
+		$("#s_date").val($("#searchSDate").val());
+		$("#e_date").val($("#searchEDate").val());
+		$("#u_city").val($("#searchUprCd").val());
+		document.frm.action = "list.inc";
+		document.frm.submit();
+		}
+		
+	}
+</script>
 </body>
 </html>
