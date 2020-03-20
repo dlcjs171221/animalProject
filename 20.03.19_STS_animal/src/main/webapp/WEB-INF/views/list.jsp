@@ -43,6 +43,7 @@
 </style>
 </head>
 <body>
+	
    <div>
    
       <div>
@@ -63,7 +64,20 @@
                             <dl>
                                 <dt><label for="searchSDate">날짜</label></dt>
                                 <dd>
-                                    <input type="date" name="searchSDate" id="searchSDate" class="inputDate" title="시작일"  onblur="$('.calendar').hide();" maxlength=10/> ~ <input type="date" name="searchEDate" id="searchEDate" title="마감일" class="inputDate"  onblur="$('.calendar').hide();" maxlength=10/>
+                                <%
+                                	String str = (String)session.getAttribute("startdate");
+                                	String str1 = str.substring(0, 4);
+                                	String str2 = str.substring(4, 6);
+                                	String str3 = str.substring(6);
+                                	str = str1 + "-" + str2 + "-" + str3;
+                                	
+                                	String msg = (String)session.getAttribute("enddate");
+                                	String msg1 = msg.substring(0, 4);
+                                	String msg2 = msg.substring(4, 6);
+                                	String msg3 = msg.substring(6);
+                                	msg = msg1 + "-" + msg2 + "-" + msg3;
+                                %>
+                                    <input type="date" name="searchSDate" id="searchSDate" class="inputDate" title="시작일"  onblur="$('.calendar').hide();" maxlength=10 value="<%=str %>"/> ~ <input type="date" name="searchEDate" id="searchEDate" title="마감일" class="inputDate"  onblur="$('.calendar').hide();" maxlength=10 value="<%=msg %>"/>
                                     (날짜는 접수일 기준입니다)
                                 </dd>
                             </dl>
