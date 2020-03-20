@@ -209,6 +209,7 @@ public class ListAction {
 						mv.addObject("ar",ar);
 						mv.addObject("nowPage",this.nowPage);
 						mv.addObject("pageCode", pageCode);
+						mv.addObject("rowTotal", rowTotal);
 						mv.setViewName("list");
 						
 						session.setAttribute("ar", ar);

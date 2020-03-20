@@ -117,7 +117,7 @@
         </div>
           <div class="boardList">
                 
-                <ul class="list"><li>총 8,871 건</li></ul>
+                <ul class="list"><li>총 ${rowTotal } 건</li></ul>
                 
           </div>
              <div class="t_1">
