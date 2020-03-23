@@ -16,8 +16,7 @@ public class ViewAction {
 	HttpSession session;
 
 	@RequestMapping("/view.inc")
-	public ModelAndView view(String desertionNo, 
-			String nowPage) {
+	public ModelAndView view(String desertionNo, String nowPage,String careNm,String careTel) {
 		ModelAndView mv = new ModelAndView();
 		
 		Object obj = session.getAttribute("ar");

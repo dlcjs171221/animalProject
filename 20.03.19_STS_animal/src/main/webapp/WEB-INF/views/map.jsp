@@ -82,7 +82,7 @@ geocoder.addressSearch('${careAddr }', function(result, status) {
 
     // 인포윈도우로 장소에 대한 설명을 표시합니다
     var infowindow = new kakao.maps.InfoWindow({
-        content: '<div style="width:150px;text-align:center;padding:6px 0;">보호소 위치</div>'
+        content: '<div style="width:180px;text-align:center;padding:6px 0;">${careNm }<br/>${careTel }</div>'
     });
     infowindow.open(map, marker);
 

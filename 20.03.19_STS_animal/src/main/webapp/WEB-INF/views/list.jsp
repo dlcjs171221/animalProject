@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,20 +63,8 @@
                             <dl>
                                 <dt><label for="searchSDate">날짜</label></dt>
                                 <dd>
-                                <%
-                                	String str = (String)session.getAttribute("startdate");
-                                	String str1 = str.substring(0, 4);
-                                	String str2 = str.substring(4, 6);
-                                	String str3 = str.substring(6);
-                                	str = str1 + "-" + str2 + "-" + str3;
-                                	
-                                	String msg = (String)session.getAttribute("enddate");
-                                	String msg1 = msg.substring(0, 4);
-                                	String msg2 = msg.substring(4, 6);
-                                	String msg3 = msg.substring(6);
-                                	msg = msg1 + "-" + msg2 + "-" + msg3;
-                                %>
-                                    <input type="date" name="searchSDate" id="searchSDate" class="inputDate" title="시작일"  onblur="$('.calendar').hide();" maxlength=10 value="<%=str %>"/> ~ <input type="date" name="searchEDate" id="searchEDate" title="마감일" class="inputDate"  onblur="$('.calendar').hide();" maxlength=10 value="<%=msg %>"/>
+                               
+                                    <input type="date" name="searchSDate" id="searchSDate" class="inputDate" title="시작일"  onblur="$('.calendar').hide();" maxlength=10 /> ~ <input type="date" name="searchEDate" id="searchEDate" title="마감일" class="inputDate"  onblur="$('.calendar').hide();" maxlength=10 />
                                     (날짜는 접수일 기준입니다)
                                 </dd>
                             </dl>
@@ -195,7 +182,7 @@
                        <tr>
                           <td rowspan="2">
                              <!-- 자세히보기 -->
-                             <input type="button" value="자세히보기" onclick="javascript:location.href='view.inc?desertionNo=${vo.desertionNo}&nowPage=${nowPage }'"/>
+                             <input type="button" value="자세히보기" onclick="javascript:location.href='view.inc?desertionNo=${vo.desertionNo}&nowPage=${nowPage }&careNm=${vo.careNm }&careTel=${vo.careTel }'"/>
                           </td>
                           <td height="20" align="center" bgcolor="#669AB3" width="70">
                              특징

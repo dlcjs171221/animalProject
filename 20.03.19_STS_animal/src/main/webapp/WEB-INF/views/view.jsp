@@ -128,7 +128,7 @@
             </td>
             <td colspan="3">
             <!-- 보호장소 클릭시 map.inc로 보내 지도로 보내는 위도와 경도를 구하게 함 -->
-              <a href="javascript:sendData('${vo.careAddr }','${param.nowPage}')">${vo.careAddr }</a>
+              <a href="javascript:sendData('${vo.careAddr }','${param.nowPage}','${vo.careTel }','${vo.careNm }','${vo.desertionNo }')">${vo.careAddr }</a>
             </td>
          </tr>
          <tr>
@@ -180,12 +180,19 @@
    <form name="frm" action="map.inc" method="post">
    	<input type="hidden" name="careAddr" value="${vo.careAddr }"/>
    	<input type="hidden" name="nowPage" value="${param.nowPage }"/>
+   	<input type="hidden" name="careTel" value="${vo.careTel }"/>
+   	<input type="hidden" name="careNm" value="${vo.careNm }"/>
+   	<input type="hidden" name="desertionNo" value="${vo.desertionNo }"/>
+   	
    </form>
    <script>
-   
-   	function sendData(addr, np){
+   	  	function sendData(addr, np,tel,nm,dno){
    		document.frm.careAddr.value = addr;
    		document.frm.nowPage.value = np;
+   		document.frm.careTel.value = tel;
+   		document.frm.careNm.value = nm;
+   		document.frm.desertionNo.value = dno;
+   		
    		document.frm.submit();
    	}
    </script>
