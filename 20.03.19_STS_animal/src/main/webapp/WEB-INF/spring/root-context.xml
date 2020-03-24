@@ -46,5 +46,5 @@
     	
     	<!-- 우리가 만들 DAO를 생성해 보자! -->
  		<!-- autowired를 쓴다 -->
-    	<!-- <bean id="bbsDao" class="mybatis.dao.BbsDAO"/> -->
+    	<bean id="memDao" class="com.pub.dao.MemDAO"/>
 </beans>
