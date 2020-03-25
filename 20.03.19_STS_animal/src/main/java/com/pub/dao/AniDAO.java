@@ -48,8 +48,8 @@ public class AniDAO {
 	
 	}
 	
-	//원글 저장기능
-		public boolean add(AniBbsVO vo) {
+	//유기게시물 저장기능
+		public boolean addUgi(AniBbsVO vo) {
 			
 			boolean value = false;
 				
@@ -62,24 +62,41 @@ public class AniDAO {
 			
 			return value;
 		}
+	
+	//유기게시물 저장기능
+			public boolean addInfo(AniBbsVO vo) {
+				
+				boolean value = false;
+					
+				
+				int cnt = template.insert("ani.info_add", vo);
+				
+				if(cnt > 0) {
+					value = true;
+				}
+				
+				return value;
+			}
+					
+		
 		
 		
 		// b_idx값을 인자로 받아서 bbs.getBbs라는 맵퍼를 호출하는 기능
 		// 즉, 보기 기능(view.jsp)에서 호출되는 함수이며 특정 게시물 정보를
 		// 반환해야 한다.
-		public AniBbsVO getBbs(String seq) {
+		public AniBbsVO getBbs(String b_idx) {
 			
 			
-			AniBbsVO vo = template.selectOne("ani.getBbs", seq);
+			AniBbsVO vo = template.selectOne("ani.getBbs", b_idx);
 			
 			
 			return vo;
 		}	
 		
 		//인자로 받은 b_idx의 게시물 hit를 증가하는 기능
-		public void hit(String seq) {
+		public void hit(String b_idx) {
 					
-			int cnt = template.update("ani.hit", seq);
+			int cnt = template.update("ani.hit", b_idx);
 					
 		}
 		

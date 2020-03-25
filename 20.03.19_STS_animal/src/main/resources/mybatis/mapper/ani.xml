@@ -28,12 +28,12 @@
 	<insert id="ugi_add" parameterType="com.pub.vo.UgiBbsVO">
 		INSERT INTO anibbs(b_idx,subject,writer,write_date,content,hit,bname,
 							kind,email,phone, lose_date, m_id ) 
-		values(anibbs_seq.NEXTVAL,#{subject},#{writer},sysdate,#{content},0,#{bname}
-				,#{kind},#{email},#{phone},#{lose_date},#{m_id);
+		values(anibbs_seq.NEXTVAL,#{subject},#{writer},sysdate,#{content},0,#{bname},
+				#{kind},#{email},#{phone},#{lose_date},#{m_id);
 	</insert>
 	
 	<!-- 공지사항,정책 게시물 저장 -->
-	<insert id="_add" parameterType="com.pub.vo.UgiBbsVO">
+	<insert id="info_add" parameterType="com.pub.vo.UgiBbsVO">
 		INSERT INTO anibbs(b_idx,subject,writer,write_date,content,hit,bname,m_id) 
 		values(anibbs_seq.NEXTVAL,#{subject},#{writer},sysdate,#{content},0,#{bname},#{m_id});
 	</insert>

@@ -47,4 +47,5 @@
     	<!-- 우리가 만들 DAO를 생성해 보자! -->
  		<!-- autowired를 쓴다 -->
     	<bean id="memDao" class="com.pub.dao.MemDAO"/>
+    	<bean id="aniDao" class="com.pub.dao.AniDAO"/>
 </beans>
