@@ -19,7 +19,7 @@
 		select * from(
 			select rownum as r_num, a.* from (
 				select * from anibbs
-				where bname = #{bname
+				where bname = #{bname}
 			) a	
 		) where r_num between #{begin} and #{end}
 	</select>
