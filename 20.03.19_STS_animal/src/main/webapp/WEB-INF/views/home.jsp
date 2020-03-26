@@ -10,5 +10,9 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
+<form action="main.inc"></form>
+<script type="text/javascript">
+	document.forms[0].submit();
+</script>
 </body>
 </html>
