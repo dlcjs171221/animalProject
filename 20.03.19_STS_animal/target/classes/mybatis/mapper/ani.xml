@@ -14,8 +14,7 @@
 	</select>
 	
 	<!-- 해당 페이지마다 보여진 게시물 목록 -->
-	<select id="list" resultType="com.pub.vo.AniBbsVO"
-	parameterType="java.util.Map">
+	<select id="list" resultType="com.pub.vo.AniBbsVO"	parameterType="java.util.Map">
 		select * from(
 			select rownum as r_num, a.* from (
 				select * from anibbs
@@ -25,7 +24,7 @@
 	</select>
 	
 	<!-- 유기게시물 저장 -->
-	<insert id="ugi_add" parameterType="com.pub.vo.UgiBbsVO">
+	<insert id="ugi_add" parameterType="com.pub.vo.AniBbsVO">
 		INSERT INTO anibbs(b_idx,subject,writer,write_date,content,hit,bname,
 							kind,email,phone, lose_date, m_id ) 
 		values(anibbs_seq.NEXTVAL,#{subject},#{writer},sysdate,#{content},0,#{bname},
@@ -33,19 +32,18 @@
 	</insert>
 	
 	<!-- 공지사항,정책 게시물 저장 -->
-	<insert id="info_add" parameterType="com.pub.vo.UgiBbsVO">
+	<insert id="info_add" parameterType="com.pub.vo.AniBbsVO">
 		INSERT INTO anibbs(b_idx,subject,writer,write_date,content,hit,bname,m_id) 
 		values(anibbs_seq.NEXTVAL,#{subject},#{writer},sysdate,#{content},0,#{bname},#{m_id});
 	</insert>
 	
 	<!-- 게시물 보기기능 -->
 	<select id="getBbs" parameterType="String"
-	resultType="com.pub.vo.UgiBbsVO">
+	resultType="com.pub.vo.AniBbsVO">
 		select * from anibbs
 		where b_idx = #{no}
 	</select>
 
-	
 	
 	<!-- 조회수 증가 -->
 	<update id="hit" parameterType="String">
@@ -54,27 +52,7 @@
 		where b_idx = #{b_idx}
 	</update>
 	
-	<!-- 수정 기능 -->
-	<update id="edit" parameterType="mybatis.vo.BbsVO">
-		update bbs2
-		set writer = #{writer},
-			title = #{title},
-			content = #{content},
-			ip = #{ip}
-		<if test="uploadFileName != null">	
-			,uploadFileName = #{uploadFileName}
-		</if>	
-		where seq = #{seq} and pwd = #{pwd}				
-	</update>
 	
-	<!-- 삭제 기능 -->
-	<update id="del" parameterType="java.util.Map">
-		update bbs2
-		set 
-			status = 1
-		where seq = #{seq} and pwd = #{pwd}
-	</update>
-
 </mapper>
 
 

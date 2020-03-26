@@ -27,6 +27,14 @@ public class AnimemVO {
 		this.m_pw = m_pw;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public String getM_phone() {
 		return m_phone;
 	}
@@ -43,13 +51,4 @@ public class AnimemVO {
 		this.m_email = m_email;
 	}
 
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	
-	
 }
