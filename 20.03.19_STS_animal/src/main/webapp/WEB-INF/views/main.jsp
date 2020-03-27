@@ -115,7 +115,10 @@
          <li><a href="javascript:location.href='pubData.inc'">정책정보</a></li>
       </ul>
    </div>
-   
+    <!-- 로그인 -->
+   <div>
+   		<button type="button" name="login_btn" value="로그인" onclick="javascript:location.href='login.inc'">로그인</button>
+   </div>
    <!-- 상단 이미지 작업 -->
    <div id="bar_up">
       <img src="resources/images/bar_up.JPG"/>
