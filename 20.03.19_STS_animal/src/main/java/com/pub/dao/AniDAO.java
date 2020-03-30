@@ -63,7 +63,7 @@ public class AniDAO {
 			return value;
 		}
 	
-	//유기게시물 저장기능
+	//인포게시물 저장기능
 			public boolean addInfo(AniBbsVO vo) {
 				
 				boolean value = false;

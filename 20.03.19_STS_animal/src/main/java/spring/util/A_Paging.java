@@ -11,16 +11,19 @@ public class A_Paging {
 	private boolean isPrePage; // 이전 기능 가능여부
 	private boolean isNextPage; // 다음 기능 가능여부
 	
+	private String bname; // 종류별 게시판 이름
+	
 	//JSP에서 표현할 페이징 HTML코드를 저장할 곳!
 	private StringBuffer sb;
 
 	public A_Paging(int nowPage, int rowTotal, 
-			int blockList, int blockPage) {
+			int blockList, int blockPage, String bname) {
 		
 		this.nowPage = nowPage;
 		this.rowTotal = rowTotal;
 		this.blockList = blockList;
 		this.blockPage = blockPage;
+		this.bname = bname;
 		
 		makeHTML();
 		
@@ -69,8 +72,10 @@ public class A_Paging {
 				
 				//이전 기능 활성화!
 				if(isPrePage) {
-					sb.append("<li><a href='list.inc?nowPage=");
+					sb.append("<li><a href='bbslist.inc?nowPage=");
 					sb.append(nowPage-blockPage); //전달되는 파라미터 값
+					sb.append("&bname=");
+					sb.append(this.bname); //전달되는 bname 값
 					sb.append("'>&lt;</a></li>");
 				}else {
 					//이전 기능 비활성화!
@@ -86,8 +91,10 @@ public class A_Paging {
 						sb.append(i);
 						sb.append("</li>");
 					}else {
-						sb.append("<li><a href='list.inc?nowPage=");
+						sb.append("<li><a href='bbslist.inc?nowPage=");
 						sb.append(i); //전달되는 파라미터 값
+						sb.append("&bname=");
+						sb.append(this.bname); //전달되는 bname 값
 						sb.append("'>");
 						sb.append(i); //화면에 출력되는 페이지 값
 						sb.append("</a></li>");
@@ -97,8 +104,10 @@ public class A_Paging {
 				
 				//다음 기능 가능여부 확인
 				if(isPrePage) {
-					sb.append("<li><a href='list.inc?nowPage=");
+					sb.append("<li><a href='bbslist.inc?nowPage=");
 					sb.append(nowPage+blockPage);
+					sb.append("&bname=");
+					sb.append(this.bname); //전달되는 bname 값
 					sb.append("'>&gt;</a></li>");
 				}else {
 					sb.append("<li class='disable'>&gt;</li>");
