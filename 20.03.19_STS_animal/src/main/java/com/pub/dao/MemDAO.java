@@ -1,6 +1,7 @@
 package com.pub.dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,24 @@ public class MemDAO {
 		return chk;
 		
 	}
+
+	
+	//네이버 회원 가입
+	public boolean addNmem(AnimemVO vo) {
+		boolean chk = false;
+		//System.out.println(vo.getM_id());
+		//System.out.println(vo.getM_name());
+		//System.out.println(vo.getM_email());
+		int cnt = template.insert("mem.n_add",vo);
+		
+		if(cnt>0)
+			chk = true;
+		
+		return chk;
+		
+	}
+	
+	
 	
 	// 배열과 구분자를 인자로 받아서 하나의 문자열로 반환하는 기능
 	private String makeString(String[] ar, String delim) {
@@ -88,7 +107,21 @@ public class MemDAO {
 		return chk;
 	}
 	*/	
+	
+	//회원 리스트 목록
+	public AnimemVO[] list(){
+		AnimemVO[] ar = null;
+				
+		List<AnimemVO> list = template.selectList("mem.list");
 		
+		if(list != null) {
+			ar = new AnimemVO[list.size()];
+			list.toArray(ar);
+		}
+		
+		return ar;
+	}
+	
 }
 
 

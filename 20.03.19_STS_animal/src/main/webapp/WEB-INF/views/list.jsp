@@ -212,6 +212,9 @@
                     <td>
                        ${pageCode }
                     </td>
+                    <td>
+                    	<input type="button" value="메인으로 가긴" onclick="javascript:location.href='main.inc'"/>
+                    </td>
                  </tr>
            </table>
          

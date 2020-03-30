@@ -162,9 +162,7 @@ public class ListAction {
 						
 						//items의 자식들중 item요소들
 						List<Element> i_list = items.getChildren("item");
-						
-						System.out.println(i_list.size());
-							
+													
 
 						//List에 있는 요소들을 vo로 만들어서 배열에 저장한다.
 						ar = new UgiVO[i_list.size()];

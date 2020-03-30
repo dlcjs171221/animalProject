@@ -12,14 +12,19 @@ import java.util.Map;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.pub.dao.MemDAO;
 import com.pub.vo.AnimemVO;
 
 @Controller
 public class CallbackAction {
+	
+	@Autowired
+	private MemDAO mem_dao;
 
 	@RequestMapping("/callback.inc")
 	   public ModelAndView callBack(String code, String state) throws Exception {
@@ -89,22 +94,45 @@ public class CallbackAction {
 	            String nickname = (String) jsonObj3.get("nickname");
 	            String id = (String) jsonObj3.get("id");
 	            String email = (String) jsonObj3.get("email");
-	            System.out.println(name+"/"+nickname+"/"+id+"/"+email);
 	            
+	            System.out.println("name: "+name+"/"+"nickname: "+nickname+"/"+"id: "+id+"/"+"email: "+email);
+	            
+	            //넘어온 값을 vo에 저장한다
 	            vo = new AnimemVO();
 	            
 	            vo.setM_id(id);
 	            vo.setM_name(name);
 	            vo.setM_email(email);
+	           
+	            // DAO를 호출하여 mapper에접근, 목록을 가져온다
+	            AnimemVO[] ar = mem_dao.list();
 	            
-	            System.out.println(vo.getM_name());
-	            System.out.println(vo.getM_id());
-	            System.out.println(vo.getM_email());
+	            //ar의 개수만큼 for문 실행
+	            for( AnimemVO memvo : ar) {
+	            		
+	            	//넘어온 memvo의 이메일 주소와 vo에 저장된 이메일 주소비교
+	            	if(memvo.getM_email().equals(vo.getM_email())) {
+	            		//비교한 값이 존재한다면 바로 메인페이지 이동
+	            		mv.setViewName("main");
+	            	}else {
+	            		//비교한 값이 존재하지 않는다면 vo에 저장된 값을 DB에 저장
+	            		
+	            		mem_dao.addNmem(vo); //MemDAO == mem_dao
+	            		
+	            		//vo를 memvo로 저장 
+	            		mv.addObject("memvo", vo);
+	            		
+	            		//main.jsp 호출
+	            		mv.setViewName("main");
+	            		
+	            		break;
+	            	}
+	            }
+	            	
+	            
 	         }
 	      }
 	      
-	      mv.setViewName("main");
-	      mv.addObject("memvo", vo);
 	      return mv;
 	   }
 	   
