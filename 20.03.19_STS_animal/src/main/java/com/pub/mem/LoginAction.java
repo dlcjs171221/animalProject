@@ -41,7 +41,7 @@ public class LoginAction {
 		
 	   @RequestMapping(value = "/login.inc", method = RequestMethod.POST)
 	   @ResponseBody
-	   public String naverLogin(AnimemVO vo) {
+	   public String login(AnimemVO vo) {
 	     // ModelAndView mv =  new ModelAndView();
 	     // String state = new BigInteger(130, new SecureRandom()).toString();
 	      
