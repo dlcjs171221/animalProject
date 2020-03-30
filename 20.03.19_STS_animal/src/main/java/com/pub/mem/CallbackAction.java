@@ -1,4 +1,4 @@
-package com.pub.animal;
+package com.pub.mem;
 
 import java.io.BufferedReader;
 import java.io.IOException;
