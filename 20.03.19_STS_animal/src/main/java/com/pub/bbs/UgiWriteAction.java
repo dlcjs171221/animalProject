@@ -23,7 +23,7 @@ import spring.util.FileRenameUtil;
 @Controller
 public class UgiWriteAction {
 
-	private String uploadPath = "resource/upload";
+	private String uploadPath = "resources/upload";
 	
 	@Autowired
 	AniDAO a_dao;
@@ -63,7 +63,7 @@ public class UgiWriteAction {
 	public ModelAndView ugi_write(AniBbsVO vo) throws Exception {
 		
 		//vo에 bname을 제외한 멤버변수 저장!
-		saveBbs(vo);
+		value = saveBbs(vo);
 
 		if(value)
 			mv.setViewName("redirect:ugilist.inc");
@@ -82,9 +82,10 @@ public class UgiWriteAction {
 		return "infowrite";
 	}
 	
+	@RequestMapping(value = "/infowrite.inc", method = RequestMethod.POST )
 	public ModelAndView info_write(AniBbsVO vo) throws Exception {
 		//vo에 bname을 제외한 멤버변수 저장!
-		saveBbs(vo);
+		value = saveBbs(vo);
 		
 		if(value)
 			mv.setViewName("redirect:infolist.inc");
@@ -96,8 +97,10 @@ public class UgiWriteAction {
 	
 
 	
-	private void saveBbs(AniBbsVO vo) throws Exception {
-		//첨부파일은 이미 vo에 저장되어 있다.
+	private boolean saveBbs(AniBbsVO vo) throws Exception {
+			
+		
+			//첨부파일은 이미 vo에 저장되어 있다.
 				MultipartFile mf = vo.getFile();
 				
 				//첨부파일이 있는지 판단
@@ -132,8 +135,10 @@ public class UgiWriteAction {
 				//session에 저장된 m_id값을 vo에 저장(bbs테이블에 참조키)
 				vo.setM_id(mvo.getM_id());
 				
-				//DB에 저장! 
 				value = a_dao.addUgi(vo);
+				
+				//DB에 저장! 
+				return value;
 		
 	}
 	
