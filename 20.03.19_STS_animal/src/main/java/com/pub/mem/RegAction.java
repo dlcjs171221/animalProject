@@ -1,4 +1,4 @@
-package com.pub.animal;
+package com.pub.mem;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
