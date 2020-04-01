@@ -2,6 +2,8 @@ package com.pub.bbs;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,9 +24,10 @@ import com.pub.vo.AnimemVO;
 import spring.util.FileRenameUtil;
 
 @Controller
-public class UgiWriteAction {
+public class BbsWriteAction {
 
 	private String uploadPath = "resources/upload";
+	private String imgPath = "resources/editor_img";
 	
 	@Autowired
 	AniDAO a_dao;
@@ -39,60 +43,105 @@ public class UgiWriteAction {
 	@Autowired
 	private HttpSession session;
 	
-	//session의 저장한 로그인 정보중에 m_id값 가져오기
-	AnimemVO mvo = (AnimemVO)session.getAttribute("mvo");
+	//session의 저장한 로그인 정보 가져오기
+	//Object obj = session.getAttribute("mvo");
 	
-	
+	ModelAndView mv = new ModelAndView();
+	boolean value = false;
 		
 	
 
 	
-	//main.jsp에서 분실등록 이나 분실신고 리스트 창에서 글쓰기 버튼을
-	//눌렀을 때
+	//분실신고 리스트 창에서 등록하기 버튼을 눌렀을 때
 	@RequestMapping("/ugiwrite.inc")
-	public String ugi_write(String nowPage, String m_name, String bname) {
+	public ModelAndView ugi_write(String bname) {
+			String str = "ugiwrite";
+		//로그인 이 되어있는 상태
+		/*	
+		if(obj != null) {
+			str = "ugiwrite";
+			AnimemVO mvo = (AnimemVO)obj;
+			mv.addObject("mvo", mvo);
+			mv.addObject("bname", bname);
+			
+		}
+		*/
+		mv.setViewName(str);
+		return mv;
 		
-		return "ugiwrite";
 	}
 	
-	ModelAndView mv = new ModelAndView();
-	boolean value = false;
+	
 	
 	//ugiwrite.jsp에서 저장 버튼을 눌렀을 때
 	@RequestMapping(value = "/ugiwrite.inc", method = RequestMethod.POST )
 	public ModelAndView ugi_write(AniBbsVO vo) throws Exception {
 		
-		//vo에 bname을 제외한 멤버변수 저장!
 		value = saveBbs(vo);
 
 		if(value)
-			mv.setViewName("redirect:ugilist.inc");
+			mv.setViewName("redirect:bbslist.inc?bname="+vo.getBname());
 		else
-			mv.setViewName("redirect:/ugiwrite.inc?nowPage="+vo.getNowpage());
+			mv.setViewName("redirect:/ugiwrite.inc?nowPage="+vo.getNowPage());
 		
 		return mv;
 		
 	}
 	
 	
-
+	//main.jsp에서 공지사항이난 법령 및 정책을 선택했을 때
 	@RequestMapping("/infowrite.inc")
-	public String info_write(String nowPage, String m_name, String bname) {
+	public String info_write(String nowPage, String m_name) {
 		
 		return "infowrite";
 	}
 	
 	@RequestMapping(value = "/infowrite.inc", method = RequestMethod.POST )
 	public ModelAndView info_write(AniBbsVO vo) throws Exception {
-		//vo에 bname을 제외한 멤버변수 저장!
+	
 		value = saveBbs(vo);
 		
 		if(value)
-			mv.setViewName("redirect:infolist.inc");
+			mv.setViewName("redirect:bbslist.inc?bname="+vo.getBname());
 		else
-			mv.setViewName("redirect:/infowrite.inc?nowPage="+vo.getNowpage());
+			mv.setViewName("redirect:/infowrite.inc?nowPage="+vo.getNowPage());
 		
 		return mv;
+	}
+	
+	@RequestMapping(value="/saveImage.inc", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, String> saveImage(AniBbsVO vo)throws Exception {
+		
+		
+		MultipartFile upload = vo.getFile();	
+		
+		String f_name= null;
+		
+		//첨부파일이 있는지 판단(파일첨부를 안해도 null값은 아니다 빈게 들어올 뿐)
+				if(upload != null && upload.getSize() > 0 ) {
+					
+					//절대경로
+					String path = application.getRealPath(imgPath);
+				
+					//파일명 얻기
+					f_name = upload.getOriginalFilename();
+					
+					//동일한 파일명이 있다면 f_name을 변경!
+					f_name = FileRenameUtil.checkFileName(path, f_name);
+					
+					//파일올리기
+					upload.transferTo(new File(path, f_name));
+					
+		
+				}
+				Map<String, String> map = new HashMap<String, String>();
+				map.put("url", request.getContextPath()+"/resources/editor_img/"+
+							f_name);
+				
+				return map;
+				
+				
 	}
 	
 
@@ -132,8 +181,6 @@ public class UgiWriteAction {
 				//ip저장
 				vo.setIp(request.getRemoteAddr());
 				
-				//session에 저장된 m_id값을 vo에 저장(bbs테이블에 참조키)
-				vo.setM_id(mvo.getM_id());
 				
 				value = a_dao.addUgi(vo);
 				

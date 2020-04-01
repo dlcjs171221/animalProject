@@ -17,6 +17,13 @@ public class MemDAO {
 	public boolean addMem(AnimemVO vo) {
 		boolean chk = false;
 		
+		String m_email = makeString(vo.getS_email(), "@");
+		String m_phone = makeString(vo.getS_phone(), "-");
+		
+		vo.setM_email(m_email);
+		vo.setM_phone(m_phone);
+		
+		
 		int cnt = template.insert("mem.add",vo);
 		
 		if(cnt>0)
@@ -30,9 +37,8 @@ public class MemDAO {
 	//네이버 회원 가입
 	public boolean addNmem(AnimemVO vo) {
 		boolean chk = false;
-		//System.out.println(vo.getM_id());
-		//System.out.println(vo.getM_name());
-		//System.out.println(vo.getM_email());
+		
+		
 		int cnt = template.insert("mem.n_add",vo);
 		
 		if(cnt>0)

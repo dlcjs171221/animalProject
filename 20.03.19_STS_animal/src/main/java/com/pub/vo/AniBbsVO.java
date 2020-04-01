@@ -19,11 +19,11 @@ public class AniBbsVO {
 			phone,
 			lose_date,
 			m_id;
-	
+		
 	//첨부파일
 	private MultipartFile file;
 	
-	private int nowpage;
+	private int nowPage;
 
 	public String getB_idx() {
 		return b_idx;
@@ -145,6 +145,14 @@ public class AniBbsVO {
 		this.m_id = m_id;
 	}
 
+	public int getNowPage() {
+		return nowPage;
+	}
+
+	public void setNowPage(int nowPage) {
+		this.nowPage = nowPage;
+	}
+
 	public MultipartFile getFile() {
 		return file;
 	}
@@ -152,14 +160,10 @@ public class AniBbsVO {
 	public void setFile(MultipartFile file) {
 		this.file = file;
 	}
+	
+	
 
-	public int getNowpage() {
-		return nowpage;
-	}
 
-	public void setNowpage(int nowpage) {
-		this.nowpage = nowpage;
-	}
 	
 	
 	

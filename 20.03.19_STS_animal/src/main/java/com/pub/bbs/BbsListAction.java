@@ -61,7 +61,7 @@ public class BbsListAction {
 		AniBbsVO[] ar = a_dao.getList(bname, begin, end);
 		
 		mv.addObject("ugilist", ar);
-		mv.addObject("pagecode", pageCode);
+		mv.addObject("pageCode", pageCode);
 		mv.addObject("nowPage", page.getNowPage());
 		mv.addObject("rowTotal", rowTotal);
 		mv.addObject("blockList", BLOCK_LIST);

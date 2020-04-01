@@ -2,6 +2,22 @@ package com.pub.vo;
 
 public class AnimemVO {
 	private String m_id, m_name, m_pw, m_phone, m_email,status;
+	private String[] s_email, s_phone;
+	public String[] getS_email() {
+		return s_email;
+	}
+
+	public void setS_email(String[] s_email) {
+		this.s_email = s_email;
+	}
+
+	public String[] getS_phone() {
+		return s_phone;
+	}
+
+	public void setS_phone(String[] s_phone) {
+		this.s_phone = s_phone;
+	}
 
 	public String getM_id() {
 		return m_id;

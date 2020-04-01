@@ -49,7 +49,7 @@ public class LoginAction {
 	      
 	      AnimemVO mvo = ani_dao.login(vo);
 	      
-	      session.setAttribute("vo", mvo);
+	      session.setAttribute("mvo", mvo);
 	      
 	      
 	     //  mv.addObject("url", url);

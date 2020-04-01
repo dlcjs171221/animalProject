@@ -29,6 +29,7 @@
 
 
 
+
 </head>
 <style>
 #bar_up {
@@ -175,6 +176,10 @@
    margin-bottom: 15px;
    margin-left: 11px;
 }
+
+#reg_name{
+   padding-bottom: 10px;
+}
 </style>
 
 <body>
@@ -230,55 +235,65 @@
 
          </div>
          <!-- /.col-lg-3 -->
-
+         
          <div class="contents">
-            <h1 class="login-title">로그인</h1>
-
             <!-- login-box -->
-            <div class="login-box">
-               <form action="" method="post">
-                  <table class="login-box-table1">
-                     <caption>개인로그인</caption>
-                     <colgroup>
-                        <col width="80px" />
-                        <col width="*" />
-                     </colgroup>
-                     <tbody>
-                        <tr>
-                           <td class="login_t">
-                              <div class="row2">
-                                 <input class="input-id" name="id" id="id" type="text"
-                                    placeholder="아이디" value=""> <span
-                                    class="login-check-text" id="idErr" style="display: none;">아이디를
-                                    입력해주세요.</span>
-                              </div>
-                              <div class="row2">
-                                 <input type="password" name="pw" id="pw" placeholder="비밀번호"
-                                    maxlength="16"
-                                    onkeydown="if(event.keyCode==13){login.submit();}"
-                                    autocomplete="off"> <span
-                                    class="login-check-text non-pb" id="pwdErr"
-                                    style="display: none;">비밀번호를 입력해주세요.</span>
-                              </div>
-                              <div class="row">
-                                 <button class="btn btn-f btn-point login-top" id="login_btn"
-                                    type="button" onclick="sendData(this.button)">로그인</button>
-
-                                 <button class="btn btn-f btn-point login-top" id="reg_btn"
-                                    type="button" onclick="reg()">회원가입</button>
-
-                              </div>
-                              <div class="naver">
-                                 <a href="${url }"><img src="resources/images/naver.PNG"
-                                    width="150"></a>
-                              </div>
-                           </td>
-                        </tr>
-                     </tbody>
-                  </table>
-               </form>
+            <form action="reg.inc" method="post">
+            <div id="wrap">
+               <div id = reg_name>
+               <h2>회원가입</h2>
+               </div>
+               <table>
+                  <caption></caption>
+                  <colgroup>
+                     <col width="100px" />
+                     <col width="*" />
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <th><label for="id">아이디:</label></th>
+                        <td><input type="text" id="id" name="m_id" />
+                           <div id="box"></div></td>
+                     </tr>
+                     <tr>
+                        <th><label for="pw">비밀번호:</label></th>
+                        <td><input type="password" id="pw2" name="m_pw" /></td>
+                     </tr>
+                     <tr>
+                        <th><label for="name">이름:</label></th>
+                        <td><input type="text" id="name" name="m_name" /></td>
+                     </tr>
+                     <tr>
+                        <th><label for="email1">이메일:</label></th>
+                        <td><input type="text" id="email1" name="s_email" /> <label
+                           for="email2">@</label> <input type="text" id="email2"
+                           name="s_email" /></td>
+                     </tr>
+                     <tr>
+                        <th><label for="phone">연락처:</label></th>
+                        <td><select name="s_phone" id="phone">
+                              <option value="010">010</option>
+                              <option value="011">011</option>
+                              <option value="017">017</option>
+                        </select> <label for="phone2">-</label> <input type="text" id="phone2"
+                           name="s_phone" /> <label for="phone3">-</label> <input
+                           type="text" id="phone3" name="s_phone" /></td>
+                     </tr>
+                  </tbody>
+                  <tfoot>
+                     <tr>
+                        <td colspan="2">
+                           <p class="btn">
+                              <button id="btn_reg">저장</button>
+                           </p>
+                        </td>
+                     </tr>
+                  </tfoot>
+               </table>
             </div>
+            </form>
          </div>
+         
          <!-- /.container -->
       </div>
 
@@ -296,13 +311,19 @@
    </footer>
 
    <!-- Bootstrap core JavaScript -->
-   <script src="resources/js/jquery.min.js"></script>
+   <script src="resources//js/jquery.min.js"></script>
    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
    <!-- 아코디언 스크립트 -->
    <script src="resources/js/jquery-3.4.1.min.js"></script>
    <script src="resources/js/jquery-ui.min.js"></script>
-	<script src="resources/js/bootstrap.min.js"></script>
+   <script type="text/javascript">
+   	$("#btn_reg").bind("click", function({
+   		document.frm.submit();
+   	}))	
+   
+   </script>
+
 </body>
 
 </html>
