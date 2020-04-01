@@ -10,6 +10,8 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class CallbackAction {
 	
 	@Autowired
 	private MemDAO mem_dao;
+	
+	@Autowired
+	private HttpSession session;
 
 	@RequestMapping("/callback.inc")
 	   public ModelAndView callBack(String code, String state) throws Exception {
@@ -120,7 +125,7 @@ public class CallbackAction {
 	            		mem_dao.addNmem(vo); //MemDAO == mem_dao
 	            		
 	            		//vo를 memvo로 저장 
-	            		mv.addObject("memvo", vo);
+	            		session.setAttribute("mvo", vo);
 	            		
 	            		//main.jsp 호출
 	            		mv.setViewName("main");

@@ -57,6 +57,8 @@ public class BbsWriteAction {
 	public ModelAndView ugi_write(String bname) {
 			String str = "ugiwrite";
 		//로그인 이 되어있는 상태
+			
+		
 		/*	
 		if(obj != null) {
 			str = "ugiwrite";
@@ -66,6 +68,7 @@ public class BbsWriteAction {
 			
 		}
 		*/
+		
 		mv.setViewName(str);
 		return mv;
 		

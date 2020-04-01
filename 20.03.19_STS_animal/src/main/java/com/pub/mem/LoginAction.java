@@ -40,7 +40,6 @@ public class LoginAction {
 		}
 		
 	   @RequestMapping(value = "/login.inc", method = RequestMethod.POST)
-	   @ResponseBody
 	   public String login(AnimemVO vo) {
 	     // ModelAndView mv =  new ModelAndView();
 	     // String state = new BigInteger(130, new SecureRandom()).toString();
@@ -57,4 +56,13 @@ public class LoginAction {
 	      
 	      return "main";
 	   }
+	   
+	   @RequestMapping("/logout.inc")
+	   public String logout() { 
+	         session.removeAttribute("mvo");
+	         
+	         return "main";
+	   }
+	   
+	   
 }

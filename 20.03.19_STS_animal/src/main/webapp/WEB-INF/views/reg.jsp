@@ -318,9 +318,10 @@
    <script src="resources/js/jquery-3.4.1.min.js"></script>
    <script src="resources/js/jquery-ui.min.js"></script>
    <script type="text/javascript">
-   	$("#btn_reg").bind("click", function({
+   	$("#btn_reg").bind("click", function(){
    		document.frm.submit();
-   	}))	
+   	});
+   			
    
    </script>
 

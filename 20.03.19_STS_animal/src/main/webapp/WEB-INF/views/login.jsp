@@ -236,7 +236,7 @@
 
             <!-- login-box -->
             <div class="login-box">
-               <form action="" method="post">
+               <form action="login.inc" method="post" name="frm">
                   <table class="login-box-table1">
                      <caption>개인로그인</caption>
                      <colgroup>
@@ -247,13 +247,13 @@
                         <tr>
                            <td class="login_t">
                               <div class="row2">
-                                 <input class="input-id" name="id" id="id" type="text"
+                                 <input class="input-id" name="m_id" id="id" type="text"
                                     placeholder="아이디" value=""> <span
                                     class="login-check-text" id="idErr" style="display: none;">아이디를
                                     입력해주세요.</span>
                               </div>
                               <div class="row2">
-                                 <input type="password" name="pw" id="pw" placeholder="비밀번호"
+                                 <input type="password" name="m_pw" id="pw" placeholder="비밀번호"
                                     maxlength="16"
                                     onkeydown="if(event.keyCode==13){login.submit();}"
                                     autocomplete="off"> <span
@@ -262,7 +262,7 @@
                               </div>
                               <div class="row">
                                  <button class="btn btn-f btn-point login-top" id="login_btn"
-                                    type="button" onclick="sendData(this.button)">로그인</button>
+                                    type="button" >로그인</button>
 
                                  <button class="btn btn-f btn-point login-top" id="reg_btn"
                                     type="button" onclick="reg()">회원가입</button>
@@ -303,6 +303,13 @@
    <script src="resources/js/jquery-3.4.1.min.js"></script>
    <script src="resources/js/jquery-ui.min.js"></script>
 	<script src="resources/js/bootstrap.min.js"></script>
+	
+	<script type="text/javascript">
+		$('#login_btn').bind("click", function(){
+			document.frm.submit();
+			
+		});
+	</script>
 </body>
 
 </html>

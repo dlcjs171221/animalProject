@@ -1,5 +1,12 @@
+<%@page import="com.pub.vo.AnimemVO"%>
+<%@page import="org.springframework.beans.factory.annotation.Autowired"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	Object obj = session.getAttribute("mvo");
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,6 +87,10 @@
    .row{
       margin-bottom: 50px;
    }
+   #id{
+   	margin-top: 5px;
+   	color: white;
+   }
 </style>
 
 <body>
@@ -94,15 +105,16 @@
 
    
 
-
+<%
+	if(obj == null){
+%>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="#">검색영역</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
+      </button>   <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
             <a class="nav-link" href="#">Home
@@ -115,10 +127,42 @@
           <li class="nav-item">
             <a class="nav-link" href="reg.inc">회원가입</a>
           </li>
-        </ul>
-      </div>
+        </ul>  
+       </div>
     </div>
   </nav>
+<%
+	}else{
+		AnimemVO vo = (AnimemVO)obj;
+%>  
+	<!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">검색영역</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>   <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+         <li class="nav-item" id="id">
+         <%= vo.getM_name() %>님 환영합니다.
+         </li>
+         <li class="nav-item">
+            <a class="nav-link" href="logout.inc">로그아웃</a>
+          </li>
+        </ul>  
+       </div>
+    </div>
+  </nav>
+<%
+	}
+%>
+
+
 
   <!-- Page Content -->
   <div class="container">
