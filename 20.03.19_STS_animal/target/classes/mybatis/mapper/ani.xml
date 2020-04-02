@@ -23,6 +23,12 @@
 		) where r_num between #{begin} and #{end}
 	</select>
 	
+	<!-- 전체 게시물을 가져오는 기능 -->
+	<select id="alllist" resultType="com.pub.vo.AniBbsVO" parameterType="String">
+		select * from anibbs
+		where bname = #{bname}
+	</select>
+	
 	<!-- 유기게시물 저장 -->
 	<insert id="ugi_add" parameterType="com.pub.vo.AniBbsVO">
 		INSERT INTO anibbs(b_idx,subject,writer,write_date,content,hit,bname,

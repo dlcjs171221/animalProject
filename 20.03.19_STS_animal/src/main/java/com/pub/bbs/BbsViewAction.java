@@ -26,11 +26,12 @@ public class BbsViewAction {
 		Object obj = session.getAttribute("mvo");
 		
 		if(obj != null) {
-		
-		
+			
+		AniBbsVO[] ar = a_dao.allList("유기");
 		AniBbsVO vo = a_dao.getBbs(b_idx);
 		
 		mv.addObject("vo", vo);
+		mv.addObject("ar", ar);
 		mv.addObject("nowPage", nowPage);
 		mv.setViewName("ugiview");
 		

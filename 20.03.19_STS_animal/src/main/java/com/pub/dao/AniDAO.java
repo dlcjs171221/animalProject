@@ -48,6 +48,21 @@ public class AniDAO {
 	
 	}
 	
+	//해당 게시판에 전체 게시물들을 배열로 반환하는 기능
+	public AniBbsVO[] allList(String bname) {
+		
+		AniBbsVO[] ar = null;
+		
+		List<AniBbsVO> list = template.selectList("ani.alllist", bname);
+		
+		if(list != null) {
+			ar = new AniBbsVO[list.size()];
+			list.toArray(ar);
+		}
+		
+		return ar;
+	}
+	
 	//유기게시물 저장기능
 		public boolean addUgi(AniBbsVO vo) {
 			boolean value = false;

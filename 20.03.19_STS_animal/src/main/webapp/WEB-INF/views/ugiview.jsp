@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE HTML>
 <html> 
 <head>
@@ -50,7 +51,7 @@
 
                     <tr>
                       <td width="90" height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">작성자</font></td>
-                      <td bgcolor="#F2F7F9" align="left"> <input type="text" name="writer" value="${mvo.m_name }"  cssStyle="width:100px" theme="simple"/></td>
+                      <td bgcolor="#F2F7F9" align="left"> <input type="text" name="writer" value="${vo.writer}"  cssStyle="width:100px" theme="simple"/></td>
                     </tr>
 
                     <tr>
@@ -97,7 +98,15 @@
                       </td>
 		              	 <td width="241" align="right">
 		                      <input type="button" onclick="javascript:location.href='bbslist.inc?bname=${vo.bname}&nowPage=${nowPage }'" value="목록"/>
+		                   <c:set var="doneLoop" value="false"/>   
+	                      <c:forEach var="avo" items="${ar }">
+	 						<c:if test="${not doneLoop}">
+	                      	<c:if test="${avo.m_id eq mvo.m_id }">
 		                      <input type="button" onclick="check(this.form)" value="수정"/>
+		                       <c:set var="doneLoop" value="true"/>
+  							 </c:if>		
+		                     </c:if>
+		                  </c:forEach>    
 		                      <input type="reset" value="재입력"/>
 	                      </td>
                     </tr>
