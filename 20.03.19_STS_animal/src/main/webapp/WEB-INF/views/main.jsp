@@ -175,8 +175,8 @@
            
           <a href="list.inc" class="list-group-item">유기동물 공고</a>
           <a href="bbslist.inc?bname=유기" class="list-group-item">유기등록 등록</a>
-          <a href="search.inc" class="list-group-item">유기 관찰소 찾기</a>
-          <a href="bbslist.inc?bname='정책'" class="list-group-item">유기동물 정책</a>
+          <a href="shelter.inc" class="list-group-item">유기 관찰소 찾기</a>
+          <a href="bbslist.inc?bname='공지'" class="list-group-item">유기동물 정책</a>
           <a href="#" class="list-group-item">유기동물 통계</a>
           
         </div>

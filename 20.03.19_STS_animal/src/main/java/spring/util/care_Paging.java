@@ -1,6 +1,6 @@
 package spring.util;
 
-public class A_Paging {
+public class care_Paging {
 
 	private int nowPage, //현재 페이지
 		rowTotal, //총 게시물 수
@@ -8,22 +8,20 @@ public class A_Paging {
 		blockPage, // 한 블럭당 표현할 페이지 수
 		totalPage, startPage, endPage,
 		begin, end;
+	
 	private boolean isPrePage; // 이전 기능 가능여부
 	private boolean isNextPage; // 다음 기능 가능여부
-	
-	private String bname; // 종류별 게시판 이름
-	
+		
 	//JSP에서 표현할 페이징 HTML코드를 저장할 곳!
 	private StringBuffer sb;
 
-	public A_Paging(int nowPage, int rowTotal, 
-			int blockList, int blockPage, String bname) {
+	public care_Paging(int nowPage, int rowTotal, 
+			int blockList, int blockPage) {
 		
 		this.nowPage = nowPage;
 		this.rowTotal = rowTotal;
 		this.blockList = blockList;
 		this.blockPage = blockPage;
-		this.bname = bname;
 		
 		makeHTML();
 		
@@ -64,6 +62,7 @@ public class A_Paging {
 				//다음 기능 가능여부 확인
 				if(endPage < totalPage)
 					isNextPage = true;
+				System.out.println(endPage);
 				
 				//이제 현재페이지 값도 알고, 시작 페이지와 
 				//마지막 페이지 값을 알았으니 페이지 기법에 사용할 코드를 
@@ -72,10 +71,8 @@ public class A_Paging {
 				
 				//이전 기능 활성화!
 				if(isPrePage) {
-					sb.append("<li><a href='bbslist.inc?nowPage=");
+					sb.append("<li><a href='shelter.inc?nowPage=");
 					sb.append(nowPage-blockPage); //전달되는 파라미터 값
-					sb.append("&bname=");
-					sb.append(this.bname); //전달되는 bname 값
 					sb.append("'>&lt;</a></li>");
 				}else {
 					//이전 기능 비활성화!
@@ -91,10 +88,8 @@ public class A_Paging {
 						sb.append(i);
 						sb.append("</li>");
 					}else {
-						sb.append("<li><a href='bbslist.inc?nowPage=");
+						sb.append("<li><a href='shelter.inc?nowPage=");
 						sb.append(i); //전달되는 파라미터 값
-						sb.append("&bname=");
-						sb.append(this.bname); //전달되는 bname 값
 						sb.append("'>");
 						sb.append(i); //화면에 출력되는 페이지 값
 						sb.append("</a></li>");
@@ -104,10 +99,8 @@ public class A_Paging {
 				
 				//다음 기능 가능여부 확인
 				if(isNextPage) {
-					sb.append("<li><a href='bbslist.inc?nowPage=");
+					sb.append("<li><a href='shelter.inc?nowPage=");
 					sb.append(nowPage+blockPage);
-					sb.append("&bname=");
-					sb.append(this.bname); //전달되는 bname 값
 					sb.append("'>&gt;</a></li>");
 				}else {
 					sb.append("<li class='disable'>&gt;</li>");

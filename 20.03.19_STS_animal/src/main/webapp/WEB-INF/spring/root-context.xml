@@ -48,4 +48,5 @@
  		<!-- autowired를 쓴다 -->
     	<bean id="memDao" class="com.pub.dao.MemDAO"/>
     	<bean id="aniDao" class="com.pub.dao.AniDAO"/>
+    	<bean id="shelDao" class="com.pub.dao.ShelterDAO"/>
 </beans>
