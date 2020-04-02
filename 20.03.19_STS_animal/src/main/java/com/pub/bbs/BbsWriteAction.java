@@ -43,8 +43,6 @@ public class BbsWriteAction {
 	@Autowired
 	private HttpSession session;
 	
-	//session의 저장한 로그인 정보 가져오기
-	//Object obj = session.getAttribute("mvo");
 	
 	ModelAndView mv = new ModelAndView();
 	boolean value = false;
@@ -55,19 +53,21 @@ public class BbsWriteAction {
 	//분실신고 리스트 창에서 등록하기 버튼을 눌렀을 때
 	@RequestMapping("/ugiwrite.inc")
 	public ModelAndView ugi_write(String bname) {
-			String str = "ugiwrite";
+			String str = "login";
+			
+		//session의 저장한 로그인 정보 가져오기
+		Object obj = session.getAttribute("mvo");
+			
+			
 		//로그인 이 되어있는 상태
 			
-		
-		/*	
 		if(obj != null) {
 			str = "ugiwrite";
 			AnimemVO mvo = (AnimemVO)obj;
-			mv.addObject("mvo", mvo);
 			mv.addObject("bname", bname);
 			
 		}
-		*/
+		
 		
 		mv.setViewName(str);
 		return mv;
@@ -82,11 +82,15 @@ public class BbsWriteAction {
 		
 		value = saveBbs(vo);
 
-		if(value)
-			mv.setViewName("redirect:bbslist.inc?bname="+vo.getBname());
-		else
-			mv.setViewName("redirect:/ugiwrite.inc?nowPage="+vo.getNowPage());
-		
+		if(value) {
+			mv.addObject("bname", vo.getBname());
+			mv.setViewName("redirect:/bbslist.inc");
+		}
+		else {
+			mv.addObject("nowPage", vo.getNowPage());
+			mv.setViewName("redirect:/ugiwrite.inc");
+			
+		}
 		return mv;
 		
 	}
@@ -184,10 +188,10 @@ public class BbsWriteAction {
 				//ip저장
 				vo.setIp(request.getRemoteAddr());
 				
-				
+				//DB에 저장!
 				value = a_dao.addUgi(vo);
 				
-				//DB에 저장! 
+				 
 				return value;
 		
 	}

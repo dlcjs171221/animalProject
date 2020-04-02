@@ -22,7 +22,7 @@
 	<div id = "write">
 	<form action="ugiwrite.inc" method="post" 
 	enctype="multipart/form-data">
-		<input type="hidden" name="bname" value="${bname }"/>
+		<input type="hidden" name="bname" value="${vo.bname }"/>
 		<input type="hidden" name="m_id" value="${mvo.m_id }"/> 	
 	
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="asd1">
@@ -55,38 +55,30 @@
 
                     <tr>
                       <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">제목</font></td>
-                      <td bgcolor="#F2F7F9" align="left"> <input type="text" name="subject" size="50" theme="simple"/></td>
+                      <td bgcolor="#F2F7F9" align="left"> <input type="text" name="subject" size="50" theme="simple" value="${vo.subject }"/></td>
                     </tr>
                     
                       
                      <tr>
                       <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">내용</font></td>
-                      <td bgcolor="#F2F7F9" align="left"> <textarea id="content" name="content" cols="50" rows="10" theme="simple" ></textarea></td>
+                      <td bgcolor="#F2F7F9" align="left"> <textarea id="content" name="content" cols="50" rows="10" theme="simple" >${vo.content }</textarea></td>
                     </tr>
                     
                     
                     <tr>
                     
                       <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">첨부파일</font></td>
-                      <td bgcolor="#F2F7F9" align="left">
+                      <td bgcolor="#F2F7F9" align="left">(${vo.file_name })
                         <input type="file" name="file" cssStyle="width:300px" theme="simple"/>
                       </td>
                     </tr>
                      <tr>
                       <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">품종</font></td>
-                      <td bgcolor="#F2F7F9" align="left"> <input type="text" name="kind" size="50" theme="simple"/></td>
-                    </tr>
-                    <tr>
-                      <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">이메일</font></td>
-                      <td bgcolor="#F2F7F9" align="left"> <input type="text" name="email" size="50" theme="simple"/></td>
-                    </tr>
-                    <tr>
-                      <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">전화번호</font></td>
-                      <td bgcolor="#F2F7F9" align="left"> <input type="text" name="phone" size="50" theme="simple"/></td>
+                      <td bgcolor="#F2F7F9" align="left"> <input type="text" name="kind" size="50" theme="simple" value="${vo.kind }"/></td>
                     </tr>
                     <tr>
                       <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">잃어버린 날짜</font></td>
-                      <td bgcolor="#F2F7F9" align="left"> <input type="text" name="lose_date" size="50" theme="simple"/></td>
+                      <td bgcolor="#F2F7F9" align="left"> <input type="text" name="lose_date" size="50" theme="simple" value="${vo.lose_date }"/></td>
                     </tr>
                     
                   </table></td>
@@ -104,8 +96,8 @@
           
                       </td>
 		              	 <td width="241" align="right">
-		                      <input type="button" onclick="javascript:location.href='ugilist.inc?bname=${bname}'" value="목록"/>
-		                      <input type="button" onclick="check(this.form)" value="저장"/>
+		                      <input type="button" onclick="javascript:location.href='bbslist.inc?bname=${vo.bname}&nowPage=${nowPage }'" value="목록"/>
+		                      <input type="button" onclick="check(this.form)" value="수정"/>
 		                      <input type="reset" value="재입력"/>
 	                      </td>
                     </tr>

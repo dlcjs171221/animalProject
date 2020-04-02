@@ -50,14 +50,13 @@ public class AniDAO {
 	
 	//유기게시물 저장기능
 		public boolean addUgi(AniBbsVO vo) {
-			
 			boolean value = false;
-				
-			
+
 			int cnt = template.insert("ani.ugi_add", vo);
 			
 			if(cnt > 0) {
 				value = true;
+				
 			}
 			
 			return value;
@@ -77,9 +76,8 @@ public class AniDAO {
 				
 				return value;
 			}
-					
-		
-		
+				
+	
 		
 		// b_idx값을 인자로 받아서 bbs.getBbs라는 맵퍼를 호출하는 기능
 		// 즉, 보기 기능(view.jsp)에서 호출되는 함수이며 특정 게시물 정보를

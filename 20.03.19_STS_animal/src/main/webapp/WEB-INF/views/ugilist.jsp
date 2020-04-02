@@ -181,7 +181,7 @@
                        <tr >
                           <td id="view_t" rowspan="1"  >
                              <!-- 자세히보기 -->
-                             <input type="button" value="자세히보기" onclick="javascript:location.href='ugiview.inc'"/>
+                             <input type="button" value="자세히보기" onclick="javascript:location.href='ugiview.inc?b_idx=${vo.b_idx}&nowPage=${nowPage }'"/>
                           </td>
                        </tr>
                      </tbody>
