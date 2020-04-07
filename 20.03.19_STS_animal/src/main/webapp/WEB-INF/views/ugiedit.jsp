@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE HTML>
 <html> 
 <head>
@@ -13,15 +12,67 @@
 </style>
 <script type="text/javascript">
 	function check(ff){
+		
+		
+		
 		//유효성 검사
+		if($("#subject").val().length < 1) {
+		alert("제목을 입력하세요")
+		$("#subject").focus()
+		return;
+		}
+		if($("#content").val().length < 1) {
+			alert("내용을 입력하세요")
+			$("#content").focus()
+			return;
+		}
+		if($("#kind").val().length < 1) {
+			alert("품종을 입력하세요")
+			$("#kind").focus()
+			return;
+		}
+		if($("#email").val().length < 1) {
+			alert("이메일을 입력하세요")
+			$("#email").focus()
+			return;
+		}
+		if($("#phone").val().length < 1) {
+			alert("연락 가능한 번호를 입력하세요")
+			$("#phone").focus()
+			return;
+		}
+		if($("#lose_date").val().length < 1) {
+			alert("잃어버린 날짜를 입력하세요")
+			$("#lose_date").focus()
+			return;
+		}
+	
 		
+		var queryString = $("form[name=frm]").serialize();
+	
 		
-		ff.submit(); 
+		$.ajax({
+			url : "ugiedit.inc",
+			data : queryString,
+			type : "post",
+			dataType : "json" 
+		}).done(function(data){
+			if(data.value){
+				alert("수정되었습니다");
+				location.href="ugiview.inc?b_idx=${vo.b_idx}&nowPage=${nowPage}";
+			}
+			
+		}).fail(function(err){
+			
+		});
 	}
 </script>
 </head>
 <body>
 	<div id = "write">
+	<form name="frm"
+	enctype="multipart/form-data">
+	<input type="hidden" name="b_idx" value="${vo.b_idx }"/>
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="asd1">
   <tr>
     <td valign="top">
@@ -30,7 +81,7 @@
           <td align="center" height="10"></td>
         </tr>
         <tr>
-          <td align="center"><u><b>분실정보</b></u></td>
+          <td align="center"><u><b>분실신고 수정하기</b></u></td>
         </tr>
         <tr>
           <td align="center" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -47,35 +98,44 @@
 
                     <tr>
                       <td width="90" height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">작성자</font></td>
-                      <td bgcolor="#F2F7F9" align="left">${vo.writer}</td>
+                      <td bgcolor="#F2F7F9" align="left"> <input type="text" name="writer" value="${mvo.m_name }" readonly cssStyle="width:100px" theme="simple"/></td>
                     </tr>
 
                     <tr>
                       <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">제목</font></td>
-                      <td bgcolor="#F2F7F9" align="left">${vo.subject }</td>
+                      <td bgcolor="#F2F7F9" align="left"> <input type="text" id="subject" name="subject" value="${vo.subject }" size="50" theme="simple"/></td>
                     </tr>
                     
                       
                      <tr>
                       <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">내용</font></td>
-                      <td bgcolor="#F2F7F9" align="left"><p>${vo.content }</p></td>
+                      <td bgcolor="#F2F7F9" align="left"> <textarea id="content" name="content" cols="50" rows="10" theme="simple" >${vo.content }</textarea></td>
                     </tr>
                     
                     
                     <tr>
                     
                       <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">첨부파일</font></td>
-                      <td bgcolor="#F2F7F9" align="left">(${vo.file_name })
+                      <td bgcolor="#F2F7F9" align="left">
                         <input type="file" name="file" cssStyle="width:300px" theme="simple"/>
+                        (${vo.file_name })
                       </td>
                     </tr>
                      <tr>
                       <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">품종</font></td>
-                      <td bgcolor="#F2F7F9" align="left">${vo.kind }</td>
+                      <td bgcolor="#F2F7F9" align="left"> <input type="text" id="kind" name="kind" value="${vo.kind }" size="50" theme="simple"/></td>
+                    </tr>
+                    <tr>
+                      <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">이메일</font></td>
+                      <td bgcolor="#F2F7F9" align="left"> <input type="text" id="email" name="email" value="${vo.email }" size="50" theme="simple"/></td>
+                    </tr>
+                    <tr>
+                      <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">전화번호</font></td>
+                      <td bgcolor="#F2F7F9" align="left"> <input type="text" id="phone" name="phone" value="${vo.phone }" size="50" theme="simple"/></td>
                     </tr>
                     <tr>
                       <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">잃어버린 날짜</font></td>
-                      <td bgcolor="#F2F7F9" align="left">${vo.lose_date }</td>
+                      <td bgcolor="#F2F7F9" align="left"> <input type="text" id="lose_date" name="lose_date" value="${vo.lose_date }" size="50" theme="simple"/></td>
                     </tr>
                     
                   </table></td>
@@ -94,12 +154,8 @@
                       </td>
 		              	 <td width="241" align="right">
 		                      <input type="button" onclick="javascript:location.href='bbslist.inc?bname=${vo.bname}&nowPage=${nowPage }'" value="목록"/>
-		                   <c:set var="doneLoop" value="false"/>   
-	                     
-	                      	<c:if test="${mvo.m_id eq vo.m_id }">
-		                      <input type="button" onclick="javascript:location.href='ugiedit.inc?b_idx=${vo.b_idx}&nowPage=${nowPage }'" value="수정"/>
-		                       <c:set var="doneLoop" value="true"/>
-  							 </c:if>	   
+		                      <input type="button" onclick="check(this.form)" value="저장"/>
+		                      <input type="reset" value="재입력"/>
 	                      </td>
                     </tr>
                   	</table>
@@ -114,6 +170,7 @@
     </td>
   </tr>
 	</table>
+	</form>
 		<!--  
 		<table width="556" border="0" cellspacing="0" cellpadding="0" id="table1">
 				<tr>
@@ -138,12 +195,10 @@
 <script type="text/javascript">
 $(function(){
 	
-	/*
 	$("#content").summernote({	
 			height : 300,
 			width : 450,
 			lang : "ko-KR",
-			placeholder : "바보야",	
 			callbacks:{ //특정한 사건이 발생했을 때 자동으로 롤백 해주는 역할
 				onImageUpload: function(files, editor){
 					//이미지가 에디터에 추가될 때마다 수행하는 곳
@@ -160,10 +215,14 @@ $(function(){
 		
 		$("#content").summernote("lineHeight", 1.0);
 		
-		//$("#content").attr("readonly" true); //설정
+		$("#content").summernote({
+			placeholder : "ddd"
+		});
+		
+		$("#subject").focus();
 	
 	});
-	*/
+	
 	
 	
 

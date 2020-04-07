@@ -19,6 +19,7 @@
 			select rownum as r_num, a.* from (
 				select * from anibbs
 				where bname = #{bname}
+				ORDER BY b_idx DESC
 			) a	
 		) where r_num between #{begin} and #{end}
 	</select>
@@ -49,6 +50,22 @@
 		select * from anibbs
 		where b_idx = #{no}
 	</select>
+	
+	<!-- 유기게시물 수정 -->
+	<update id="ugi_edit" parameterType="com.pub.vo.AniBbsVO">
+		update anibbs
+		set subject = #{subject},
+			content = #{content},
+		<if test = "file_name != null">
+			file_name = #{file_name},
+			ori_name = #{ori_name},
+		</if>
+			kind = #{kind},
+			email = #{email},
+			phone = #{phone},
+			lose_date = #{lose_date}
+			where b_idx = #{b_idx}
+	</update>
 
 	
 	<!-- 조회수 증가 -->

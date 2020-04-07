@@ -12,7 +12,41 @@
 </style>
 <script type="text/javascript">
 	function check(ff){
+		
+		
+		
 		//유효성 검사
+		if($("#subject").val().length < 1) {
+		alert("제목을 입력하세요")
+		$("#subject").focus()
+		return;
+		}
+		if($("#content").val().length < 1) {
+			alert("내용을 입력하세요")
+			$("#content").focus()
+			return;
+		}
+		if($("#kind").val().length < 1) {
+			alert("품종을 입력하세요")
+			$("#kind").focus()
+			return;
+		}
+		if($("#email").val().length < 1) {
+			alert("이메일을 입력하세요")
+			$("#email").focus()
+			return;
+		}
+		if($("#phone").val().length < 1) {
+			alert("연락 가능한 번호를 입력하세요")
+			$("#phone").focus()
+			return;
+		}
+		if($("#lose_date").val().length < 1) {
+			alert("잃어버린 날짜를 입력하세요")
+			$("#lose_date").focus()
+			return;
+		}
+		
 		
 		ff.submit(); 
 	}
@@ -50,12 +84,12 @@
 
                     <tr>
                       <td width="90" height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">작성자</font></td>
-                      <td bgcolor="#F2F7F9" align="left"> <input type="text" name="writer" value="${mvo.m_name }"  cssStyle="width:100px" theme="simple"/></td>
+                      <td bgcolor="#F2F7F9" align="left"> <input type="text" name="writer" value="${mvo.m_name }" readonly cssStyle="width:100px" theme="simple"/></td>
                     </tr>
 
                     <tr>
                       <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">제목</font></td>
-                      <td bgcolor="#F2F7F9" align="left"> <input type="text" name="subject" size="50" theme="simple"/></td>
+                      <td bgcolor="#F2F7F9" align="left"> <input type="text" id="subject" name="subject" size="50" theme="simple"/></td>
                     </tr>
                     
                       
@@ -74,19 +108,19 @@
                     </tr>
                      <tr>
                       <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">품종</font></td>
-                      <td bgcolor="#F2F7F9" align="left"> <input type="text" name="kind" size="50" theme="simple"/></td>
+                      <td bgcolor="#F2F7F9" align="left"> <input type="text" id="kind" name="kind" size="50" theme="simple"/></td>
                     </tr>
                     <tr>
                       <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">이메일</font></td>
-                      <td bgcolor="#F2F7F9" align="left"> <input type="text" name="email" size="50" theme="simple"/></td>
+                      <td bgcolor="#F2F7F9" align="left"> <input type="text" id="email" name="email" size="50" theme="simple"/></td>
                     </tr>
                     <tr>
                       <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">전화번호</font></td>
-                      <td bgcolor="#F2F7F9" align="left"> <input type="text" name="phone" size="50" theme="simple"/></td>
+                      <td bgcolor="#F2F7F9" align="left"> <input type="text" id="phone" name="phone" size="50" theme="simple"/></td>
                     </tr>
                     <tr>
                       <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">잃어버린 날짜</font></td>
-                      <td bgcolor="#F2F7F9" align="left"> <input type="text" name="lose_date" size="50" theme="simple"/></td>
+                      <td bgcolor="#F2F7F9" align="left"> <input type="text" id="lose_date" name="lose_date" size="50" theme="simple"/></td>
                     </tr>
                     
                   </table></td>
@@ -104,7 +138,7 @@
           
                       </td>
 		              	 <td width="241" align="right">
-		                      <input type="button" onclick="javascript:location.href='ugilist.inc?bname=${bname}'" value="목록"/>
+		                      <input type="button" onclick="javascript:location.href='bbslist.inc?bname=${bname}'" value="목록"/>
 		                      <input type="button" onclick="check(this.form)" value="저장"/>
 		                      <input type="reset" value="재입력"/>
 	                      </td>
@@ -145,11 +179,11 @@
 <script src="resources/js/lang/summernote-ko-KR.min.js"></script>	
 <script type="text/javascript">
 $(function(){
+	
 	$("#content").summernote({	
 			height : 300,
 			width : 450,
 			lang : "ko-KR",
-			placeholder : "바보야",	
 			callbacks:{ //특정한 사건이 발생했을 때 자동으로 롤백 해주는 역할
 				onImageUpload: function(files, editor){
 					//이미지가 에디터에 추가될 때마다 수행하는 곳
@@ -166,7 +200,11 @@ $(function(){
 		
 		$("#content").summernote("lineHeight", 1.0);
 		
+		$("#content").summernote({
+			placeholder : "ddd"
+		});
 		
+		$("#subject").focus();
 	
 	});
 	

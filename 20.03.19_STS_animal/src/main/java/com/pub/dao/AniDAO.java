@@ -113,5 +113,19 @@ public class AniDAO {
 					
 		}
 		
+		// 유기게시물 수정 기능
+		public boolean editugi(AniBbsVO vo) {
+			Boolean value = false;
+			
+			int cnt = template.update("ani.ugi_edit", vo);
+			
+			if(cnt > 0) {
+				value = true;
+			}
+			
+
+			return value;
+		}
+		
 	
 }

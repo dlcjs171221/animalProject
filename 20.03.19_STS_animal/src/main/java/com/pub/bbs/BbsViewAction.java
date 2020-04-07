@@ -19,7 +19,7 @@ public class BbsViewAction {
 	@Autowired
 	private HttpSession session;
 	
-	@RequestMapping("ugiview.inc")
+	@RequestMapping("/ugiview.inc")
 	public ModelAndView view(String b_idx, String nowPage) {
 		ModelAndView mv = new ModelAndView();
 		
