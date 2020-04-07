@@ -3,6 +3,16 @@ package com.pub.vo;
 public class ShelterVO {
 
 	private String s_idx,s_area,s_name,s_tel,s_addr;
+	
+	public ShelterVO(){};
+
+	public ShelterVO(String s_idx, String s_area, String s_name, String s_tel, String s_addr) {
+		this.s_idx = s_idx;
+		this.s_area = s_area;
+		this.s_name = s_name;
+		this.s_tel = s_tel;
+		this.s_addr = s_addr;
+	}
 
 	public String getS_idx() {
 		return s_idx;

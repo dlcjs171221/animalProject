@@ -62,7 +62,6 @@ public class care_Paging {
 				//다음 기능 가능여부 확인
 				if(endPage < totalPage)
 					isNextPage = true;
-				System.out.println(endPage);
 				
 				//이제 현재페이지 값도 알고, 시작 페이지와 
 				//마지막 페이지 값을 알았으니 페이지 기법에 사용할 코드를 

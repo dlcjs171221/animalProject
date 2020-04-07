@@ -39,4 +39,24 @@ public class ShelterDAO {
 		
 	 return ar;
 	}
+	
+	//보호소 검색
+	public ShelterVO[] searchShelter(String type,String value) {
+		ShelterVO[] ar = null;
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("searchType",type);
+		map.put("searchValue",value);
+		
+		List<ShelterVO> list = Template.selectList("shelter.search",map);
+		
+		if(list != null && !list.isEmpty()) {
+			ar = new ShelterVO[list.size()];
+			list.toArray(ar);
+		}
+		return ar;
+		
+	}
+	
+	
 }

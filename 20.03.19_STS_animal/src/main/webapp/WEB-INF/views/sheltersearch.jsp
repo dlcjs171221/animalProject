@@ -22,7 +22,7 @@
 
 <!--주요내용시작 -->
 <form name="ff2" method="post">
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<table width="100%"border="0" cellspacing="0" cellpadding="0">
   <tbody>
   		  <tr>
 		<td valign="top">
@@ -32,16 +32,16 @@
 			  <td align="center" height="10"></td>
 			</tr>
 			<tr>
-			  <td align="center"><h1><u><b>보호센터 목록</b><u></td>
+			  <td align="center"><u><b>보호센터 목록</b><u></td>
 			</tr>
 			<tr>
 				<td id="sea">
 					<select id="select"  name="select">
-						<option value="1">전체</option>
-						<option value="2">관할구역</option>
-						<option value="3">보호센터명</option>
-						<option value="4">전화번호</option>
-						<option value="5">보호센터주소</option>
+						<option>검색</option>
+						<option value="1">관할구역</option>
+						<option value="2">보호센터명</option>
+						<option value="3">전화번호</option>
+						<option value="4">보호센터주소</option>
 					</select>&nbsp;&nbsp; 
 					<input type="text" id="search" name="search" placeholder="검색어 입력"/>&nbsp;&nbsp;
 					<input type="button" id ="btn" value="조회"/>
@@ -59,18 +59,33 @@
 				  </tr>
 				  <tr>
 					<td bgcolor="#E5E5E5">
-					<table  id="t1" style="width: 800px; height:100%;" border="0" cellspacing="1" cellpadding="2">
+					<table width="100%" border="0" cellspacing="1" cellpadding="2">
 						<tr>
 						  <td height="20" align="center" bgcolor="#669AB3" width="100"><font color="#FFFFFF">관할구역</font></td>
 						  <td height="20" align="center" bgcolor="#669AB3" width="100"><font color="#FFFFFF">보호센터명</font></td>
 						  <td height="20" align="center" bgcolor="#669AB3" width="80"><font color="#FFFFFF">전화번호</font></td>
 						  <td height="20" align="center" bgcolor="#669AB3" width="230"><font color="#FFFFFF">보호센터주소</font></td>
 						</tr>
-						<tbody>
 						
-						</tbody>
-					 </table>
-					 </td>
+		   		<c:forEach var="vo" items="${ar }" varStatus="st"> <!-- Action에서 넘어온 list를 items에 써준다 -->
+						<tr>
+						 <td bgcolor="#F2F7F9">
+								${vo.s_area }
+						  </td>
+						  <td bgcolor="#F2F7F9" style="text-align:left">
+								${vo.s_name }
+						  </td>
+						  <td bgcolor="#F2F7F9">${vo.s_tel }</td>
+						  <td bgcolor="#F2F7F9">${vo.s_addr }</td>
+
+						</tr>
+		   		</c:forEach>		
+		   		<c:if test="${empty ar }">
+					<tr>
+					  <td bgcolor="#F2F7F9" colspan="5" height="70" align="center">등록된 게시물이 없습니다.</td>
+					</tr>
+				</c:if>
+					  </table></td>
 					  
 				  </tr>
 		
@@ -110,7 +125,7 @@
 
 
 
-<form name="frm" method="post" action="search.inc">
+<form name="frm" method="post">
 	<input type="hidden" name="nowPage" value="${nowPage }"/>
 	<input type="hidden" name="seq"/>
 	<input type="hidden" name="type" value="select"/>
@@ -122,42 +137,21 @@
 $(function(){
 	$("#btn").bind("click",function(){
 		
-		var type = document.getElementById("select").selectedIndex;
-		var value = $("#search").val();
-				
-		var param = "type="+encodeURIComponent(type)+"&value="+encodeURIComponent(value);
+		var idx = document.getElementById("select").selectedIndex;
+		if(idx == 0)
+			return;
 		
-		$.ajax({ 
-			url: "search.inc",
-			type: "post",
-			data: param,
-			dataType: "json"
-		}).done(function(data){
-			console.log(data);
-			if(data.ar != undefined){
-				var code = "";
-				for(var i=0; i<data.ar.length; i++){
-					code += "<tr><td>";
-					code += data.ar[i].s_area;
-					code += "</td><td>";
-					code += data.ar[i].s_name;
-					code += "</td><td>";
-					code += data.ar[i].s_tel;
-					code += "</td><td>";
-					code += data.ar[i].s_addr;
-					code += "</td></tr>";
-				}
-				//위에서 작어된 HTML코드를 tbody에
-				//HTML로 적용한다.
-				$("#t1 tbody").html(code);
-			}
-		}).fail(function(err){
-			console.log(err);
-		});
+		var str = $("#search").val();
+		
+		if(str.trim().length > 0)
+			document.forms[1].submit();
+		else{
+			alert("검색어를 입력하세요");
+			$("#search").focus();
+		}
 		
 	});
 });
-
 </script>
 </body>
 </html>

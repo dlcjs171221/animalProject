@@ -117,7 +117,7 @@
       </button>   <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home
+            <a class="nav-link" href="main.inc">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
@@ -144,7 +144,7 @@
       </button>   <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home
+            <a class="nav-link" href="main.inc">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
@@ -177,7 +177,7 @@
           <a href="bbslist.inc?bname=유기" class="list-group-item">유기등록 등록</a>
           <a href="shelter.inc" class="list-group-item">유기 관찰소 찾기</a>
           <a href="bbslist.inc?bname='공지'" class="list-group-item">유기동물 정책</a>
-          <a href="#" class="list-group-item">유기동물 통계</a>
+          <a href="stat.inc" class="list-group-item">유기동물 통계</a>
           
         </div>
 

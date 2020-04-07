@@ -201,7 +201,7 @@
          </button>
          <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-               <li class="nav-item active"><a class="nav-link" href="#">Home
+               <li class="nav-item active"><a class="nav-link" href="main.inc">Home
                      <span class="sr-only">(current)</span>
                </a></li>
                <li class="nav-item"><a class="nav-link" href="login.inc">로그인</a>
@@ -265,7 +265,7 @@
                                     type="button" >로그인</button>
 
                                  <button class="btn btn-f btn-point login-top" id="reg_btn"
-                                    type="button" onclick="reg()">회원가입</button>
+                                    type="button" onclick="javascript:location.href='reg.inc'">회원가입</button>
 
                               </div>
                               <div class="naver">

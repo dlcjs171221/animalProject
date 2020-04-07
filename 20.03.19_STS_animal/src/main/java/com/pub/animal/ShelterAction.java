@@ -56,11 +56,9 @@ public class ShelterAction {
 		int end = page.getEnd();
 	    String Begin = String.valueOf(begin);
 	    String End = String.valueOf(end);
-		
-	    
-	    
+	
 		ShelterVO[] ar = s_dao.list(Begin,End);
-		
+
 		mv.addObject("list", ar);
 		mv.addObject("pageCode", pageCode);
 		mv.addObject("nowPage", page.getNowPage());
