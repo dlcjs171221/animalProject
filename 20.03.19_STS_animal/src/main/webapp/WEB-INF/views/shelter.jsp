@@ -15,6 +15,9 @@
 		text-align: center;
 		height: 80px;
 	}
+	#hi{
+		display: none;
+	}
 </style>
 
 </head>
@@ -44,6 +47,7 @@
 						<option value="5">보호센터주소</option>
 					</select>&nbsp;&nbsp; 
 					<input type="text" id="search" name="search" placeholder="검색어 입력"/>&nbsp;&nbsp;
+					<input type="text" id="hi"/>
 					<input type="button" id ="btn" value="조회"/>
 				</td>
 			</tr>
@@ -59,15 +63,17 @@
 				  </tr>
 				  <tr>
 					<td bgcolor="#E5E5E5">
-					<table  id="t1" style="width: 800px; height:100%;" border="0" cellspacing="1" cellpadding="2">
-						<tr>
-						  <td height="20" align="center" bgcolor="#669AB3" width="100"><font color="#FFFFFF">관할구역</font></td>
-						  <td height="20" align="center" bgcolor="#669AB3" width="100"><font color="#FFFFFF">보호센터명</font></td>
-						  <td height="20" align="center" bgcolor="#669AB3" width="80"><font color="#FFFFFF">전화번호</font></td>
-						  <td height="20" align="center" bgcolor="#669AB3" width="230"><font color="#FFFFFF">보호센터주소</font></td>
-						</tr>
+					<table id="t1" style="width: 800px; height:100%;" border="0" cellspacing="1" cellpadding="2">
+						<thead>
+							<tr>
+							  <td height="20" align="center" bgcolor="#669AB3" width="100"><font color="#FFFFFF">관할구역</font></td>
+							  <td height="20" align="center" bgcolor="#669AB3" width="100"><font color="#FFFFFF">보호센터명</font></td>
+							  <td height="20" align="center" bgcolor="#669AB3" width="80"><font color="#FFFFFF">전화번호</font></td>
+							  <td height="20" align="center" bgcolor="#669AB3" width="230"><font color="#FFFFFF">보호센터주소</font></td>
+							</tr>
+						</thead>
 						<tbody>
-						
+							
 						</tbody>
 					 </table>
 					 </td>
@@ -87,7 +93,6 @@
 						  <table width="100%" border="0" cellspacing="0" cellpadding="0">
 						<tr>
 							  <td width="315" align="left">
-							  		${pageCode }
 						  		</td>
 						  <td width="241" align="right">
 						  	<input type="button" value="메인으로 가기" onclick="javascript:location.href='main.inc'" />
@@ -122,7 +127,7 @@
 $(function(){
 	$("#btn").bind("click",function(){
 		
-		var type = document.getElementById("select").selectedIndex;
+		var type = $("#select").val();
 		var value = $("#search").val();
 				
 		var param = "type="+encodeURIComponent(type)+"&value="+encodeURIComponent(value);
@@ -140,7 +145,7 @@ $(function(){
 					code += "<tr><td>";
 					code += data.ar[i].s_area;
 					code += "</td><td>";
-					code += data.ar[i].s_name;
+					code += data.ar[i].s_name;  
 					code += "</td><td>";
 					code += data.ar[i].s_tel;
 					code += "</td><td>";
@@ -155,7 +160,52 @@ $(function(){
 			console.log(err);
 		});
 		
+		if(type>1 && value.length==0){
+			alert("검색어를 입력하세요")
+		}
+		
 	});
+	
+	$("#search").keydown(function(key) {
+        if (key.keyCode == 13) {
+        	var type = $("#select").val();
+    		var value = $("#search").val();
+    				
+    		var param = "type="+encodeURIComponent(type)+"&value="+encodeURIComponent(value);
+    		
+    		$.ajax({ 
+    			url: "search.inc",
+    			type: "post",
+    			data: param,
+    			dataType: "json"
+    		}).done(function(data){
+    			console.log(data);
+    			if(data.ar != undefined){
+    				var code = "";
+    				for(var i=0; i<data.ar.length; i++){
+    					code += "<tr><td>";
+    					code += data.ar[i].s_area;
+    					code += "</td><td>";
+    					code += data.ar[i].s_name;  
+    					code += "</td><td>";
+    					code += data.ar[i].s_tel;
+    					code += "</td><td>";
+    					code += data.ar[i].s_addr;
+    					code += "</td></tr>";
+    				}
+    				//위에서 작어된 HTML코드를 tbody에
+    				//HTML로 적용한다.
+    				$("#t1 tbody").html(code);
+    			}
+    		}).fail(function(err){
+    			console.log(err);
+    		});
+    		
+    		if(type>1 && value.length==0){
+    			alert("검색어를 입력하세요")
+    		}
+        }
+    });
 });
 
 </script>

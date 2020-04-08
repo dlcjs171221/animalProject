@@ -36,4 +36,23 @@ public class ShelterSearchAction {
 		
 		return map;
 	}
+	
+	
+	@RequestMapping("/search.inc")
+	public  Map<String, Object> search1(String type,String value) {
+		
+		ShelterVO[] ar = null;
+
+		System.out.println(value);
+	
+		ar = s_dao.searchShelter(type,value);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("type",type);
+		map.put("value",value);
+		map.put("ar",ar);
+		
+		return map;
+	}
 }

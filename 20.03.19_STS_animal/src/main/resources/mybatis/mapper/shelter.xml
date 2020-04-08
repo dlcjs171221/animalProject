@@ -20,15 +20,16 @@
 	
 	
 	<!-- 보호소검색 기능 -->
-	<select resultType="com.pub.vo.ShelterVO" parameterType="java.util.Map" id="search">
+	<select id="search" resultType="com.pub.vo.ShelterVO" parameterType="java.util.Map" >
 		SELECT * FROM shelter 
 		<if test="searchType != null and searchValue != null">
 			<trim prefix="where">
 				<choose>
-					<when test="searchType == 2">s_area LIKE '%'||#{s_area }||'%' </when>
-					<when test="searchType == 3">s_name LIKE '%'||#{searchValue}||'%' </when>
-					<when test="searchType == 4">s_tel LIKE '%'||#{s_tel }||'%' </when>
-					<when test="searchType == 5">s_addr LIKE '%'||#{s_addr }||'%' </when>
+					<when test="searchType == 1"></when>
+					<when test="searchType == 2">s_area LIKE '%'||#{searchValue }||'%' </when> 
+					<when test="searchType == 3">s_name LIKE '%'||#{searchValue }||'%' </when>
+					<when test="searchType == 4">s_tel LIKE '%'||#{searchValue }||'%' </when>
+					<when test="searchType == 5">s_addr LIKE '%'||#{searchValue }||'%' </when>
 				</choose>
 			</trim>
 		</if>
