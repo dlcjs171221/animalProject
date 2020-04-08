@@ -13,24 +13,21 @@
 </style>
 </head>
 <body>
-	<h1>2019년 1월 유기견 현황</h1>
+
+	<h1 id="totalcount"></h1>
 	<div id="chart_div"></div>
-	
-<script src="resources/js/jquery-3.4.1.min.js"></script>	
-<script src="//www.amcharts.com/lib/4/core.js"></script>
-<script src="//www.amcharts.com/lib/4/charts.js"></script>
-<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
 <script type="text/javascript">
 	$(function(){
 		
 		$.ajax({
-			url : "http://localhost:5000/ugiChart",
+			url : "http://localhost:5000/ugiChart?num=${num }",
 			type : "post",
 			dataType : "json"
 			
 		}).done(function(data){
 			viewChart(data)
+			$("#totalcount").text("총 "+data[0].totalCount+"건수");
 		});
 		
 	});

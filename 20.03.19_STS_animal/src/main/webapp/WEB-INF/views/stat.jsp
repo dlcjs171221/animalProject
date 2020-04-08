@@ -29,6 +29,7 @@
 </head> 
 <body>
 	<table id="table">   
+		<thead>
 		<tr>
 			<th>
 				<h1><b><u>2019년도 월별 유기견 통계</u></b></h1> 
@@ -36,21 +37,37 @@
 		</tr>
 		<tr>
 			<td id="month">
-				<input type="button" value="1월" id="m1"/>&nbsp;&nbsp;
-				<input type="button" value="2월" id="m2"/>&nbsp;&nbsp;
-				<input type="button" value="3월" id="m3"/>&nbsp;&nbsp; 
-				<input type="button" value="4월" id="m4"/>&nbsp;&nbsp;
-				<input type="button" value="5월" id="m5"/>&nbsp;&nbsp;
-				<input type="button" value="6월" id="m6"/>&nbsp;&nbsp;
-				<input type="button" value="7월" id="m7"/>&nbsp;&nbsp;
-				<input type="button" value="8월" id="m8"/>&nbsp;&nbsp;
-				<input type="button" value="9월" id="m9"/>&nbsp;&nbsp;
-				<input type="button" value="10월" id="m10"/>&nbsp;&nbsp;
-				<input type="button" value="11월" id="m11"/>&nbsp;&nbsp;
-				<input type="button" value="12월" id="m12"/>&nbsp;&nbsp;
+				<input type="button" value="1월" id="m1" onclick="goStat('01')"/>&nbsp;&nbsp;
+				<input type="button" value="2월" id="m2" onclick="goStat('02')"/>&nbsp;&nbsp;
+				<input type="button" value="3월" id="m3" onclick="goStat('03')"/>&nbsp;&nbsp; 
+				<input type="button" value="4월" id="m4" onclick="goStat('04')"/>&nbsp;&nbsp;
+				<input type="button" value="5월" id="m5" onclick="goStat('05')"/>&nbsp;&nbsp;
+				<input type="button" value="6월" id="m6" onclick="goStat('06')"/>&nbsp;&nbsp;
+				<input type="button" value="7월" id="m7" onclick="goStat('07')"/>&nbsp;&nbsp;
+				<input type="button" value="8월" id="m8" onclick="goStat('08')"/>&nbsp;&nbsp;
+				<input type="button" value="9월" id="m9" onclick="goStat('09')"/>&nbsp;&nbsp;
+				<input type="button" value="10월" id="m10" onclick="goStat('10')"/>&nbsp;&nbsp;
+				<input type="button" value="11월" id="m11" onclick="goStat('11')"/>&nbsp;&nbsp;
+				<input type="button" value="12월" id="m12" onclick="goStat('12')"/>&nbsp;&nbsp;
 				<input type="button" value="메인으로" id="go" onclick="javascript:location.href='main.inc'"/>
 			</td>
 		</tr>
+		</thead>
+		<tbody>
+		
+		</tbody>
 	</table>
+	<div id="include_stat"></div>
+	<script src="resources/js/jquery-3.4.1.min.js"></script>
+	<script src="//www.amcharts.com/lib/4/core.js"></script>
+	<script src="//www.amcharts.com/lib/4/charts.js"></script>
+	<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+	<script type="text/javascript">
+		
+		function goStat(num){
+			$("#include_stat").load("stat1.inc?num="+num);
+		}
+		
+	</script>
 	</body>
 </html>
