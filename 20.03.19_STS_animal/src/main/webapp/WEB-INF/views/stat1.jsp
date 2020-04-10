@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,11 @@
 	#chart_div{
 		width : 100%;
 		height: 400px;
+	}
+	#totalcount{
+	 	width: 900px;
+		margin: auto;
+		padding: 30px;
 	}
 </style>
 </head>
@@ -21,7 +27,7 @@
 	$(function(){
 		
 		$.ajax({
-			url : "http://localhost:5000/ugiChart?num=${num }",
+			url : "http://localhost:5000/ugiChart?num=${num }&year=${year }",
 			type : "post",
 			dataType : "json"
 			

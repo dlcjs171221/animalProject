@@ -91,6 +91,9 @@
    	margin-top: 5px;
    	color: white;
    }
+   p{
+   	color:#000;
+   }
 </style>
 
 <body>
@@ -171,13 +174,29 @@
       <div class="col-lg-3">
 
         <h1 class="my-4">동물보호<br/>관리시스템</h1>
-        <div class="list-group">
+        <div class="list-group" style="text-align: center;">
+        <div id="stat1"></div>
            
           <a href="list.inc" class="list-group-item">유기동물 공고</a>
           <a href="bbslist.inc?bname=유기" class="list-group-item">유기등록 등록</a>
           <a href="shelter.inc" class="list-group-item">유기 관찰소 찾기</a>
           <a href="bbslist.inc?bname='공지'" class="list-group-item">유기동물 정책</a>
-          <a href="stat.inc" class="list-group-item">유기동물 통계</a>
+          <div class="list-group-item">
+            <button type="button" class="btn btn-default dropdown toggle,list-group-item" data-toggle="dropdown"><span class="caret" ><p class="text-primary">유기동물 통계</p></span></button>
+            <ul class="dropdown-menu" role="menu" style="text-align: center;">
+	            <li><a href="javascript:goStat('2010')">2010년</a></li>
+	            <li><a href="javascript:goStat('2011')">2011년</a></li>
+	            <li><a href="javascript:goStat('2012')">2012년</a></li>
+	            <li><a href="javascript:goStat('2013')">2013년</a></li>
+	            <li><a href="javascript:goStat('2014')">2014년</a></li>
+            	<li><a href="javascript:goStat('2015')">2015년</a></li>
+            	<li><a href="javascript:goStat('2016')">2016년</a></li>
+            	<li><a href="javascript:goStat('2017')">2017년</a></li>
+                <li><a href="javascript:goStat('2018')">2018년</a></li>
+                <li><a href="javascript:goStat('2019')" >2019년</a></li>
+                <li><a href="javascript:goStat('2020')" >2020년</a></li>
+            </ul>
+        </div>
           
         </div>
 
@@ -357,7 +376,13 @@
   <!-- 아코디언 스크립트 -->
   <script src="resources/js/jquery-3.4.1.min.js"></script>
   <script src="resources/js/jquery-ui.min.js"></script>
-  
+  <script>
+  function goStat(year){
+	  console.log(year);
+	  location.href="stat2.inc?year="+year;
+			
+	}
+  </script>
 </body>
 
 </html>

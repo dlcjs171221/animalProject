@@ -34,7 +34,7 @@
 
   	right: 300px;
 
-	bottom: 70px;
+	bottom: 180px;
    }
 	</style>
 </head>
@@ -44,7 +44,7 @@
 			<th>${careAddr }</th>
 		</tr>
 	</table>
-	<div id="map" style="width:1900px; height:800px; "></div>
+	<div id="map" style="width:1000px; height:500px; margin: 0 auto;"></div>
 	
 	
 		
