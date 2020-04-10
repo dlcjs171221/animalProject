@@ -96,7 +96,7 @@ public class BbsWriteAction {
 	}
 	
 	
-	//main.jsp에서 공지사항이난 법령 및 정책을 선택했을 때
+	//main.jsp에서 공지사항이나 법령 및 정책을 선택했을 때
 	@RequestMapping("/infowrite.inc")
 	public String info_write(String nowPage, String m_name) {
 		

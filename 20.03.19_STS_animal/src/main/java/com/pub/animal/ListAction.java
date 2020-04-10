@@ -54,20 +54,24 @@ public class ListAction {
 		Object obj2 = session.getAttribute("enddate");
 		Object obj3 = session.getAttribute("uprcd");
 		
+		String startdate = (String) obj;
+		String enddate = (String) obj2;
+		String uprcd = (String) obj3;
+		
+		System.out.println(startdate);
+		System.out.println(enddate);
+		System.out.println(uprcd);
+	
 		//넘어온 페이지 버튼이 있을 때
-		if(nowPage != null) {
+		if(nowPage != null ) {
 			
 			//현재 페이지를 넘어온 파라미터 값으로 지정
 			this.nowPage = Integer.parseInt(nowPage);
 			
-			//session에 저장된 조건 값을 설정하고 페이지 버튼을 눌렀을 때
-			if(obj != null && obj2 != null && obj3 != null) {
-				
-				String startdate = (String) obj;
-				String enddate = (String) obj2;
-				String uprcd = (String) obj3;
-				
-				
+			// 조건값 중 아무거나 선택한 경우 
+			if(startdate != null || enddate != null || uprcd != null) {
+				System.out.println("조건값을 선택하고 페이지 버튼을 눌렀습니다.");
+			
 				url = new URL("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde="
 						+startdate+ "&endde="
 						+enddate+"&pageNo="
@@ -76,27 +80,30 @@ public class ListAction {
 				
 				//vo 객체와 paging기법을 생성하는 함수
 				mv = makeUgiVO(url);
-				
-			}else { //session에 저장된 조건 값이 없이 페이지 버튼을 눌렀을 때
-				
-				
-				
-				url = new URL("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=20200101&endde=&pageNo="
-						+nowPage+ "&numOfRows=10&ServiceKey=MUdayHwSmix9x692v%2BYHt7JeWdYwmJHVK6L3gXdk4DamUCIGx9cecu0Rtaq84cibEwuQFWepGH15%2FhTk1LMGHA%3D%3D");
+			
+			// 조건 값을 선택하지 않은 경우
+			}else {
+				System.out.println("조건값없이 페이지 버튼을 눌렀습니다.");
+				url = new URL("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=&endde=&pageNo="
+						+nowPage+"&numOfRows=10&ServiceKey=MUdayHwSmix9x692v%2BYHt7JeWdYwmJHVK6L3gXdk4DamUCIGx9cecu0Rtaq84cibEwuQFWepGH15%2FhTk1LMGHA%3D%3D");
 				
 				mv = makeUgiVO(url);
-				
 			}
 			
 			
-		} //바깥 쪽 if문의 끝
-			
-		//처음 접속했을 때(넘어온 페이지 버튼 없음)
+		
+		}//바깥족 if문의 끝
+		
+		//처음 접속했을 때(넘어온 페이지 버튼 없음)	
 		else {
+			System.out.println("처음 접속 하였습니다.");
+			session.removeAttribute("startdate");
+			session.removeAttribute("enddate");
+			session.removeAttribute("uprcd");
 			this.nowPage = 1;
 			
-			url = new URL("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=20200101&endde=&pageNo=1&numOfRows=10&ServiceKey=MUdayHwSmix9x692v%2BYHt7JeWdYwmJHVK6L3gXdk4DamUCIGx9cecu0Rtaq84cibEwuQFWepGH15%2FhTk1LMGHA%3D%3D");
-			
+			url = new URL("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=&endde=&pageNo=1&numOfRows=10&ServiceKey=MUdayHwSmix9x692v%2BYHt7JeWdYwmJHVK6L3gXdk4DamUCIGx9cecu0Rtaq84cibEwuQFWepGH15%2FhTk1LMGHA%3D%3D");
+							
 			mv = makeUgiVO(url);
 		}
 			
@@ -108,6 +115,7 @@ public class ListAction {
 
 	@RequestMapping(value = "/list.inc", method = RequestMethod.POST)
 	public ModelAndView list(String startdate, String enddate, String uprcd) throws Exception {
+		System.out.println("조건 값을 선택 하였습니다.");
 		
 		this.nowPage = 1;
 		
@@ -128,8 +136,8 @@ public class ListAction {
 		session.setAttribute("uprcd", uprcd);
 		
 		url = new URL("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde="
-				+startdate+ "&endde="
-				+enddate+"&pageNo=1&numOfRows=10&ServiceKey=MUdayHwSmix9x692v%2BYHt7JeWdYwmJHVK6L3gXdk4DamUCIGx9cecu0Rtaq84cibEwuQFWepGH15%2FhTk1LMGHA%3D%3D&upr_cd="
+				+s_date+"&endde="
+				+e_date+"&pageNo=1&numOfRows=10&ServiceKey=MUdayHwSmix9x692v%2BYHt7JeWdYwmJHVK6L3gXdk4DamUCIGx9cecu0Rtaq84cibEwuQFWepGH15%2FhTk1LMGHA%3D%3D&upr_cd="
 				+uprcd);
 		
 		mv = makeUgiVO(url);
