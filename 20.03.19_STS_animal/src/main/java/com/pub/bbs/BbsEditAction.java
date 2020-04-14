@@ -35,6 +35,7 @@ public class BbsEditAction {
 	@Autowired
 	private HttpServletRequest request;
 	
+	//유기 수정
 	@RequestMapping("/ugiedit.inc")
 	public ModelAndView edit(String b_idx, String nowPage) {
 		ModelAndView mv = new ModelAndView();
@@ -51,10 +52,36 @@ public class BbsEditAction {
 	@RequestMapping(value = "/ugiedit.inc", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Boolean> edit(AniBbsVO vo) {
-		System.out.println(vo.getFile_name());
 		Boolean value = false;
 		
 		value = a_dao.editugi(vo);
+		
+		Map<String, Boolean> map = new HashMap<String, Boolean>();
+		map.put("value", value);
+		
+		
+		return map;
+	}
+	
+	//( 정책, 공지 )수정
+	@RequestMapping("/bbsedit.inc")
+	public ModelAndView bbs_edit(String b_idx, String nowPage) {
+		ModelAndView mv = new ModelAndView();
+		
+		AniBbsVO vo = a_dao.getBbs(b_idx);
+		
+		mv.addObject("vo", vo);
+		mv.addObject("nowPage", nowPage);
+		mv.setViewName("bbsedit");
+		
+		return mv;
+	}
+	@RequestMapping(value = "/bbsedit.inc", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Boolean> bbs_edit(AniBbsVO vo) {
+		Boolean value = false;
+		
+		value = a_dao.editbbs(vo);
 		
 		Map<String, Boolean> map = new HashMap<String, Boolean>();
 		map.put("value", value);

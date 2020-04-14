@@ -94,6 +94,11 @@
    p{
    	color:#000;
    }
+   .search{
+   	 width: 700px;
+   	 text-align: right;
+   }
+   
 </style>
 
 <body>
@@ -102,28 +107,40 @@
 <div id="bar_up">
    <img src="resources/images/bar_up.JPG" width="1115">
 </div>
-
-
-
-
-   
-
 <%
-	if(obj == null){
+	if(obj == null){ 
 %>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">검색영역</a>
+     <a class="nav-link" href="main.inc"><img alt="mainlogo" src="resources/images/logo.PNG" width="150px" height="35px"><span class="sr-only">(current)</span></a>
+    		<a href="list.inc" class="navbar-item">유기동물 공고</a>
+    		<a href="bbslist.inc?bname=유기" class="navbar-item">유기등록 등록</a>
+    		<a href="shelter.inc" class="navbar-item">유기 관찰소 찾기</a>
+            <a href="bbslist.inc?bname=정책" class="navbar-item">유기동물 정책</a>
+            <button type="button" class="btn btn-default dropdown toggle,navbar-item" data-toggle="dropdown"><span class="caret" ><p class="text-primary">유기동물 통계</p></span></button>
+    		<ul class="dropdown-menu" role="menu" style="text-align: center;">
+	            <li><a href="javascript:goStat('2010')">2010년</a></li>
+	            <li><a href="javascript:goStat('2011')">2011년</a></li>
+	            <li><a href="javascript:goStat('2012')">2012년</a></li>
+	            <li><a href="javascript:goStat('2013')">2013년</a></li>
+	            <li><a href="javascript:goStat('2014')">2014년</a></li>
+            	<li><a href="javascript:goStat('2015')">2015년</a></li>
+            	<li><a href="javascript:goStat('2016')">2016년</a></li>
+            	<li><a href="javascript:goStat('2017')">2017년</a></li>
+                <li><a href="javascript:goStat('2018')">2018년</a></li>
+                <li><a href="javascript:goStat('2019')" >2019년</a></li>
+                <li><a href="javascript:goStat('2020')" >2020년</a></li>
+            </ul>
+     <div class="search">
+      <input type="text" style="width:130px;" placeholder="단어 입력"/>&nbsp;&nbsp;&nbsp;<input type="button" value="검색"/>
+     </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>   <div class="collapse navbar-collapse" id="navbarResponsive">
+      </button>   
+      <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="main.inc">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
+          <li class="nav-item active"></li>
           <li class="nav-item">
             <a class="nav-link" href="login.inc">로그인</a>
           </li>
@@ -133,6 +150,7 @@
         </ul>  
        </div>
     </div>
+    <br/><br/>
   </nav>
 <%
 	}else{
@@ -170,17 +188,17 @@
   <!-- Page Content -->
   <div class="container">
     <div class="row">
+	   <br/><br/>
+	   
 
       <div class="col-lg-3">
-
-        <h1 class="my-4">동물보호<br/>관리시스템</h1>
         <div class="list-group" style="text-align: center;">
         <div id="stat1"></div>
            
           <a href="list.inc" class="list-group-item">유기동물 공고</a>
           <a href="bbslist.inc?bname=유기" class="list-group-item">유기등록 등록</a>
           <a href="shelter.inc" class="list-group-item">유기 관찰소 찾기</a>
-          <a href="bbslist.inc?bname='공지'" class="list-group-item">유기동물 정책</a>
+          <a href="bbslist.inc?bname=정책" class="list-group-item">유기동물 정책</a>
           <div class="list-group-item">
             <button type="button" class="btn btn-default dropdown toggle,list-group-item" data-toggle="dropdown"><span class="caret" ><p class="text-primary">유기동물 통계</p></span></button>
             <ul class="dropdown-menu" role="menu" style="text-align: center;">
@@ -213,13 +231,19 @@
           </ol>
           <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">             
-              <a href="http://naver.com"><img class="d-block img-fluid" src="resources/images/boot1.JPG" width="680" height="350" alt="First slide"></a>
+              <a href="https://apms.epis.or.kr/wilddog/IndexMain3"><img class="d-block img-fluid" src="resources/images/boot1.JPG" width="680" height="350" alt="First slide"></a>
             </div>
             <div class="carousel-item">
-              <a href="http://naver.com"><img class="d-block img-fluid" src="resources/images/boot2.JPG" width="680" height="350" alt="Second slide"></a>
+              <a href="http://www.mafra.go.kr/mafra/355/subview.do;jsessionid=X31CHBZ8iATuQsXT2kBqvvV2.inst21?enc=Zm5jdDF8QEB8JTJGYmJzJTJGbWFmcmElMkY2NCUyRjMxOTA2MyUyRmFydGNsVmlldy5kbyUzRg%3D%3D"><img class="d-block img-fluid" src="resources/images/boot2.JPG" width="680" height="350" alt="Second slide"></a>
             </div>
             <div class="carousel-item">
-              <a href="http://naver.com"><img class="d-block img-fluid" src="resources/images/boot3.JPG" width="680" height="350" alt="Third slide"></a>
+              <a href="https://www.animal.go.kr/front/community/show.do?boardId=boardID06&menuNo=7000000006&seq=300000"><img class="d-block img-fluid" src="resources/images/boot3.JPG" width="680" height="350" alt="Third slide"></a>
+            </div>
+            <div class="carousel-item">
+              <a href="https://apms.epis.or.kr/"><img class="d-block img-fluid" src="resources/images/boot4.JPG" width="680" height="350" alt="Third slide"></a>
+            </div>
+            <div class="carousel-item">
+              <a href="http://www.mafra.go.kr/mafra/1374/subview.do"><img class="d-block img-fluid" src="resources/images/boot5.JPG" width="680" height="350" alt="Third slide"></a>
             </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

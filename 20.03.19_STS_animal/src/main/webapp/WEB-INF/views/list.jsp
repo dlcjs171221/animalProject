@@ -1,6 +1,43 @@
+<%@page import="java.util.Calendar"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<% 
+	Object obj = session.getAttribute("startdate");
+	Object obj2 = session.getAttribute("enddate");
+		String startdate = "";
+		String enddate = "";
+		if(obj != null && obj2 != null){
+			String s_date = (String)obj;
+			String s_str1 = s_date.substring(0, 4);
+			String s_str2 = s_date.substring(4, 6);
+			String s_str3 = s_date.substring(6);
+			startdate = s_str1+"-"+s_str2+"-"+s_str3;
+			
+			String e_date = (String)obj2;
+			String e_str1 = e_date.substring(0, 4);
+			String e_str2 = e_date.substring(4, 6);
+			String e_str3 = e_date.substring(6);
+			enddate = e_str1+"-"+e_str2+"-"+e_str3;     
+			
+			
+		}else{        
+		//오늘 날짜
+		Date today = new Date();
+		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+		enddate = date.format(today);
+		
+		//한달 전
+		Calendar mon = Calendar.getInstance();
+		mon.add(Calendar.MONTH, -1);
+		startdate = new SimpleDateFormat("yyyy-MM-dd").format(mon.getTime());
+		}
+		
+	
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,19 +47,25 @@
 <style type="text/css">
    .t_1{
       width: 1100px;
+ 	  text-align: center;
+ 	  margin: 0 auto;
    }
    .t_2{
       width: 500px;
       display: inline-block;
       border: 3px solid black;
+
    }
    .t1{
       width : 490px;
       border: 1px solid red;
+
    }
-   td{
-      border: 1px solid blue;
+   .list{
+   		font-size: 30px;
+   		font-weight: bolder;		
    }
+   
     .searchArea ul{
    	
    }
@@ -37,8 +80,24 @@
    		display: inline-block;
    }
    .searchArea li dl dd {
-   		display: inline-block;
+   		display: inline-block; 
    }
+   #pt{
+   	border: 1px solid red;
+   	width: 1020px;
+    margin: 0 auto;
+   			
+   }
+   #pg{
+   	border: 1px solid blue;
+   	margin-left: 0;
+
+   }
+   #main{
+   	text-align: right;
+   }
+
+   
 </style>
 </head>
 <body>
@@ -64,7 +123,7 @@
                                 <dt><label for="searchSDate">날짜</label></dt>
                                 <dd>
                                
-                                    <input type="date" name="searchSDate" id="searchSDate" class="inputDate" title="시작일"  onblur="$('.calendar').hide();" maxlength=10 /> ~ <input type="date" name="searchEDate" id="searchEDate" title="마감일" class="inputDate"  onblur="$('.calendar').hide();" maxlength=10 />
+                                    <input type="date" name="searchSDate" id="searchSDate" class="inputDate" title="시작일"  onblur="$('.calendar').hide();" maxlength=10 value="<%=startdate%>"/> ~ <input type="date" name="searchEDate" id="searchEDate" title="마감일" class="inputDate"  onblur="$('.calendar').hide();" maxlength=10  value="<%=enddate%>"/>
                                     (날짜는 접수일 기준입니다)
                                 </dd>
                             </dl>
@@ -105,7 +164,6 @@
       <!-- 유의사항 -->
         <div class="note-txt">
             <ul>
-                <li> 검색시 유의사항 : 날짜와 지역을 모두 선택하여야 검색이 가능합니다.</li>
                 <li>
                     <span class="red regular"> 공고중인 동물 소유자는 "자세히 보기"를 참고하시어 해당 </span><span class="blue">시군구</span><span style="color:#8c0000;"> 및 </span>
                     <span style="color:blue;">동물보호센터</span><span style="color:#8c0000;"> 또는 <br/></span>
@@ -121,9 +179,8 @@
                 <ul class="list"><li>총 ${rowTotal } 건</li></ul>
                 
           </div>
+          
              <div class="t_1">
-             
-             
                 <c:forEach var="vo" items="${ar }">
               <div class="t_2">
                  <!-- LIST -->
@@ -207,20 +264,23 @@
          </div>
          </c:forEach>
          
-         <table>
+         <table id="pt">
                  <tr>
                     <td>
                        ${pageCode }
-                    </td>
-                    <td>
-                    	<input type="button" value="메인으로 가긴" onclick="javascript:location.href='main.inc'"/>
-                    </td>
+                    </td> 
+                 </tr>
+                 <tr>	
+                 	<td>
+                 		<input id="main" type="button" value="메인으로 가기" onclick="javascript:location.href='main.inc'"/>
+                 	</td>
                  </tr>
            </table>
-         
-         
+        
       </div>
    </div>
+   
+                  
    
    <form name="frm" method="post">
    		<input type="hidden" name="startdate" id="s_date"/>
@@ -231,7 +291,7 @@
 <script src="resources/js/jquery-3.4.1.min.js"></script> 
 <script type="text/javascript">
 	function searchDate(){
-		
+		/*
 		//유효성 검사...
 		if($("#searchSDate").val().length < 1 || $("#searchEDate").val().length < 1) {
 			alert("날짜를 선택하세요")
@@ -243,15 +303,32 @@
 			
 			return;
 		}	
-		
+		*/
 		//모든 조건을 선택하였을 때
 		if($("#searchSDate").val().length > 0 && $("#searchEDate").val().length > 0 && $("#searchUprCd").val().length > 0){
-		$("#s_date").val($("#searchSDate").val());
-		$("#e_date").val($("#searchEDate").val());
-		$("#u_city").val($("#searchUprCd").val());
-		document.frm.action = "list.inc";
-		document.frm.submit();
+			$("#s_date").val($("#searchSDate").val());
+			$("#e_date").val($("#searchEDate").val());
+			$("#u_city").val($("#searchUprCd").val());
+			document.frm.action = "list.inc";
+			document.frm.submit();
 		}
+		
+		//날짜만 선택 하였을 때
+		if($("#searchSDate").val().length > 0 && $("#searchEDate").val().length > 0){
+			$("#s_date").val($("#searchSDate").val());
+			$("#e_date").val($("#searchEDate").val());
+			document.frm.action = "list.inc";
+			document.frm.submit();
+		}
+		
+		//지역만 선택 하였을 때
+		if($("#searchUprCd").val().length > 0){
+			$("#u_city").val($("#searchUprCd").val());
+			document.frm.action = "list.inc";
+			document.frm.submit();
+		}
+		
+		
 		
 	}
 </script>

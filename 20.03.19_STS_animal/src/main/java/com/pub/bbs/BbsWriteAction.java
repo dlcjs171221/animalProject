@@ -98,9 +98,26 @@ public class BbsWriteAction {
 	
 	//main.jsp에서 공지사항이나 법령 및 정책을 선택했을 때
 	@RequestMapping("/infowrite.inc")
-	public String info_write(String nowPage, String m_name) {
+	public ModelAndView pubwrite(String bname) {
+			String str = "login";
+			
+		//session의 저장한 로그인 정보 가져오기
+		Object obj = session.getAttribute("mvo");
+			
+			
+		//로그인 이 되어있는 상태
+			
+		if(obj != null) {
+			str = "pubwrite";
+			AnimemVO mvo = (AnimemVO)obj;
+			mv.addObject("bname", bname);
+			
+		}
 		
-		return "infowrite";
+		
+		mv.setViewName(str);
+		return mv;
+		
 	}
 	
 	@RequestMapping(value = "/infowrite.inc", method = RequestMethod.POST )
@@ -108,10 +125,11 @@ public class BbsWriteAction {
 	
 		value = saveBbs(vo);
 		
-		if(value)
-			mv.setViewName("redirect:bbslist.inc?bname="+vo.getBname());
-		else
-			mv.setViewName("redirect:/infowrite.inc?nowPage="+vo.getNowPage());
+		if(value) {
+			mv.setViewName("redirect:/bbslist.inc");
+			mv.addObject("bname", vo.getBname());
+		}else
+			mv.setViewName("redirect:/infowrite.inc");
 		
 		return mv;
 	}
@@ -154,7 +172,7 @@ public class BbsWriteAction {
 
 	
 	private boolean saveBbs(AniBbsVO vo) throws Exception {
-			
+			System.out.println(vo.getBname());
 		
 			//첨부파일은 이미 vo에 저장되어 있다.
 				MultipartFile mf = vo.getFile();
@@ -188,11 +206,14 @@ public class BbsWriteAction {
 				//ip저장
 				vo.setIp(request.getRemoteAddr());
 				
-				//DB에 저장!
-				value = a_dao.addUgi(vo);
 				
-				 
-				return value;
+				//DB에 저장!
+				if(vo.getBname().equals("유기")) {
+					value = a_dao.addUgi(vo);
+				}else {
+					value = a_dao.addInfo(vo);
+				}
+					return value;
 		
 	}
 	

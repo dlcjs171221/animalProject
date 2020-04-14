@@ -42,8 +42,6 @@ public class ShelterSearchAction {
 	public  Map<String, Object> search1(String type,String value) {
 		
 		ShelterVO[] ar = null;
-
-		System.out.println(value);
 	
 		ar = s_dao.searchShelter(type,value);
 		

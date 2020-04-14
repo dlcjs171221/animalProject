@@ -59,7 +59,7 @@ public class BbsListAction {
 		int end = page.getEnd();
 		
 		AniBbsVO[] ar = a_dao.getList(bname, begin, end);
-		
+		/*기존
 		mv.addObject("ugilist", ar);
 		mv.addObject("pageCode", pageCode);
 		mv.addObject("nowPage", page.getNowPage());
@@ -80,7 +80,28 @@ public class BbsListAction {
 		
 		return mv;
 		
+		*/
+		//도현
+		mv.addObject("nowPage", page.getNowPage());
+		mv.addObject("rowTotal", rowTotal);
+		mv.addObject("blockList", BLOCK_LIST);
 		
+		//bname에 해당하는 게시판List를 ar에 저장시켜놓은 상태
+		//bname을 분별하여 setViewName
+		if(bname.equals("유기")) {
+			mv.addObject("ugiPageCode", pageCode);
+			mv.addObject("ugiList", ar);
+			mv.setViewName("ugilist");
+		}else if(bname.equals("정책")) {
+			mv.addObject("pubPageCode", pageCode);
+			mv.addObject("pubList", ar);
+			mv.setViewName("pubList");
+		}else if(bname.equals("공지")) {
+			mv.addObject("noticePageCode", pageCode);
+			mv.addObject("noticeList", ar);
+			mv.setViewName("noticeList");
+		}
+		return mv;
 	}
 	
 	

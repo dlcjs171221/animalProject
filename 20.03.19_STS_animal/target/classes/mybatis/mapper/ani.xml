@@ -40,10 +40,14 @@
 	
 	<!-- 공지사항,정책 게시물 저장 -->
 	<insert id="info_add" parameterType="com.pub.vo.AniBbsVO">
-		INSERT INTO anibbs(b_idx,subject,writer,write_date,content,hit,bname,m_id) 
-		values(anibbs_seq.NEXTVAL,#{subject},#{writer},sysdate,#{content},0,#{bname},#{m_id})
+		INSERT INTO anibbs(b_idx,subject,writer,write_date,content,hit,bname,m_id,
+							file_name,ori_name) 
+		values(anibbs_seq.NEXTVAL,#{subject},#{writer},sysdate,#{content},0,#{bname},#{m_id},#{file_name},#{ori_name})
 	</insert>
 	
+	
+	 
+	 
 	<!-- 게시물 보기기능 -->
 	<select id="getBbs" parameterType="String"
 	resultType="com.pub.vo.AniBbsVO">
@@ -64,7 +68,20 @@
 			email = #{email},
 			phone = #{phone},
 			lose_date = #{lose_date}
-			where b_idx = #{b_idx}
+		where b_idx = #{b_idx}
+	</update>
+	
+	<!-- 공지사항, 정책 게시물 ***수정  -->
+	<update id="bbs_edit" parameterType="com.pub.vo.AniBbsVO">
+		UPDATE anibbs
+		SET
+			subject = #{subject},
+			content = #{content}
+			<if test="file_name != null">
+			,file_name = #{file_name}
+			,ori_name = #{ori_name}
+			</if>
+		where b_idx = #{b_idx}
 	</update>
 
 	

@@ -42,4 +42,19 @@ public class BbsViewAction {
 		return mv;
 		
 	}
+	
+	//정책List에서 제목선택시 Action
+ 	@RequestMapping("pubview.inc")
+ 	public ModelAndView pubView(String bname, String nowPage, String b_idx) {
+ 		ModelAndView mv = new ModelAndView();
+ 		
+ 		
+ 		AniBbsVO avo = a_dao.getBbs(b_idx);
+ 	
+ 		mv.addObject("vo", avo);
+ 		
+ 		mv.setViewName("pubView");	
+ 		
+ 		return mv;
+ 	}
 }

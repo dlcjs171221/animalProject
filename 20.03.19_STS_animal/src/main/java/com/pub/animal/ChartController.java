@@ -22,7 +22,6 @@ public class ChartController {
 	public ModelAndView stat2(String year) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("year",year);
-		System.out.println(year+"ggg");	
 		mv.setViewName("stat");
 		
 		return mv;

@@ -175,6 +175,11 @@
    margin-bottom: 15px;
    margin-left: 11px;
 }
+.search{
+   	 width: 700px;
+   	 text-align: right;
+   }
+   
 </style>
 
 <body>
@@ -192,25 +197,27 @@
 
    <!-- Navigation -->
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-         <a class="navbar-brand" href="#">검색영역</a>
-         <button class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarResponsive" aria-controls="navbarResponsive"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-         </button>
-         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-               <li class="nav-item active"><a class="nav-link" href="main.inc">Home
-                     <span class="sr-only">(current)</span>
-               </a></li>
-               <li class="nav-item"><a class="nav-link" href="login.inc">로그인</a>
-               </li>
-               <li class="nav-item"><a class="nav-link" href="reg.inc">회원가입</a></li>
-            </ul>
-         </div>
-      </div>
-   </nav>
+    <div class="container">
+     <a class="nav-link" href="main.inc"><img alt="mainlogo" src="resources/images/logo.PNG" width="150px" height="35px"><span class="sr-only">(current)</span></a>
+     <div class="search">
+      
+      <input type="text" style="width:330px;" placeholder="단어를 입력"/>&nbsp;&nbsp;&nbsp;<input type="button" value="검색"/>
+     </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>   <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active"></li>
+          <li class="nav-item">
+            <a class="nav-link" href="login.inc">로그인</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="reg.inc">회원가입</a>
+          </li>
+        </ul>  
+       </div>
+    </div>
+  </nav>
 
    <!-- Page Content -->
    <div class="container">

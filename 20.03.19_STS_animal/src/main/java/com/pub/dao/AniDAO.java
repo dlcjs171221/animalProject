@@ -126,6 +126,18 @@ public class AniDAO {
 
 			return value;
 		}
-		
+		// (정책, 공지) 수정 기능
+		public boolean editbbs(AniBbsVO vo) {
+			Boolean value = false;
+			
+			int cnt = template.update("ani.bbs_edit", vo);
+			
+			if(cnt > 0) {
+				value = true;
+			}
+			
+
+			return value;
+		}
 	
 }
