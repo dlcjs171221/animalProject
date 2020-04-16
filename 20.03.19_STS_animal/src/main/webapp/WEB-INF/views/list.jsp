@@ -132,7 +132,7 @@
                             <dl>
                                <dt><label for="searchUprCd">시도</label></dt>
                                <dd>
-                                   <select name="searchUprCd" id="searchUprCd">
+                                   <select name="searchUprCd" id="searchUprCd" onchange="sigungu()">
                                        <option value="">전체</option>
                                            <option value="6110000">서울특별시 </option>                                           
                                            <option value="6260000">부산광역시 </option>                                          
@@ -153,6 +153,12 @@
                                            <option value="6500000">제주특별자치도 </option>                                                                               
                                    </select>
                              </dd>
+                             	<dt><label for="searchOrgCd">시군구</label></dt>
+                             	<dd>
+                             		<select name="searchOrgCd" id="searchOrgCd">
+                             			<option value="">전체</option>
+									</select>	
+                             	</dd>
                              <dd>
                                 <button type="button" value="조회" onclick="searchDate()">조회</button>
                              </dd>
@@ -286,6 +292,7 @@
    		<input type="hidden" name="startdate" id="s_date"/>
    		<input type="hidden" name="enddate" id="e_date"/>
    		<input type="hidden" name="uprcd" id="u_city"/>
+   		<input type="hidden" name="orgcd" id="o_city"/>
    </form>
    
 <script src="resources/js/jquery-3.4.1.min.js"></script> 
@@ -304,33 +311,48 @@
 			return;
 		}	
 		*/
-		//모든 조건을 선택하였을 때
-		if($("#searchSDate").val().length > 0 && $("#searchEDate").val().length > 0 && $("#searchUprCd").val().length > 0){
 			$("#s_date").val($("#searchSDate").val());
 			$("#e_date").val($("#searchEDate").val());
 			$("#u_city").val($("#searchUprCd").val());
+			$("#o_city").val($("#searchOrgCd").val());
 			document.frm.action = "list.inc";
 			document.frm.submit();
-		}
 		
-		//날짜만 선택 하였을 때
-		if($("#searchSDate").val().length > 0 && $("#searchEDate").val().length > 0){
-			$("#s_date").val($("#searchSDate").val());
-			$("#e_date").val($("#searchEDate").val());
-			document.frm.action = "list.inc";
-			document.frm.submit();
-		}
 		
-		//지역만 선택 하였을 때
-		if($("#searchUprCd").val().length > 0){
-			$("#u_city").val($("#searchUprCd").val());
-			document.frm.action = "list.inc";
-			document.frm.submit();
-		}
+		
 		
 		
 		
 	}
+	
+	function sigungu(){
+		var uprcd = $("#searchUprCd").val();
+		var param = "uprcd="+encodeURIComponent(uprcd);
+		
+		$.ajax({
+			url : "sigungu.inc",
+			data : param,
+			type: "post",
+			dataType : "json"
+		}).done(function(data){
+			if(data.ar != undefined){
+				var code = "<option value=''>전체</option>";
+				for(var i=0; i<data.ar.length; i++){
+					code += "<option value='";
+					code += data.ar[i].orgCd;
+					code += "'>";
+					code += data.ar[i].orgdownNm;
+					code += "</option>"; 
+				}
+				$("#searchOrgCd").html(code);
+			}
+			
+		}).fail(function(err){
+			console.log(err);
+		});
+		
+	}
+	
 </script>
 </body>
 </html>

@@ -53,14 +53,17 @@ public class ListAction {
 		Object obj = session.getAttribute("startdate");
 		Object obj2 = session.getAttribute("enddate");
 		Object obj3 = session.getAttribute("uprcd");
+		Object obj4 = session.getAttribute("orgcd");
 		
 		String startdate = (String) obj;
 		String enddate = (String) obj2;
 		String uprcd = (String) obj3;
+		String orgcd = (String) obj4;
 		
 		System.out.println(startdate);
 		System.out.println(enddate);
 		System.out.println(uprcd);
+		System.out.println(orgcd);
 	
 		//넘어온 페이지 버튼이 있을 때
 		if(nowPage != null ) {
@@ -69,14 +72,14 @@ public class ListAction {
 			this.nowPage = Integer.parseInt(nowPage);
 			
 			// 조건값 중 아무거나 선택한 경우 
-			if(startdate != null || enddate != null || uprcd != null) {
+			if(startdate != null || enddate != null) {
 				System.out.println("조건값을 선택하고 페이지 버튼을 눌렀습니다.");
 			
 				url = new URL("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde="
 						+startdate+ "&endde="
 						+enddate+"&pageNo="
 						+nowPage+ "&numOfRows=10&ServiceKey=MUdayHwSmix9x692v%2BYHt7JeWdYwmJHVK6L3gXdk4DamUCIGx9cecu0Rtaq84cibEwuQFWepGH15%2FhTk1LMGHA%3D%3D&upr_cd="
-								+uprcd);
+								+uprcd+"&org_cd="+orgcd);
 				
 				//vo 객체와 paging기법을 생성하는 함수
 				mv = makeUgiVO(url);
@@ -100,6 +103,7 @@ public class ListAction {
 			session.removeAttribute("startdate");
 			session.removeAttribute("enddate");
 			session.removeAttribute("uprcd");
+			session.removeAttribute("orgcd");
 			this.nowPage = 1;
 			
 			url = new URL("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=&endde=&pageNo=1&numOfRows=10&ServiceKey=MUdayHwSmix9x692v%2BYHt7JeWdYwmJHVK6L3gXdk4DamUCIGx9cecu0Rtaq84cibEwuQFWepGH15%2FhTk1LMGHA%3D%3D");
@@ -114,7 +118,7 @@ public class ListAction {
 	
 
 	@RequestMapping(value = "/list.inc", method = RequestMethod.POST)
-	public ModelAndView list(String startdate, String enddate, String uprcd) throws Exception {
+	public ModelAndView list(String startdate, String enddate, String uprcd, String orgcd) throws Exception {
 		System.out.println("조건 값을 선택 하였습니다.");
 		
 		this.nowPage = 1;
@@ -134,11 +138,12 @@ public class ListAction {
 		session.setAttribute("startdate", s_date);
 		session.setAttribute("enddate", e_date);
 		session.setAttribute("uprcd", uprcd);
+		session.setAttribute("orgcd", orgcd);
 		
 		url = new URL("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde="
 				+s_date+"&endde="
 				+e_date+"&pageNo=1&numOfRows=10&ServiceKey=MUdayHwSmix9x692v%2BYHt7JeWdYwmJHVK6L3gXdk4DamUCIGx9cecu0Rtaq84cibEwuQFWepGH15%2FhTk1LMGHA%3D%3D&upr_cd="
-				+uprcd);
+				+uprcd+"&org_cd="+orgcd);
 		
 		mv = makeUgiVO(url);
 		
