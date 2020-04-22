@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <link href="resources/css/text.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 	#table{
@@ -23,12 +24,14 @@
 	}
 	       
 	#main{ 
-		text-align: right; 
+		text-align: right;  
 		padding: 15px;
 	} 
 </style> 
 </head> 
 <body>
+
+	
 	<table id="table">   
 		<thead>
 		<tr>
@@ -50,7 +53,7 @@
 				<input type="button" value="10월" id="m10" onclick="goStat('10',${year })"/>&nbsp;&nbsp;
 				<input type="button" value="11월" id="m11" onclick="goStat('11',${year })"/>&nbsp;&nbsp;
 				<input type="button" value="12월" id="m12" onclick="goStat('12',${year })"/>&nbsp;&nbsp;
-				<input type="button" value="메인으로" id="go" onclick="javascript:location.href='main.inc'"/>
+				<input type="button" value="HOME" id="go" onclick="javascript:location.href='main.inc'"/>
 			</td>
 		</tr>
 		</thead>
@@ -63,13 +66,18 @@
 	<script src="//www.amcharts.com/lib/4/core.js"></script>
 	<script src="//www.amcharts.com/lib/4/charts.js"></script>
 	<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+	
+	
+
 	<script type="text/javascript">
 		
 		function goStat(num,year){
 			console.log(num+"/"+year);
 			$("#include_stat").load("stat1.inc?num="+num+"&year="+year);
 		}
-		
+		 $(function(){
+				$("#include_header").load("header.inc");
+			  });
 	</script>
 	</body>
 </html>

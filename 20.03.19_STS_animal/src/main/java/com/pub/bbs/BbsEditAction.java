@@ -77,18 +77,12 @@ public class BbsEditAction {
 		return mv;
 	}
 	@RequestMapping(value = "/bbsedit.inc", method=RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Boolean> bbs_edit(AniBbsVO vo) {
-		Boolean value = false;
+	public ModelAndView bbs_edit(AniBbsVO vo) {
+		ModelAndView mv = new ModelAndView();
 		
-		value = a_dao.editbbs(vo);
-		
-		Map<String, Boolean> map = new HashMap<String, Boolean>();
-		map.put("value", value);
-		
-		
-		return map;
+		a_dao.editbbs(vo);
+					
+		mv.setViewName("");
+		return mv;
 	}
-	
-
 }

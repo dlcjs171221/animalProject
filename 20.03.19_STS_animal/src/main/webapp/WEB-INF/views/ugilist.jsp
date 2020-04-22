@@ -8,6 +8,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="resources/css/text.css" rel="stylesheet" type="text/css">
+<!-- Bootstrap core CSS -->
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="resources/css/shop-homepage.css" rel="stylesheet">
+<link href="resources/css/bootstrap.min.css" rel="stylesheet">
 <style type="text/css">
    .t_1{
       width: 1100px;
@@ -59,6 +65,10 @@
 </head>
 <body>
 	
+	
+<div id="include_header"></div>
+
+
    <div id="div1">
    
       <div>
@@ -214,8 +224,27 @@
    		<input type="hidden" name="uprcd" id="u_city"/>
    </form>
    
-<script src="resources/js/jquery-3.4.1.min.js"></script> 
+   <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+   <script src="vendor/js/jquery.min.js"></script>
+   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+   <!-- 아코디언 스크립트 -->
+   <script src="resources/js/jquery-3.4.1.min.js"></script>
+   <script src="resources/js/jquery-ui.min.js"></script>
+
 <script type="text/javascript">
+	$(function(){
+		$("#include_header").load("header.inc");
+	  });
+  
 	function searchDate(){
 		
 		//유효성 검사...
@@ -240,6 +269,7 @@
 		}
 		
 	}
+
 </script>
 </body>
 </html>

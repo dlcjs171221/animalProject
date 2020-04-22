@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <style type="text/css">
 	#chart_div{
 		width : 100%;
@@ -19,10 +20,10 @@
 </style>
 </head>
 <body>
-
+	
 	<h1 id="totalcount"></h1>
 	<div id="chart_div"></div>
-
+	
 <script type="text/javascript">
 	$(function(){
 		
@@ -67,6 +68,7 @@
 			}); // end am4core.ready()
 		
 	}
+	
 	
 </script>	
 

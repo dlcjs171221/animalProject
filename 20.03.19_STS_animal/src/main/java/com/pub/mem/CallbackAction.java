@@ -115,29 +115,31 @@ public class CallbackAction {
 	            //ar의 개수만큼 for문 실행
 	            for( AnimemVO memvo : ar) {
 	            		
-	            	//넘어온 memvo의 이메일 주소와 vo에 저장된 이메일 주소비교
-	            	if(memvo.getM_email().equals(vo.getM_email())) {
-	            		//비교한 값이 존재한다면 바로 메인페이지 이동
-	            		mv.setViewName("main");
-	            	}else {
-	            		//비교한 값이 존재하지 않는다면 vo에 저장된 값을 DB에 저장
-	            		
-	            		mem_dao.addNmem(vo); //MemDAO == mem_dao
-	            		
-	            		//vo를 memvo로 저장 
-	            		session.setAttribute("mvo", vo);
-	            		
-	            		//main.jsp 호출
-	            		mv.setViewName("main");
-	            		
-	            		break;
-	            	}
+		            	//넘어온 memvo의 이메일 주소와 vo에 저장된 이메일 주소비교
+		            	if(memvo.getM_email().equals(vo.getM_email())) {
+		            		System.out.println("집에갈래");
+		            		mv.setViewName("main");
+		            		break;
+		            	}
+		            	
+		            	  //비교한 값이 존재하지 않는다면 vo에 저장된 값을 DB에 저장
+		        		System.out.println("으아아앙");
+		        		mem_dao.addNmem(vo); //MemDAO == mem_dao
+		        		
+		        		//vo를 memvo로 저장 
+		        		session.setAttribute("mvo", vo);
+		        		
+		        		//main.jsp 호출
+		        		mv.setViewName("main");
+
 	            }
-	            	
 	            
+	          
+        		
+	            }
+	            	 
 	         }
-	      }
-	      
+
 	      return mv;
 	   }
 	   

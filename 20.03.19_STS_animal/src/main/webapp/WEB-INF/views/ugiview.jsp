@@ -7,6 +7,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/summernote-lite.css"/>
+
+
+<!-- Bootstrap core CSS -->
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="resources/css/shop-homepage.css" rel="stylesheet">
+<link href="resources/css/bootstrap.min.css" rel="stylesheet">
 <style type="text/css">
 	
 	
@@ -21,6 +29,9 @@
 </script>
 </head>
 <body>
+
+	<div id="include_header"></div>
+
 	<div id = "write">
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="asd1">
   <tr>
@@ -132,7 +143,24 @@
 		-->
 		
 	</div>
-<script src="resources/js/jquery-3.4.1.min.js"></script>
+	
+	
+	<!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+   <script src="vendor/js/jquery.min.js"></script>
+   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+   <!-- 아코디언 스크립트 -->
+   <script src="resources/js/jquery-ui.min.js"></script>
+   <script src="resources/js/jquery-3.4.1.min.js"></script>
+
 <script src="resources/js/summernote-lite.js"></script>
 <script src="resources/js/lang/summernote-ko-KR.min.js"></script>	
 <script type="text/javascript">
@@ -204,6 +232,9 @@ $(function(){
 			console.log(err);
 		});
 	}	
+	  $(function(){
+			$("#include_header").load("header.inc");
+		  });
 </script>
 	
 </body>

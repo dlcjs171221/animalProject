@@ -9,6 +9,16 @@
 <title>Insert title here</title>
 
 <link href="resources/css/text.css" rel="stylesheet" type="text/css">
+
+
+<!-- Bootstrap core CSS -->
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="resources/css/shop-homepage.css" rel="stylesheet">
+<link href="resources/css/bootstrap.min.css" rel="stylesheet">
+
+
 <style type="text/css">
 
 	#sea{
@@ -22,6 +32,8 @@
 
 </head>
 <body topmargin=0 leftmargin=0 marginwidth="0" marginheight="0"> 
+
+<div id="include_header"></div>
 
 <!--주요내용시작 -->
 <form name="ff2" method="post">
@@ -113,6 +125,13 @@
 </table>
 </form>
 
+<!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
 
 
 <form name="frm" method="post" action="search.inc">
@@ -121,10 +140,20 @@
 	<input type="hidden" name="type" value="select"/>
 	<input type="hidden" id="search"  value="search"/>
 </form>
+ <!-- Bootstrap core JavaScript -->
+   <script src="vendor/js/jquery.min.js"></script>
+   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<script src="resources/js/jquery-3.4.1.min.js"></script>
+   <!-- 아코디언 스크립트 -->
+   <script src="resources/js/jquery-3.4.1.min.js"></script>
+   <script src="resources/js/jquery-ui.min.js"></script>
+   <script type="text/javascript"></script>
+  
 <script>
 $(function(){
+	 $(function(){
+		  $("#include_header").load("header.inc");
+	  });
 	$("#btn").bind("click",function(){
 		
 		var type = $("#select").val();

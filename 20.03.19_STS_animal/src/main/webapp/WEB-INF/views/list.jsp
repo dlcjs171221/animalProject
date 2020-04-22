@@ -1,3 +1,4 @@
+<%@page import="com.pub.vo.AnimemVO"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
@@ -5,106 +6,189 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <% 
-	Object obj = session.getAttribute("startdate");
-	Object obj2 = session.getAttribute("enddate");
-		String startdate = "";
-		String enddate = "";
-		if(obj != null && obj2 != null){
-			String s_date = (String)obj;
-			String s_str1 = s_date.substring(0, 4);
-			String s_str2 = s_date.substring(4, 6);
-			String s_str3 = s_date.substring(6);
-			startdate = s_str1+"-"+s_str2+"-"+s_str3;
-			
-			String e_date = (String)obj2;
-			String e_str1 = e_date.substring(0, 4);
-			String e_str2 = e_date.substring(4, 6);
-			String e_str3 = e_date.substring(6);
-			enddate = e_str1+"-"+e_str2+"-"+e_str3;     
-			
-			
-		}else{        
-		//오늘 날짜
-		Date today = new Date();
-		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-		enddate = date.format(today);
-		
-		//한달 전
-		Calendar mon = Calendar.getInstance();
-		mon.add(Calendar.MONTH, -1);
-		startdate = new SimpleDateFormat("yyyy-MM-dd").format(mon.getTime());
-		}
-		
-	
-%>
-
+   Object m_obj = session.getAttribute("mvo");
+   Object obj = session.getAttribute("startdate");
+   Object obj2 = session.getAttribute("enddate");
+      String startdate = "";
+      String enddate = "";
+      if(obj != null && obj2 != null){
+         String s_date = (String)obj;
+         String s_str1 = s_date.substring(0, 4);
+         String s_str2 = s_date.substring(4, 6);
+         String s_str3 = s_date.substring(6);
+         startdate = s_str1+"-"+s_str2+"-"+s_str3;
+         
+         String e_date = (String)obj2;
+         String e_str1 = e_date.substring(0, 4);
+         String e_str2 = e_date.substring(4, 6);
+         String e_str3 = e_date.substring(6);
+         enddate = e_str1+"-"+e_str2+"-"+e_str3;     
+         
+         
+      }else{        
+      //오늘 날짜
+      Date today = new Date();
+      SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+      enddate = date.format(today);
+      
+      //한달 전
+      Calendar mon = Calendar.getInstance();
+      mon.add(Calendar.MONTH, -1);
+      startdate = new SimpleDateFormat("yyyy-MM-dd").format(mon.getTime());
+      }
+      
+   
+%>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+
+
+
 <link href="resources/css/text.css" rel="stylesheet" type="text/css">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="resources/css/bootstrap.min.css"  rel="stylesheet" id="bootstrap-css">
+
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+ <script src="resources/js/bootstrap.min.js"></script>
 <style type="text/css">
-   .t_1{
-      width: 1100px;
- 	  text-align: center;
- 	  margin: 0 auto;
-   }
-   .t_2{
-      width: 500px;
-      display: inline-block;
-      border: 3px solid black;
-
-   }
-   .t1{
-      width : 490px;
-      border: 1px solid red;
-
-   }
-   .list{
-   		font-size: 30px;
-   		font-weight: bolder;		
+   .container{
+      
    }
    
-    .searchArea ul{
-   	
+   .t1{
+   
+      width: 100%;
+      height : 180px;
    }
-   .searchArea li{
-   	 
-   	  
-   }
-   .searchArea li dl{
-   	  
+   .t1 tbody tr td{
+      color: black;
    }
    .searchArea li dl dt {
-   		display: inline-block;
+         display: inline-block;
+         font-size: 13px;
    }
    .searchArea li dl dd {
-   		display: inline-block; 
+         display: inline-block; 
+         margin-right: 30px;
+         font-size: 13px;
    }
+   .searchArea{
+         padding: 15px 0;
+         margin-bottom:  50px;
+         background-color: #F8E6E0;
+   }
+   .intr{
+         
+         background-color: #F5F6CE;
+         padding: 20px 20px;         
+   }
+   .intr p{
+         font-size: 15px;
+   }
+   
    #pt{
-   	border: 1px solid red;
-   	width: 1020px;
+
+      width: 1194px;
     margin: 0 auto;
-   			
+            
    }
    #pg{
-   	border: 1px solid blue;
-   	margin-left: 0;
-
+      margin: 0 auto;
    }
-   #main{
-   	text-align: right;
+   
+   #btn{
+      border: 1px solid skyblue;
+      width: 100px;
+      background-color: rgba(0,0,0,0);
+      color: skyblue;
+      border-radius: 5px;
+      padding: 5px;
+   }
+   #btn:hover{
+      color:white; 
+      background-color: skyblue;
    }
 
+    
    
 </style>
+<!------ Include the above in your HEAD tag ---------->
 </head>
 <body>
-	
-   <div>
-   
-      <div>
+
+   <%
+   if(m_obj == null){ 
+%>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand"  href="main.inc">
+                <img class="img-fluid" src="resources/images/logo.PNG" width>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="ml-auto navbar-nav text-uppercase">
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="list.inc">유기견 공고</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="bbslist.inc?bname=유기">분실 신고</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="login.inc">로그인</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="reg.inc">회원가입</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>   
+<%
+   }else{
+      AnimemVO vo = (AnimemVO)m_obj;
+%>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand"  href="main.inc">
+                <img class="img-fluid" src="resources/images/logo.PNG" width>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="ml-auto navbar-nav text-uppercase">
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="list.inc">유기견 공고</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="bbslist.inc?bname=유기">분실 신고</a>
+                    </li>
+                    <li class="nav-item">
+                         <%= vo.getM_name() %>님 환영합니다.
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.inc">로그아웃</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>   
+<%
+   }
+%>
+
+ <div class="container" id="tourpackages-carousel">
+ 
+     <div class="intr">
           <p>
                                          
                                          「동물보호법」 제17조, 시행령7조 및 동법 시행규칙 제20조에 따라 유기·유실동물을 보호하고 있는 경우에는 소유자 등이<br />
@@ -153,206 +237,178 @@
                                            <option value="6500000">제주특별자치도 </option>                                                                               
                                    </select>
                              </dd>
-                             	<dt><label for="searchOrgCd">시군구</label></dt>
-                             	<dd>
-                             		<select name="searchOrgCd" id="searchOrgCd">
-                             			<option value="">전체</option>
-									</select>	
-                             	</dd>
-                             <dd>
-                                <button type="button" value="조회" onclick="searchDate()">조회</button>
+                                <dt><label for="searchOrgCd">시군구</label></dt>
+                                <dd>
+                                   <select name="searchOrgCd" id="searchOrgCd">
+                                      <option value="">전체</option>
+                           </select>   
+                                </dd>
+                             <dd style="margin-right: 20px">
+                                <button type="button" value="조회" onclick="searchDate()" id="btn">조회</button>
                              </dd>
                          </dl>
                         </li>
              </ul>
       </div>
       
-      <!-- 유의사항 -->
-        <div class="note-txt">
-            <ul>
-                <li>
-                    <span class="red regular"> 공고중인 동물 소유자는 "자세히 보기"를 참고하시어 해당 </span><span class="blue">시군구</span><span style="color:#8c0000;"> 및 </span>
-                    <span style="color:blue;">동물보호센터</span><span style="color:#8c0000;"> 또는 <br/></span>
-                    <span style="color:blue;">동물보호상담센터 1577-0954</span>로 문의하시기 바랍니다.
-                </li>
-                <li>
-                        동물보호센터 및 동물병원 <span class="red regular">근무시간은 09:00 ~ 18:00이므로 문의전화는 근무시간에만 가능</span>합니다.
-                </li>
-           </ul>
-        </div>
-          <div class="boardList">
-                
-                <ul class="list"><li>총 ${rowTotal } 건</li></ul>
-                
-          </div>
-          
-             <div class="t_1">
-                <c:forEach var="vo" items="${ar }">
-              <div class="t_2">
-                 <!-- LIST -->
-                
-                 <table class="t1">
-                    <tbody>
-                       <tr>
-                          <td rowspan="5" width="60" height="60" class="img_td">
-                             <!-- 사진 -->
-                             <img src="${vo.popfile }" width="100%" height="100%"/>
-                          </td>
-                          <td height="20" align="center" bgcolor="#669AB3" width="70">
+      <h1>총 ${rowTotal }건</h1>
+      
+      
+      <div class="row">
+           <c:forEach var="vo" items="${ar }">
+        <div class="col-xs-18 col-sm-6 col-md-3" style= "height: 600px;">
+          <div class="thumbnail">
+            <img src="${vo.popfile }" style= " width:450px; height: 250px;"/>
+              <div class="caption">
+                <table class="t1">
+                   <tbody>
+                      <tr>
+                          <td height="20" align="center" bgcolor="#F8E0F7" width="70">
                              공고번호
                             </td>
-                          <td>
-                             <!-- 공고번호 -->   
+                          <td align="center" bgcolor="#EFFBEF" > 
                              ${vo.noticeNo}
                           </td>
                        </tr>
-                       <tr>
-                          <td height="20" align="center" bgcolor="#669AB3" width="70">
+                          <tr>
+                          <td height="20" align="center" bgcolor="#F8E0F7" width="70">
                              접수일자
                             </td>
-                          <td>
-                             <!-- 접수일자 -->
+                          <td align="center" bgcolor="#EFFBEF" >
                              ${vo.happenDt}
                           </td>   
                        </tr>
                        <tr>
-                          <td height="20" align="center" bgcolor="#669AB3" width="50">
+                          <td height="20" align="center" bgcolor="#F8E0F7" width="70">
                              품종
                             </td>
-                          <td>
-                             <!-- 품종 -->
+                          <td align="center" bgcolor="#EFFBEF" >
                              ${vo.kindCd}
                           </td>   
                        </tr>
                        <tr>
-                          <td height="20" align="center" bgcolor="#669AB3" width="70">
+                          <td height="20" align="center" bgcolor="#F8E0F7" width="70">
                              성별
                             </td>
-                          <td>
-                             <!-- 성별 -->
+                          <td align="center" bgcolor="#EFFBEF" >
                              ${vo.sexCd}
                           </td>   
                        </tr>
                        <tr>
-                          <td height="20" align="center" bgcolor="#669AB3" width="70">
+                          <td height="20" align="center" bgcolor="#F8E0F7" width="70">
                              발견장소
                             </td>
-                          <td>
-                             <!-- 발견장소 -->
+                          <td align="center" bgcolor="#EFFBEF" >
                              ${vo.happenPlace}
                           </td>   
                        </tr>
                        <tr>
-                          <td rowspan="2">
-                             <!-- 자세히보기 -->
-                             <input type="button" value="자세히보기" onclick="javascript:location.href='view.inc?desertionNo=${vo.desertionNo}&nowPage=${nowPage }&careNm=${vo.careNm }&careTel=${vo.careTel }'"/>
-                          </td>
-                          <td height="20" align="center" bgcolor="#669AB3" width="70">
+                          <td height="20" align="center" bgcolor="#F8E0F7" width="70">
                              특징
                             </td>
-                          <td>
-                             <!-- 특징 -->
+                          <td align="center" bgcolor="#EFFBEF" >
                              ${vo.specialMark }
-                          </td>
+                          </td>   
                        </tr>
                        <tr>
-                          <td height="20" align="center" bgcolor="#669AB3" width="70">
+                          <td height="20" align="center" bgcolor="#F8E0F7" width="70">
                              상태
                             </td>
-                          <td>
-                             <!-- 상태 -->
+                          <td align="center" bgcolor="#EFFBEF" >
                              ${vo.processState }
-                           </td>
-                        </tr>
-                     </tbody>
-                  </table>
-                  
-         </div>
-         </c:forEach>
-         
-         <table id="pt">
+                          </td>   
+                       </tr>
+                      
+                   </tbody>
+                   
+                      <p><a href="view.inc?desertionNo=${vo.desertionNo }&nowPage=${nowPage}&careNm=${vo.careNm}&careTel=${vo.careTel}" class="btn btn-info btn-xs" role="button" style="color: white;">자세히보기</a></p>
+           
+                </table>
+            </div>
+          </div>
+        </div>
+      </c:forEach>
+      
+       <table style="margin: 0 auto;">
                  <tr>
                     <td>
-                       ${pageCode }
+                       ${pageCode }<br/><br/><br/><br/><br/>
                     </td> 
                  </tr>
-                 <tr>	
-                 	<td>
-                 		<input id="main" type="button" value="메인으로 가기" onclick="javascript:location.href='main.inc'"/>
-                 	</td>
-                 </tr>
-           </table>
-        
-      </div>
-   </div>
+         </table>
+         
+       
+       <form name="frm" method="post">
+         <input type="hidden" name="startdate" id="s_date"/>
+         <input type="hidden" name="enddate" id="e_date"/>
+         <input type="hidden" name="uprcd" id="u_city"/>
+         <input type="hidden" name="orgcd" id="o_city"/>
+         </form>
+
+       
+      </div><!-- End row -->
+      
+    </div><!-- End container -->
    
-                  
+   <script src="resources/js/jquery-3.4.1.min.js"></script>
+   <script type="text/javascript">
+   function searchDate(){
+      /*
+      //유효성 검사...
+      if($("#searchSDate").val().length < 1 || $("#searchEDate").val().length < 1) {
+         alert("날짜를 선택하세요")
+         
+         return;
+      }   
+      if($("#searchUprCd").val().length < 1) {
+         alert("지역을 선택하세요")
+         
+         return;
+      }   
+      */
+         $("#s_date").val($("#searchSDate").val());
+         $("#e_date").val($("#searchEDate").val());
+         $("#u_city").val($("#searchUprCd").val());
+         $("#o_city").val($("#searchOrgCd").val());
+         document.frm.action = "list.inc";
+         document.frm.submit();
+      
+      
+      
+      
+      
+      
+   }
    
-   <form name="frm" method="post">
-   		<input type="hidden" name="startdate" id="s_date"/>
-   		<input type="hidden" name="enddate" id="e_date"/>
-   		<input type="hidden" name="uprcd" id="u_city"/>
-   		<input type="hidden" name="orgcd" id="o_city"/>
-   </form>
-   
-<script src="resources/js/jquery-3.4.1.min.js"></script> 
-<script type="text/javascript">
-	function searchDate(){
-		/*
-		//유효성 검사...
-		if($("#searchSDate").val().length < 1 || $("#searchEDate").val().length < 1) {
-			alert("날짜를 선택하세요")
-			
-			return;
-		}	
-		if($("#searchUprCd").val().length < 1) {
-			alert("지역을 선택하세요")
-			
-			return;
-		}	
-		*/
-			$("#s_date").val($("#searchSDate").val());
-			$("#e_date").val($("#searchEDate").val());
-			$("#u_city").val($("#searchUprCd").val());
-			$("#o_city").val($("#searchOrgCd").val());
-			document.frm.action = "list.inc";
-			document.frm.submit();
-		
-		
-		
-		
-		
-		
-	}
-	
-	function sigungu(){
-		var uprcd = $("#searchUprCd").val();
-		var param = "uprcd="+encodeURIComponent(uprcd);
-		
-		$.ajax({
-			url : "sigungu.inc",
-			data : param,
-			type: "post",
-			dataType : "json"
-		}).done(function(data){
-			if(data.ar != undefined){
-				var code = "<option value=''>전체</option>";
-				for(var i=0; i<data.ar.length; i++){
-					code += "<option value='";
-					code += data.ar[i].orgCd;
-					code += "'>";
-					code += data.ar[i].orgdownNm;
-					code += "</option>"; 
-				}
-				$("#searchOrgCd").html(code);
-			}
-			
-		}).fail(function(err){
-			console.log(err);
-		});
-		
-	}
-	
-</script>
+   function sigungu(){
+      var uprcd = $("#searchUprCd").val();
+      var param = "uprcd="+encodeURIComponent(uprcd);
+      
+      $.ajax({
+         url : "sigungu.inc",
+         data : param,
+         type: "post",
+         dataType : "json"
+      }).done(function(data){
+         if(data.ar != undefined){
+            var code = "<option value=''>전체</option>";
+            for(var i=0; i<data.ar.length; i++){
+               code += "<option value='";
+               code += data.ar[i].orgCd;
+               code += "'>";
+               code += data.ar[i].orgdownNm;
+               code += "</option>"; 
+            }
+            $("#searchOrgCd").html(code);
+         }
+         
+      }).fail(function(err){
+         console.log(err);
+      });
+      
+   }
+   </script>
+
+
 </body>
 </html>

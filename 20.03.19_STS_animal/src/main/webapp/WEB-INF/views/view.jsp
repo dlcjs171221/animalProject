@@ -7,8 +7,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+ <!-- Bootstrap core CSS -->
+  <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="resources/css/shop-homepage.css" rel="stylesheet">
+  <link href="resources/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 <body>
+<div id="include_header"></div>
 
    <table>
       <tbody>
@@ -185,6 +193,22 @@
    	<input type="hidden" name="desertionNo" value="${vo.desertionNo }"/>
    	
    </form>
+   
+   <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="resources/vendor/jquery/jquery.min.js"></script>
+  <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="resources/js/bootstrap.min.js"></script>
+  <!-- 아코디언 스크립트 -->
+  <script src="resources/js/jquery-3.4.1.min.js"></script>
+  <script src="resources/js/jquery-ui.min.js"></script>
    <script>
    	  	function sendData(addr, np,tel,nm,dno){
    		document.frm.careAddr.value = addr;
@@ -195,6 +219,10 @@
    		
    		document.frm.submit();
    	}
+   	  	
+   	 $(function(){
+   		$("#include_header").load("header.inc");
+   	  });
    </script>
 </body>
 </html>

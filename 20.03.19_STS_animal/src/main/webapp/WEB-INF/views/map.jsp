@@ -5,6 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<!-- Bootstrap core CSS -->
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="resources/css/shop-homepage.css" rel="stylesheet">
+<link href="resources/css/bootstrap.min.css" rel="stylesheet">
+
 	<style>
 	.marker{
 		width:150px;
@@ -39,6 +47,7 @@
 	</style>
 </head>
 <body>
+<div id="include_header"></div>
 	<table>
 		<tr>
 			<th>${careAddr }</th>
@@ -52,7 +61,21 @@
 </body>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=18e1f0667ae14a856c08b9b48db95b3a&libraries=services,clusterer,drawing"></script>
+ <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
 
+  <!-- Bootstrap core JavaScript -->
+   <script src="vendor/js/jquery.min.js"></script>
+   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+   <!-- 아코디언 스크립트 -->
+   <script src="resources/js/jquery-3.4.1.min.js"></script>
+   <script src="resources/js/jquery-ui.min.js"></script>
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 mapOption = {
@@ -89,6 +112,10 @@ geocoder.addressSearch('${careAddr }', function(result, status) {
     // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
     map.setCenter(coords);
 } 
-});    
+});  
+$(function(){
+	$("#include_header").load("header.inc");
+  });
+  
  </script>
 </html>

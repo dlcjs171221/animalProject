@@ -29,7 +29,7 @@ public class ListAction {
 	@Autowired
 	HttpSession session;
 	
-	public final int BLOCK_LIST = 10; //한 페이지 당 보여질 게시물의 수
+	public final int BLOCK_LIST = 8; //한 페이지 당 보여질 게시물의 수
 	
 	public final int BLOCK_PAGE = 10; //한 블럭당 보여질 페이지 수
 	
@@ -78,7 +78,7 @@ public class ListAction {
 				url = new URL("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde="
 						+startdate+ "&endde="
 						+enddate+"&pageNo="
-						+nowPage+ "&numOfRows=10&ServiceKey=MUdayHwSmix9x692v%2BYHt7JeWdYwmJHVK6L3gXdk4DamUCIGx9cecu0Rtaq84cibEwuQFWepGH15%2FhTk1LMGHA%3D%3D&upr_cd="
+						+nowPage+ "&numOfRows=8&ServiceKey=MUdayHwSmix9x692v%2BYHt7JeWdYwmJHVK6L3gXdk4DamUCIGx9cecu0Rtaq84cibEwuQFWepGH15%2FhTk1LMGHA%3D%3D&upr_cd="
 								+uprcd+"&org_cd="+orgcd);
 				
 				//vo 객체와 paging기법을 생성하는 함수
@@ -88,9 +88,10 @@ public class ListAction {
 			}else {
 				System.out.println("조건값없이 페이지 버튼을 눌렀습니다.");
 				url = new URL("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=&endde=&pageNo="
-						+nowPage+"&numOfRows=10&ServiceKey=MUdayHwSmix9x692v%2BYHt7JeWdYwmJHVK6L3gXdk4DamUCIGx9cecu0Rtaq84cibEwuQFWepGH15%2FhTk1LMGHA%3D%3D");
+						+nowPage+"&numOfRows=8&ServiceKey=MUdayHwSmix9x692v%2BYHt7JeWdYwmJHVK6L3gXdk4DamUCIGx9cecu0Rtaq84cibEwuQFWepGH15%2FhTk1LMGHA%3D%3D");
 				
 				mv = makeUgiVO(url);
+				mv.setViewName("list");
 			}
 			
 			
@@ -106,9 +107,10 @@ public class ListAction {
 			session.removeAttribute("orgcd");
 			this.nowPage = 1;
 			
-			url = new URL("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=&endde=&pageNo=1&numOfRows=10&ServiceKey=MUdayHwSmix9x692v%2BYHt7JeWdYwmJHVK6L3gXdk4DamUCIGx9cecu0Rtaq84cibEwuQFWepGH15%2FhTk1LMGHA%3D%3D");
+			url = new URL("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=&endde=&pageNo=1&numOfRows=8&ServiceKey=MUdayHwSmix9x692v%2BYHt7JeWdYwmJHVK6L3gXdk4DamUCIGx9cecu0Rtaq84cibEwuQFWepGH15%2FhTk1LMGHA%3D%3D");
 							
 			mv = makeUgiVO(url);
+			mv.setViewName("list");
 		}
 			
 		return mv;
@@ -142,12 +144,12 @@ public class ListAction {
 		
 		url = new URL("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde="
 				+s_date+"&endde="
-				+e_date+"&pageNo=1&numOfRows=10&ServiceKey=MUdayHwSmix9x692v%2BYHt7JeWdYwmJHVK6L3gXdk4DamUCIGx9cecu0Rtaq84cibEwuQFWepGH15%2FhTk1LMGHA%3D%3D&upr_cd="
+				+e_date+"&pageNo=1&numOfRows=8&ServiceKey=MUdayHwSmix9x692v%2BYHt7JeWdYwmJHVK6L3gXdk4DamUCIGx9cecu0Rtaq84cibEwuQFWepGH15%2FhTk1LMGHA%3D%3D&upr_cd="
 				+uprcd+"&org_cd="+orgcd);
 		
 		mv = makeUgiVO(url);
 		
-		
+		mv.setViewName("list");
 		return mv;
 		
 	}
@@ -221,7 +223,7 @@ public class ListAction {
 						mv.addObject("nowPage",this.nowPage);
 						mv.addObject("pageCode", pageCode);
 						mv.addObject("rowTotal", rowTotal);
-						mv.setViewName("list");
+						
 						
 						session.setAttribute("ar", ar);
 						
@@ -229,7 +231,6 @@ public class ListAction {
 		
 		
 	}
-	
 
 
 	
