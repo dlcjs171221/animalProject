@@ -17,9 +17,12 @@ public class ViewAction {
 
 	@RequestMapping("/view.inc")
 	public ModelAndView view(String desertionNo, String nowPage,String careNm,String careTel) {
+		
 		ModelAndView mv = new ModelAndView();
+		
 		if(nowPage == null)
 			nowPage = "1";
+		
 		Object obj = session.getAttribute("ar");
 		
 		UgiVO[] ar = null;

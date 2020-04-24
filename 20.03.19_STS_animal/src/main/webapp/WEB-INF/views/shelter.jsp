@@ -1,7 +1,14 @@
+<%@page import="com.pub.vo.AnimemVO"%>
+<%@page import="org.springframework.beans.factory.annotation.Autowired"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
- <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>   <!-- 날짜 사용시 사용(substring) -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%
+	Object obj = session.getAttribute("mvo");
+%>
+  <!-- 날짜 사용시 사용(substring) -->
 <!DOCTYPE html>
 <html>
 <head> 
@@ -9,13 +16,8 @@
 <title>Insert title here</title>
 
 <link href="resources/css/text.css" rel="stylesheet" type="text/css">
-
-
-<!-- Bootstrap core CSS -->
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Custom styles for this template -->
-<link href="resources/css/shop-homepage.css" rel="stylesheet">
+<script src="resources/js/bootstrap.min.js"></script>
+<script src="resources/js/jquery.min.js"></script>
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
 
 
@@ -32,12 +34,80 @@
 
 </head>
 <body topmargin=0 leftmargin=0 marginwidth="0" marginheight="0"> 
+<!--head-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
-<div id="include_header"></div>
+<%
+   if(obj == null){ 
+%>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand"  href="main.inc">
+                <img class="img-fluid" src="resources/images/logo.PNG" width>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="ml-auto navbar-nav text-uppercase">
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="list.inc">유기견 공고</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="bbslist.inc?bname=유기">분실 신고</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="login.inc">로그인</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="reg.inc">회원가입</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>	
+<%
+   }else{
+      AnimemVO vo = (AnimemVO)obj;
+%>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand"  href="main.inc">
+                <img class="img-fluid" src="resources/images/logo.PNG" width>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="ml-auto navbar-nav text-uppercase">
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="list.inc">유기견 공고</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="bbslist.inc?bname=유기">분실 신고</a>
+                    </li>
+                    <li class="nav-item">
+                         <%= vo.getM_name() %>님 환영합니다.
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.inc">로그아웃</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>	
+<%
+   }
+%>
 
+<div class="container">
 <!--주요내용시작 -->
 <form name="ff2" method="post">
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 30px;">
   <tbody>
   		  <tr>
 		<td valign="top">
@@ -47,7 +117,7 @@
 			  <td align="center" height="10"></td>
 			</tr>
 			<tr>
-			  <td align="center"><h1><u><b>보호센터 목록</b><u></td>
+			  <td align="center" ><h1><u><b>보호센터 목록</b><u></td>
 			</tr>
 			<tr>
 				<td id="sea">
@@ -61,8 +131,11 @@
 					<input type="text" id="search" name="search" placeholder="검색어 입력"/>&nbsp;&nbsp;
 					<input type="text" id="hi"/>
 					<input type="button" id ="btn" value="조회"/>
+					
+					<hr  width="100%">
 				</td>
 			</tr>
+
 			<tr>
 			  <td align="center" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
 				  <tr>
@@ -74,14 +147,14 @@
 					<td height="2" bgcolor="#C3C3C3"></td>
 				  </tr>
 				  <tr>
-					<td bgcolor="#E5E5E5">
+					<td bgcolor="#EFFBEF">
 					<table id="t1" style="width: 800px; height:100%;" border="0" cellspacing="1" cellpadding="2">
 						<thead>
 							<tr>
-							  <td height="20" align="center" bgcolor="#669AB3" width="100"><font color="#FFFFFF">관할구역</font></td>
-							  <td height="20" align="center" bgcolor="#669AB3" width="100"><font color="#FFFFFF">보호센터명</font></td>
-							  <td height="20" align="center" bgcolor="#669AB3" width="80"><font color="#FFFFFF">전화번호</font></td>
-							  <td height="20" align="center" bgcolor="#669AB3" width="230"><font color="#FFFFFF">보호센터주소</font></td>
+							  <td height="20" align="center" bgcolor="#F8E0F7" width="100">관할구역</td>
+							  <td height="20" align="center" bgcolor="#F8E0F7" width="100">보호센터명</td>
+							  <td height="20" align="center" bgcolor="#F8E0F7" width="80">전화번호</td>
+							  <td height="20" align="center" bgcolor="#F8E0F7" width="230">보호센터주소</td>
 							</tr>
 						</thead>
 						<tbody>
@@ -106,9 +179,7 @@
 						<tr>
 							  <td width="315" align="left">
 						  		</td>
-						  <td width="241" align="right">
-						  	<input type="button" value="메인으로 가기" onclick="javascript:location.href='main.inc'" />
-						  </td>
+						  
 						</tr>
 					  </table></td>
 				  </tr>
@@ -124,36 +195,18 @@
   </tbody>
 </table>
 </form>
-
-<!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
-    </div>
-    <!-- /.container -->
-  </footer>
-
-
-<form name="frm" method="post" action="search.inc">
-	<input type="hidden" name="nowPage" value="${nowPage }"/>
-	<input type="hidden" name="seq"/>
-	<input type="hidden" name="type" value="select"/>
-	<input type="hidden" id="search"  value="search"/>
-</form>
- <!-- Bootstrap core JavaScript -->
-   <script src="vendor/js/jquery.min.js"></script>
-   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-   <!-- 아코디언 스크립트 -->
+</div>
    <script src="resources/js/jquery-3.4.1.min.js"></script>
    <script src="resources/js/jquery-ui.min.js"></script>
    <script type="text/javascript"></script>
+   
+  <!-- Bootstrap core JavaScript -->
+   <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   
   
 <script>
 $(function(){
-	 $(function(){
-		  $("#include_header").load("header.inc");
-	  });
+	
 	$("#btn").bind("click",function(){
 		
 		var type = $("#select").val();

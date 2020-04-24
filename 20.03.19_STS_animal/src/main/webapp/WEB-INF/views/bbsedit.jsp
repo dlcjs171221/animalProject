@@ -1,11 +1,24 @@
+<%@page import="com.pub.vo.AnimemVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="org.springframework.beans.factory.annotation.Autowired"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+	Object obj = session.getAttribute("mvo");
+%>
 <!DOCTYPE HTML>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+
+<link href="resources/css/text.css" rel="stylesheet" type="text/css">
+<link href="resources/css/bootstrap.min.css"  rel="stylesheet" id="bootstrap-css">
+
 <link rel="stylesheet" href="resources/css/summernote-lite.css" />
+
+<script src="resources/js/bootstrap.min.js"></script>
+<script src="resources/js/jquery.min.js"></script>
 <style type="text/css">
 </style>
 <script type="text/javascript">
@@ -29,6 +42,76 @@
 </script>
 </head>
 <body>
+<!--head-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<%
+   if(obj == null){ 
+%>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand"  href="main.inc">
+                <img class="img-fluid" src="resources/images/logo.PNG" width>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="ml-auto navbar-nav text-uppercase">
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="list.inc">유기견 공고</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="bbslist.inc?bname=유기">분실 신고</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="login.inc">로그인</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="reg.inc">회원가입</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>	
+<%
+   }else{
+      AnimemVO vo = (AnimemVO)obj;
+%>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand"  href="main.inc">
+                <img class="img-fluid" src="resources/images/logo.PNG" width>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="ml-auto navbar-nav text-uppercase">
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="list.inc">유기견 공고</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="bbslist.inc?bname=유기">분실 신고</a>
+                    </li>
+                    <li class="nav-item">
+                         <%= vo.getM_name() %>님 환영합니다.
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.inc">로그아웃</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>	
+<%
+   }
+%>
+
 	<div id="write">
 		<form action="bbsedit.inc" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="bname" value="${bname }" />
@@ -43,7 +126,7 @@
 								<td align="center" height="10"></td>
 							</tr>
 							<tr>
-								<td align="center"><u><b>분실신고 등록하기</b></u></td>
+								<td align="center"><u><b>정책사항 수정하기</b></u></td>
 							</tr>
 							<tr>
 								<td align="center" valign="top"><table width="100%"
@@ -63,27 +146,25 @@
 													cellspacing="1" cellpadding="2">
 
 													<tr>
-														<td height="20" align="center" bgcolor="#669AB3"><font
-															color="#FFFFFF">제목</font></td>
-														<td bgcolor="#F2F7F9" align="left">
+														<td height="20" align="center" bgcolor="#F8E0F7">제목</td>
+														<td bgcolor="#EFFBEF" align="left">
 														<input type="text"
 															id="subject" name="subject" size="50" theme="simple" /></td>
 													</tr>
 
 													<tr>
-														<td height="20" align="center" bgcolor="#669AB3"><font
-															color="#FFFFFF">내용</font></td>
-														<td bgcolor="#F2F7F9" align="left"><textarea
+														<td height="20" align="center" bgcolor="#F8E0F7">내용</td>
+														<td bgcolor="#EFFBEF" align="left"><textarea
 																id="content" name="content" cols="50" rows="10"
 																theme="simple"></textarea></td>
 													</tr>
 
 
 													<tr>
-														<td height="20" align="center" bgcolor="#669AB3">
-															<font color="#FFFFFF">첨부파일</font>
+														<td height="20" align="center" bgcolor="#F8E0F7">
+															첨부파일
 														</td>
-														<td bgcolor="#F2F7F9" align="left">
+														<td bgcolor="#EFFBEF" align="left">
 														<input type="file" name="file" cssStyle="width:300px" theme="simple" />
 														</td>
 												</table>
@@ -103,8 +184,8 @@
 													<tr>
 														<td width="315" align="center"></td>
 														<td width="241" align="right">
-														<input type="button" onclick="javascript:location.href='ugiview.inc?b_idx=${vo.b_idx}&nowPage=${nowPage}&bname=${bname }'"value="목록" />
-														<input type="button" onclick="check(this.form)" value="저장" /></td>
+														<input type="button" class="btn btn-info btn-xs"  style="color: white;" onclick="javascript:location.href='bbslist.inc?bname=${vo.bname}&nowPage=${nowPage }'" value="목록" />
+														<input type="button" class="btn btn-info btn-xs"  style="color: white;" onclick="check(this.form)" value="저장" /></td>
 													</tr>
 												</table>
 											</td>
@@ -140,6 +221,10 @@
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script src="resources/js/summernote-lite.js"></script>
 	<script src="resources/js/lang/summernote-ko-KR.min.js"></script>
+	
+  <!-- Bootstrap core JavaScript -->
+   <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   
 	<script type="text/javascript">
 		$(function() {
 

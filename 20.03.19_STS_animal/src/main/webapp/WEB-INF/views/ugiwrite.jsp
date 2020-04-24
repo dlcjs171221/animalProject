@@ -1,5 +1,13 @@
+<%@page import="com.pub.vo.AnimemVO"%>
+<%@page import="org.springframework.beans.factory.annotation.Autowired"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%
+	Object obj = session.getAttribute("mvo");
+%>
 <!DOCTYPE HTML>
 <html> 
 <head>
@@ -7,17 +15,13 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/summernote-lite.css"/>
 
+ <link href="resources/css/text.css" rel="stylesheet" type="text/css">
+<link href="resources/css/bootstrap.min.css"  rel="stylesheet" id="bootstrap-css">
 
-<!-- Bootstrap core CSS -->
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Custom styles for this template -->
-<link href="resources/css/shop-homepage.css" rel="stylesheet">
-<link href="resources/css/bootstrap.min.css" rel="stylesheet">
-<style type="text/css">
-	
-	
-</style>
+<script src="resources/js/bootstrap.min.js"></script>
+<script src="resources/js/jquery.min.js"></script>
+
 <script type="text/javascript">
 	function check(ff){
 		
@@ -61,9 +65,76 @@
 </script>
 </head>
 <body>
+	<!--head-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
+<%
+   if(obj == null){ 
+%>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand"  href="main.inc">
+                <img class="img-fluid" src="resources/images/logo.PNG" width>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="ml-auto navbar-nav text-uppercase">
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="list.inc">유기견 공고</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="bbslist.inc?bname=유기">분실 신고</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="login.inc">로그인</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="reg.inc">회원가입</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>	
+<%
+   }else{
+      AnimemVO vo = (AnimemVO)obj;
+%>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand"  href="main.inc">
+                <img class="img-fluid" src="resources/images/logo.PNG" width>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="ml-auto navbar-nav text-uppercase">
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="list.inc">유기견 공고</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="bbslist.inc?bname=유기">분실 신고</a>
+                    </li>
+                    <li class="nav-item">
+                         <%= vo.getM_name() %>님 환영합니다.
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.inc">로그아웃</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>	
+<%
+   }
+%>
 	
-	<div id="include_header"></div>
 	
 
 	<div id = "write">
@@ -96,44 +167,44 @@
                 <td bgcolor="#E5E5E5"><table width="100%" border="0" cellspacing="1" cellpadding="2">
 
                     <tr>
-                      <td width="90" height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">작성자</font></td>
-                      <td bgcolor="#F2F7F9" align="left"> <input type="text" name="writer" value="${mvo.m_name }" readonly cssStyle="width:100px" theme="simple"/></td>
+                      <td width="90" height="20" align="center" bgcolor="#F8E0F7">작성자</td>
+                      <td bgcolor="#EFFBEF" align="left"> <input type="text" name="writer" value="${mvo.m_name }" readonly cssStyle="width:100px" theme="simple"/></td>
                     </tr>
 
                     <tr>
-                      <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">제목</font></td>
-                      <td bgcolor="#F2F7F9" align="left"> <input type="text" id="subject" name="subject" size="50" theme="simple"/></td>
+                      <td height="20" align="center" bgcolor="#F8E0F7">제목</td>
+                      <td bgcolor="#EFFBEF" align="left"> <input type="text" id="subject" name="subject" size="50" theme="simple"/></td>
                     </tr>
                     
                       
                      <tr>
-                      <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">내용</font></td>
-                      <td bgcolor="#F2F7F9" align="left"> <textarea id="content" name="content" cols="50" rows="10" theme="simple" ></textarea></td>
+                      <td height="20" align="center" bgcolor="#F8E0F7">내용</td>
+                      <td bgcolor="#EFFBEF" align="left"> <textarea id="content" name="content" cols="50" rows="10" theme="simple" ></textarea></td>
                     </tr>
                     
                     
                     <tr>
                     
-                      <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">첨부파일</font></td>
-                      <td bgcolor="#F2F7F9" align="left">
+                      <td height="20" align="center" bgcolor="#F8E0F7">첨부파일</td>
+                      <td bgcolor="#EFFBEF" align="left">
                         <input type="file" name="file" cssStyle="width:300px" theme="simple"/>
                       </td>
                     </tr>
                      <tr>
-                      <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">품종</font></td>
-                      <td bgcolor="#F2F7F9" align="left"> <input type="text" id="kind" name="kind" size="50" theme="simple"/></td>
+                      <td height="20" align="center" bgcolor="#F8E0F7">품종</td>
+                      <td bgcolor="#EFFBEF" align="left"> <input type="text" id="kind" name="kind" size="50" theme="simple"/></td>
                     </tr>
                     <tr>
-                      <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">이메일</font></td>
-                      <td bgcolor="#F2F7F9" align="left"> <input type="text" id="email" name="email" size="50" theme="simple"/></td>
+                      <td height="20" align="center" bgcolor="#F8E0F7">이메일</td>
+                      <td bgcolor="#EFFBEF" align="left"> <input type="text" id="email" name="email" size="50" theme="simple"/></td>
                     </tr>
                     <tr>
-                      <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">전화번호</font></td>
-                      <td bgcolor="#F2F7F9" align="left"> <input type="text" id="phone" name="phone" size="50" theme="simple"/></td>
+                      <td height="20" align="center" bgcolor="#F8E0F7">전화번호</td>
+                      <td bgcolor="#EFFBEF" align="left"> <input type="text" id="phone" name="phone" size="50" theme="simple"/></td>
                     </tr>
                     <tr>
-                      <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">잃어버린 날짜</font></td>
-                      <td bgcolor="#F2F7F9" align="left"> <input type="text" id="lose_date" name="lose_date" size="50" theme="simple"/></td>
+                      <td height="20" align="center" bgcolor="#F8E0F7">잃어버린 날짜</td>
+                      <td bgcolor="#EFFBEF" align="left"> <input type="text" id="lose_date" name="lose_date" size="50" theme="simple"/></td>
                     </tr>
                     
                   </table></td>
@@ -151,9 +222,9 @@
           
                       </td>
 		              	 <td width="241" align="right">
-		                      <input type="button" onclick="javascript:location.href='bbslist.inc?bname=${bname}'" value="목록"/>
-		                      <input type="button" onclick="check(this.form)" value="저장"/>
-		                      <input type="reset" value="재입력"/>
+		                      <input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" onclick="javascript:location.href='bbslist.inc?bname=${bname}'" value="목록"/>
+		                      <input type="button" class="btn btn-info btn-xs" role="button" style="color: white;"  onclick="check(this.form)" value="저장"/>
+		                      <input type="reset" class="btn btn-info btn-xs"  style="color: white;" value="재입력"/>
 	                      </td>
                     </tr>
                   	</table>
@@ -187,20 +258,13 @@
 		-->
 		
 	</div>
-	<!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
-    </div>
-    <!-- /.container -->
-  </footer>
 	
-	 <!-- Bootstrap core JavaScript -->
-   <script src="vendor/js/jquery.min.js"></script>
-   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	
 
-   <!-- 아코디언 스크립트 -->
-   <script src="resources/js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+   <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   
+	
    <script src="resources/js/jquery-ui.min.js"></script>
    
    
@@ -279,9 +343,6 @@ $(function(){
 		});
 	}	
 	
-	 $(function(){
-			$("#include_header").load("header.inc");
-		  });
 </script>
 	
 </body>

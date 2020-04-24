@@ -6,17 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/summernote-lite.css"/>
- 
-<!-- Bootstrap core CSS -->
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Custom styles for this template -->
-<link href="resources/css/shop-homepage.css" rel="stylesheet">
-<link href="resources/css/bootstrap.min.css" rel="stylesheet">
-<style type="text/css">
+ <link href="resources/css/text.css" rel="stylesheet" type="text/css">
+<link href="resources/css/bootstrap.min.css"  rel="stylesheet" id="bootstrap-css">
 	
-	
-</style>
 <script type="text/javascript">
 	function check(ff){
 		
@@ -77,8 +70,6 @@
 </head>
 <body>
 	
-	<div id="include_header"></div>
-
 	<div id = "write">
 	<form name="frm"
 	enctype="multipart/form-data">
@@ -107,45 +98,45 @@
                 <td bgcolor="#E5E5E5"><table width="100%" border="0" cellspacing="1" cellpadding="2">
 
                     <tr>
-                      <td width="90" height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">작성자</font></td>
-                      <td bgcolor="#F2F7F9" align="left"> <input type="text" name="writer" value="${mvo.m_name }" readonly cssStyle="width:100px" theme="simple"/></td>
+                      <td width="90" height="20" align="center" bgcolor="#F8E0F7">작성자</td>
+                      <td bgcolor="#EFFBEF" align="left"> <input type="text" name="writer" value="${mvo.m_name }" readonly cssStyle="width:100px" theme="simple"/></td>
                     </tr>
 
                     <tr>
-                      <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">제목</font></td>
-                      <td bgcolor="#F2F7F9" align="left"> <input type="text" id="subject" name="subject" value="${vo.subject }" size="50" theme="simple"/></td>
+                      <td height="20" align="center" bgcolor="#F8E0F7">제목</td>
+                      <td bgcolor="#EFFBEF" align="left"> <input type="text" id="subject" name="subject" value="${vo.subject }" size="50" theme="simple"/></td>
                     </tr>
                     
                       
                      <tr>
-                      <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">내용</font></td>
-                      <td bgcolor="#F2F7F9" align="left"> <textarea id="content" name="content" cols="50" rows="10" theme="simple" >${vo.content }</textarea></td>
+                      <td height="20" align="center" bgcolor="#F8E0F7">내용</td>
+                      <td bgcolor="#EFFBEF" align="left"> <textarea id="content" name="content" cols="50" rows="10" theme="simple" >${vo.content }</textarea></td>
                     </tr>
                     
                     
                     <tr>
                     
-                      <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">첨부파일</font></td>
+                      <td height="20" align="center" bgcolor="#F8E0F7">첨부파일</td>
                       <td bgcolor="#F2F7F9" align="left">
                         <input type="file" name="file" cssStyle="width:300px" theme="simple"/>
                         (${vo.file_name })
                       </td>
                     </tr>
                      <tr>
-                      <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">품종</font></td>
-                      <td bgcolor="#F2F7F9" align="left"> <input type="text" id="kind" name="kind" value="${vo.kind }" size="50" theme="simple"/></td>
+                      <td height="20" align="center" bgcolor="#F8E0F7">품종</td>
+                      <td bgcolor="#EFFBEF" align="left"> <input type="text" id="kind" name="kind" value="${vo.kind }" size="50" theme="simple"/></td>
                     </tr>
                     <tr>
-                      <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">이메일</font></td>
-                      <td bgcolor="#F2F7F9" align="left"> <input type="text" id="email" name="email" value="${vo.email }" size="50" theme="simple"/></td>
+                      <td height="20" align="center" bgcolor="#F8E0F7">이메일</td>
+                      <td bgcolor="#EFFBEF" align="left"> <input type="text" id="email" name="email" value="${vo.email }" size="50" theme="simple"/></td>
                     </tr>
                     <tr>
-                      <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">전화번호</font></td>
-                      <td bgcolor="#F2F7F9" align="left"> <input type="text" id="phone" name="phone" value="${vo.phone }" size="50" theme="simple"/></td>
+                      <td height="20" align="center" bgcolor="#F8E0F7">전화번호</td>
+                      <td bgcolor="#EFFBEF" align="left"> <input type="text" id="phone" name="phone" value="${vo.phone }" size="50" theme="simple"/></td>
                     </tr>
                     <tr>
-                      <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">잃어버린 날짜</font></td>
-                      <td bgcolor="#F2F7F9" align="left"> <input type="text" id="lose_date" name="lose_date" value="${vo.lose_date }" size="50" theme="simple"/></td>
+                      <td height="20" align="center" bgcolor="#F8E0F7">잃어버린<br/>날짜</td>
+                      <td bgcolor="#EFFBEF" align="left"> <input type="text" id="lose_date" name="lose_date" value="${vo.lose_date }" size="50" theme="simple"/></td>
                     </tr>
                     
                   </table></td>
@@ -163,9 +154,9 @@
           
                       </td>
 		              	 <td width="241" align="right">
-		                      <input type="button" onclick="javascript:location.href='bbslist.inc?bname=${vo.bname}&nowPage=${nowPage }'" value="목록"/>
-		                      <input type="button" onclick="check(this.form)" value="저장"/>
-		                      <input type="reset" value="재입력"/>
+		                      <input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" onclick="javascript:location.href='bbslist.inc?bname=${vo.bname}&nowPage=${nowPage }'" value="목록"/>
+		                      <input type="button" class="btn btn-info btn-xs" role="button" style="color: white;"  onclick="check(this.form)" value="저장"/>
+		                      <input type="reset"  class="btn btn-info btn-xs" style="color: white;" value="재입력"/>
 	                      </td>
                     </tr>
                   	</table>
@@ -200,20 +191,6 @@
 		
 	</div>
 	
-	
-	<!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
-    </div>
-    <!-- /.container -->
-  </footer>
-
-  <!-- Bootstrap core JavaScript -->
-   <script src="vendor/js/jquery.min.js"></script>
-   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-   <!-- 아코디언 스크립트 -->
    <script src="resources/js/jquery-ui.min.js"></script>   
    <script src="resources/js/jquery-3.4.1.min.js"></script>
    

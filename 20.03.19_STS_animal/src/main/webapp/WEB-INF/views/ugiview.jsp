@@ -1,6 +1,13 @@
+<%@page import="com.pub.vo.AnimemVO"%>
+<%@page import="org.springframework.beans.factory.annotation.Autowired"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%
+	Object obj = session.getAttribute("mvo");
+%>  
 <!DOCTYPE HTML>
 <html> 
 <head>
@@ -9,16 +16,13 @@
 <link rel="stylesheet" href="resources/css/summernote-lite.css"/>
 
 
-<!-- Bootstrap core CSS -->
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+ <link href="resources/css/text.css" rel="stylesheet" type="text/css">
+<link href="resources/css/bootstrap.min.css"  rel="stylesheet" id="bootstrap-css">
 
-<!-- Custom styles for this template -->
-<link href="resources/css/shop-homepage.css" rel="stylesheet">
-<link href="resources/css/bootstrap.min.css" rel="stylesheet">
-<style type="text/css">
-	
-	
-</style>
+
+<script src="resources/js/bootstrap.min.js"></script>
+<script src="resources/js/jquery.min.js"></script>
+
 <script type="text/javascript">
 	function check(ff){
 		//유효성 검사
@@ -29,8 +33,75 @@
 </script>
 </head>
 <body>
+	<!--head-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
-	<div id="include_header"></div>
+<%
+   if(obj == null){ 
+%>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand"  href="main.inc">
+                <img class="img-fluid" src="resources/images/logo.PNG" width>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="ml-auto navbar-nav text-uppercase">
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="list.inc">유기견 공고</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="bbslist.inc?bname=유기">분실 신고</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="login.inc">로그인</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="reg.inc">회원가입</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>	
+<%
+   }else{
+      AnimemVO vo = (AnimemVO)obj;
+%>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand"  href="main.inc">
+                <img class="img-fluid" src="resources/images/logo.PNG" width>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="ml-auto navbar-nav text-uppercase">
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="list.inc">유기견 공고</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-3" href="bbslist.inc?bname=유기">분실 신고</a>
+                    </li>
+                    <li class="nav-item">
+                         <%= vo.getM_name() %>님 환영합니다.
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.inc">로그아웃</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>	
+<%
+   }
+%>
 
 	<div id = "write">
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="asd1">
@@ -57,39 +128,41 @@
                 <td bgcolor="#E5E5E5"><table width="100%" border="0" cellspacing="1" cellpadding="2">
 
                     <tr>
-                      <td width="90" height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">작성자</font></td>
-                      <td bgcolor="#F2F7F9" align="left">${vo.writer}</td>
+                      <td width="90" height="20" align="center" bgcolor="#F8E0F7">작성자</td>
+                      <td bgcolor="#EFFBEF" align="left">${vo.writer}</td>
                     </tr>
 
                     <tr>
-                      <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">제목</font></td>
-                      <td bgcolor="#F2F7F9" align="left">${vo.subject }</td>
+                      <td height="20" align="center" bgcolor="#F8E0F7">제목</td>
+                      <td bgcolor="#EFFBEF" align="left">${vo.subject }</td>
                     </tr>
                     
                       
                      <tr>
-                      <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">내용</font></td>
-                      <td bgcolor="#F2F7F9" align="left"><p>${vo.content }</p></td>
+                      <td height="20" align="center" bgcolor="#F8E0F7">내용</td>
+                      <td bgcolor="#EFFBEF" align="left"><p>${vo.content }</p></td>
                     </tr>
                     
                     
                     <tr>
                     
-                      <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">첨부파일</font></td>
-                      <td bgcolor="#F2F7F9" align="left">(${vo.file_name })
+                      <td height="20" align="center" bgcolor="#F8E0F7">첨부파일</td>
+                      <td bgcolor="#EFFBEF" align="left">(${vo.file_name })
                         <input type="file" name="file" cssStyle="width:300px" theme="simple"/>
                       </td>
                     </tr>
                      <tr>
-                      <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">품종</font></td>
-                      <td bgcolor="#F2F7F9" align="left">${vo.kind }</td>
+                      <td height="20" align="center" bgcolor="#F8E0F7">품종</td>
+                      <td bgcolor="#EFFBEF" align="left">${vo.kind }</td>
                     </tr>
                     <tr>
-                      <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">잃어버린 날짜</font></td>
-                      <td bgcolor="#F2F7F9" align="left">${vo.lose_date }</td>
+                      <td height="20" align="center" bgcolor="#F8E0F7">잃어버린 날짜</td>
+                      <td bgcolor="#EFFBEF" align="left">${vo.lose_date }</td>
                     </tr>
                     
-                  </table></td>
+                  </table>
+                  
+                 </td>
               </tr>
             </table>
             <table width="556" border="0" cellspacing="0" cellpadding="0">
@@ -100,19 +173,15 @@
                 <td align="right"> 
                 	<table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
-                      <td width="315" align="center">
-          
-                      </td>
 		              	 <td width="241" align="right">
-		                      <input type="button" onclick="javascript:location.href='bbslist.inc?bname=${vo.bname}&nowPage=${nowPage }'" value="목록"/>
-		                   <c:set var="doneLoop" value="false"/>   
+		                    <c:set var="doneLoop" value="false"/>   
 	                     
 	                      	<c:if test="${mvo.m_id eq vo.m_id }">
-		                      <input type="button" onclick="javascript:location.href='ugiedit.inc?b_idx=${vo.b_idx}&nowPage=${nowPage }'" value="수정"/>
+		                      <input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" onclick="javascript:location.href='ugiedit.inc?b_idx=${vo.b_idx}&nowPage=${nowPage }'" value="수정하기"/>
 		                       <c:set var="doneLoop" value="true"/>
   							 </c:if>	   
 	                      </td>
-                    </tr>
+                    </tr>  
                   	</table>
                 </td> 
               </tr>
@@ -145,19 +214,10 @@
 	</div>
 	
 	
-	<!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
-    </div>
-    <!-- /.container -->
-  </footer>
-
   <!-- Bootstrap core JavaScript -->
-   <script src="vendor/js/jquery.min.js"></script>
-   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-   <!-- 아코디언 스크립트 -->
+   <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   
+	
    <script src="resources/js/jquery-ui.min.js"></script>
    <script src="resources/js/jquery-3.4.1.min.js"></script>
 
@@ -232,9 +292,6 @@ $(function(){
 			console.log(err);
 		});
 	}	
-	  $(function(){
-			$("#include_header").load("header.inc");
-		  });
 </script>
 	
 </body>

@@ -7,7 +7,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link href="resources/css/text.css" rel="stylesheet" type="text/css">
+ <link href="resources/css/text.css" rel="stylesheet" type="text/css">
+<link href="resources/css/bootstrap.min.css"  rel="stylesheet" id="bootstrap-css">
+
+
+<script src="resources/js/bootstrap.min.js"></script>
+<script src="resources/js/jquery.min.js"></script>
 <style type="text/css">
 	#table{
 		margin: 0 auto;
@@ -35,29 +40,29 @@
 	<table id="table">   
 		<thead>
 		<tr>
-			<th>
+			<th style="text-align: center;">
 				<h1><b><u>${year }년도 월별 유기견 통계</u></b></h1> 
 			</th>
 		</tr>
 		<tr>
 			<td id="month">
-				<input type="button" value="1월" id="m1" onclick="goStat('01',${year })"/>&nbsp;&nbsp;
-				<input type="button" value="2월" id="m2" onclick="goStat('02',${year })"/>&nbsp;&nbsp;
-				<input type="button" value="3월" id="m3" onclick="goStat('03',${year })"/>&nbsp;&nbsp; 
-				<input type="button" value="4월" id="m4" onclick="goStat('04',${year })"/>&nbsp;&nbsp;
-				<input type="button" value="5월" id="m5" onclick="goStat('05',${year })"/>&nbsp;&nbsp;
-				<input type="button" value="6월" id="m6" onclick="goStat('06',${year })"/>&nbsp;&nbsp;
-				<input type="button" value="7월" id="m7" onclick="goStat('07',${year })"/>&nbsp;&nbsp;
-				<input type="button" value="8월" id="m8" onclick="goStat('08',${year })"/>&nbsp;&nbsp;
-				<input type="button" value="9월" id="m9" onclick="goStat('09',${year })"/>&nbsp;&nbsp;
-				<input type="button" value="10월" id="m10" onclick="goStat('10',${year })"/>&nbsp;&nbsp;
-				<input type="button" value="11월" id="m11" onclick="goStat('11',${year })"/>&nbsp;&nbsp;
-				<input type="button" value="12월" id="m12" onclick="goStat('12',${year })"/>&nbsp;&nbsp;
-				<input type="button" value="HOME" id="go" onclick="javascript:location.href='main.inc'"/>
+				<input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" value="1월" id="m1" onclick="goStat('01',${year })"/>&nbsp;&nbsp;
+				<input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" value="2월" id="m2" onclick="goStat('02',${year })"/>&nbsp;&nbsp;
+				<input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" value="3월" id="m3" onclick="goStat('03',${year })"/>&nbsp;&nbsp; 
+				<input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" value="4월" id="m4" onclick="goStat('04',${year })"/>&nbsp;&nbsp;
+				<input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" value="5월" id="m5" onclick="goStat('05',${year })"/>&nbsp;&nbsp;
+				<input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" value="6월" id="m6" onclick="goStat('06',${year })"/>&nbsp;&nbsp;
+				<input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" value="7월" id="m7" onclick="goStat('07',${year })"/>&nbsp;&nbsp;
+				<input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" value="8월" id="m8" onclick="goStat('08',${year })"/>&nbsp;&nbsp;
+				<input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" value="9월" id="m9" onclick="goStat('09',${year })"/>&nbsp;&nbsp;
+				<input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" value="10월" id="m10" onclick="goStat('10',${year })"/>&nbsp;&nbsp;
+				<input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" value="11월" id="m11" onclick="goStat('11',${year })"/>&nbsp;&nbsp;
+				<input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" value="12월" id="m12" onclick="goStat('12',${year })"/>&nbsp;&nbsp;
+				<input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" value="HOME" id="go" onclick="javascript:location.href='main.inc'"/>
 			</td>
 		</tr>
 		</thead>
-		<tbody>
+		<tbody> 
 		<br/><br/>
 		</tbody>
 	</table>

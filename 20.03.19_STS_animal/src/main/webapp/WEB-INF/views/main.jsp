@@ -255,7 +255,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="card mb-4 shadow-sm">
-                                    <a href="view.inc?desertionNo=${ar[0].desertionNo }&nowPage=1">
+                                    <a href="view.inc?desertionNo=${ar[0].desertionNo }&nowPage=1&careNm=${ar[0].careNm }&careTel=${ar[0].careTel }">
                                         <img class="img-fluid" src="${ar[0].popfile }" alt="" id="img">
                                     </a>
                                     <div class="card-body">
@@ -296,7 +296,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="card mb-4 shadow-sm">
-                                    <a href="view.inc?desertionNo=${ar[1].desertionNo }&nowPage=1">
+                                    <a href="view.inc?desertionNo=${ar[1].desertionNo }&nowPage=1&careNm=${ar[1].careNm }&careTel=${ar[1].careTel }">
                                         <img class="img-fluid" src="${ar[1].popfile }" alt="" id="img">
                                     </a>
                                     <div class="card-body">
@@ -336,7 +336,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="card mb-4 shadow-sm">
-                                    <a href="view.inc?desertionNo=${ar[2].desertionNo }&nowPage=1">
+                                    <a href="view.inc?desertionNo=${ar[2].desertionNo }&nowPage=1&careNm=${ar[2].careNm }&careTel=${ar[2].careTel }">
                                         <img class="img-fluid" src="${ar[2].popfile }" alt="" id="img">
                                     </a>
                                     <div class="card-body">
@@ -380,7 +380,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="card mb-4 shadow-sm">
-                                    <a href="view.inc?desertionNo=${ar[3].desertionNo }&nowPage=1">
+                                    <a href="view.inc?desertionNo=${ar[3].desertionNo }&nowPage=1&careNm=${ar[3].careNm }&careTel=${ar[3].careTel }">
                                         <img class="img-fluid" src="${ar[3].popfile }" alt="" id="img">
                                     </a>
                                     <div class="card-body">
@@ -419,7 +419,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="card mb-4 shadow-sm">
-                                    <a href="view.inc?desertionNo=${ar[4].desertionNo }&nowPage=1">
+                                    <a href="view.inc?desertionNo=${ar[4].desertionNo }&nowPage=1&careNm=${ar[4].careNm }&careTel=${ar[4].careTel }">
                                         <img class="img-fluid" src="${ar[4].popfile }" alt="" id="img">
                                     </a>
                                     <div class="card-body">
@@ -458,7 +458,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="card mb-4 shadow-sm">
-                                    <a href="view.inc?desertionNo=${ar[5].desertionNo }&nowPage=1">
+                                    <a href="view.inc?desertionNo=${ar[5].desertionNo }&nowPage=1&careNm=${ar[5].careNm }&careTel=${ar[5].careTel }">
                                         <img class="img-fluid" src="${ar[5].popfile }" alt="" id="img">
                                     </a>
                                     <div class="card-body">

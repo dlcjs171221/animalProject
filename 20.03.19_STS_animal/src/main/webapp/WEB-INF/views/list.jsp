@@ -256,7 +256,7 @@
       
       <div class="row">
            <c:forEach var="vo" items="${ar }">
-        <div class="col-xs-18 col-sm-6 col-md-3" style= "height: 600px;">
+        <div class="col-xs-18 col-sm-6 col-md-3" style= "height: 530px;">
           <div class="thumbnail">
             <img src="${vo.popfile }" style= " width:450px; height: 250px;"/>
               <div class="caption">
@@ -351,6 +351,7 @@
     </div><!-- End container -->
    
    <script src="resources/js/jquery-3.4.1.min.js"></script>
+   
    <script type="text/javascript">
    function searchDate(){
       /*

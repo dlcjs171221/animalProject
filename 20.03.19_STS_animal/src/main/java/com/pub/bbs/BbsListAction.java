@@ -19,7 +19,7 @@ public class BbsListAction {
 	AniDAO a_dao;
 	
 	//페이징 기법을 위한 상수들...
-	public final int BLOCK_LIST = 10; //한페이지당
+	public final int BLOCK_LIST = 8; //한페이지당
 			//보여질 게시물의 수
 	public final int BLOCK_PAGE = 3; //한 블럭당
 			//보여질 페이지 수
