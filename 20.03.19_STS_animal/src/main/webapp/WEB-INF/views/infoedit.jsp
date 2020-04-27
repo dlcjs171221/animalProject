@@ -37,7 +37,27 @@
 			return
 		}
 		
-		ff.submit();
+		
+		var queryString = $("form[name=frm]").serialize();
+		
+		
+		$.ajax({
+			url: "infoedit.inc",
+			data: queryString,
+			type: "post",
+			dataType: "json"
+			
+		}).done(function(data) {
+			
+			if(data.value){
+				alert("수정되었습니다.");
+				location.href="infoview.inc?b_idx=${vo.b_idx}&nowPage=${nowPage}";
+			}
+			
+		}).fail(function(err) {
+			alert("실패되었습니다.");
+		});
+			
 	}
 </script>
 </head>
@@ -113,8 +133,8 @@
 %>
 
 	<div id="write">
-		<form action="bbsedit.inc" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="bname" value="${bname }" />
+		<form name="frm" enctype="multipart/form-data">
+			<input type="hidden" name="bname" value="${vo.bname }" />
 			<input type="hidden" name="b_idx" value="${vo.b_idx }" />
 			<input type="hidden" name="nowPage" value="${nowPage }" />
 			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="asd1">
@@ -126,7 +146,7 @@
 								<td align="center" height="10"></td>
 							</tr>
 							<tr>
-								<td align="center"><u><b>정책사항 수정하기</b></u></td>
+								<td align="center"><u><b>${vo.bname }사항 수정하기</b></u></td>
 							</tr>
 							<tr>
 								<td align="center" valign="top"><table width="100%"
@@ -149,14 +169,14 @@
 														<td height="20" align="center" bgcolor="#F8E0F7">제목</td>
 														<td bgcolor="#EFFBEF" align="left">
 														<input type="text"
-															id="subject" name="subject" size="50" theme="simple" /></td>
+															id="subject" name="subject" size="50" theme="simple" value="${vo.subject }"/></td>
 													</tr>
 
 													<tr>
 														<td height="20" align="center" bgcolor="#F8E0F7">내용</td>
 														<td bgcolor="#EFFBEF" align="left"><textarea
 																id="content" name="content" cols="50" rows="10"
-																theme="simple"></textarea></td>
+																theme="simple" >${vo.content }</textarea></td>
 													</tr>
 
 
@@ -166,6 +186,7 @@
 														</td>
 														<td bgcolor="#EFFBEF" align="left">
 														<input type="file" name="file" cssStyle="width:300px" theme="simple" />
+														(${vo.file_name })
 														</td>
 												</table>
 											</td>

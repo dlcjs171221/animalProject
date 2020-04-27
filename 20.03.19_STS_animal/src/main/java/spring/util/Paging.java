@@ -1,5 +1,7 @@
 package spring.util;
 
+//list(API를 이용한 유기물공고) 페이징
+
 public class Paging {
 
 	private int nowPage, //현재 페이지

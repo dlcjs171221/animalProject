@@ -108,7 +108,7 @@ public class BbsWriteAction {
 		//로그인 이 되어있는 상태
 			
 		if(obj != null) {
-			str = "pubwrite";
+			str = "infowrite";
 			AnimemVO mvo = (AnimemVO)obj;
 			mv.addObject("bname", bname);
 			

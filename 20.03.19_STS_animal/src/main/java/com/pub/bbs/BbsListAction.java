@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.pub.dao.AniDAO;
 import com.pub.vo.AniBbsVO;
 
-import spring.util.A_Paging;
+import spring.util.B_Paging;
 
 @Controller
 public class BbsListAction {
@@ -49,7 +49,7 @@ public class BbsListAction {
 		rowTotal = a_dao.getTotalCount(bname);
 		
 		//페이징 처리
-		A_Paging page = new A_Paging(this.nowPage, rowTotal, BLOCK_LIST, BLOCK_PAGE, bname);
+		B_Paging page = new B_Paging(this.nowPage, rowTotal, BLOCK_LIST, BLOCK_PAGE, bname);
 		
 		//생성된 페이지 기법의 html코드를 만들자
 		pageCode = page.getSb().toString();
@@ -93,13 +93,15 @@ public class BbsListAction {
 			mv.addObject("ugiList", ar);
 			mv.setViewName("ugilist");
 		}else if(bname.equals("정책")) {
-			mv.addObject("pubPageCode", pageCode);
-			mv.addObject("pubList", ar);
-			mv.setViewName("pubList");
+			mv.addObject("infoPageCode", pageCode);
+			mv.addObject("infoList", ar);
+			mv.addObject("bname",bname);
+			mv.setViewName("infoList");
 		}else if(bname.equals("공지")) {
-			mv.addObject("noticePageCode", pageCode);
-			mv.addObject("noticeList", ar);
-			mv.setViewName("noticeList");
+			mv.addObject("infoPageCode", pageCode);
+			mv.addObject("infoList", ar);
+			mv.addObject("bname",bname);
+			mv.setViewName("infoList");
 		}
 		return mv;
 	}

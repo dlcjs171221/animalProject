@@ -1,6 +1,8 @@
 package spring.util;
 
-public class A_Paging {
+//bbslist(게시판) 페이징
+
+public class B_Paging {
 
 	private int nowPage, //현재 페이지
 		rowTotal, //총 게시물 수
@@ -16,7 +18,7 @@ public class A_Paging {
 	//JSP에서 표현할 페이징 HTML코드를 저장할 곳!
 	private StringBuffer sb;
 
-	public A_Paging(int nowPage, int rowTotal, 
+	public B_Paging(int nowPage, int rowTotal, 
 			int blockList, int blockPage, String bname) {
 		
 		this.nowPage = nowPage;

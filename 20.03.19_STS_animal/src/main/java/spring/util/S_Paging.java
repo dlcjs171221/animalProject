@@ -1,6 +1,8 @@
 package spring.util;
 
-public class care_Paging {
+//shelter(보호소 찾기) 페이징
+
+public class S_Paging {
 
 	private int nowPage, //현재 페이지
 		rowTotal, //총 게시물 수
@@ -15,7 +17,7 @@ public class care_Paging {
 	//JSP에서 표현할 페이징 HTML코드를 저장할 곳!
 	private StringBuffer sb;
 
-	public care_Paging(int nowPage, int rowTotal, 
+	public S_Paging(int nowPage, int rowTotal, 
 			int blockList, int blockPage) {
 		
 		this.nowPage = nowPage;

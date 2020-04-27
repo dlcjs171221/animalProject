@@ -17,6 +17,10 @@ public class ViewAction {
 
 	@RequestMapping("/view.inc")
 	public ModelAndView view(String desertionNo, String nowPage,String careNm,String careTel) {
+		System.out.println(desertionNo);
+		System.out.println(nowPage);
+		System.out.println(careNm);
+		System.out.println(careTel);
 		
 		ModelAndView mv = new ModelAndView();
 		

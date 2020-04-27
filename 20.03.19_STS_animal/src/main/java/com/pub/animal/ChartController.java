@@ -13,7 +13,7 @@ public class ChartController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("year",year);
 		mv.addObject("num",num);
-		mv.setViewName("stat1");
+		mv.setViewName("stat");
 		
 		return mv;
 	}
@@ -22,7 +22,7 @@ public class ChartController {
 	public ModelAndView stat2(String year) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("year",year);
-		mv.setViewName("stat");
+		mv.setViewName("stat_main");
 		
 		return mv;
 	}

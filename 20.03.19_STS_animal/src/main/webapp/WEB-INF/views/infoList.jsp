@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%> 
 <%@page import="com.pub.vo.AnimemVO"%>
 <%@page import="org.springframework.beans.factory.annotation.Autowired"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
 <%
 	Object obj = session.getAttribute("mvo");
 %>
@@ -13,23 +12,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
- <link href="resources/css/text.css" rel="stylesheet" type="text/css">
-<link href="resources/css/bootstrap.min.css"  rel="stylesheet" id="bootstrap-css">
-
+<link href="resources/css/text.css" rel="stylesheet" type="text/css">
+<link href="resources/css/bootstrap.min.css" rel="stylesheet">
 
 <script src="resources/js/bootstrap.min.js"></script>
 <script src="resources/js/jquery.min.js"></script>
 <style>
-	#t1{
-		border: 1px solid black;
-
+	._t1{
+		width: 1300px;
 	}
-	#t1 td{
+	.t1{
+		width: 100%;
 		border: 1px solid black;
 	}
-	
-	
+	.t1 td{
+		border: 1px solid black;
+	}
+	h1{
+   		margin: 20px 20px;
+  	 }
 </style>
 </head>
 <body>
@@ -102,91 +103,67 @@
 <%
    }
 %>
-<div class="container" style="height: 1000px;">
-		<br/><br/><hr style="margin-top: 80px;">
-		<table style=" text-align: center; width: 800px; height:500px; margin: 0 auto; margin-top: 100px;">
-	         <tr>
-	            <th style="font-size:20px;" align="center" bgcolor="#F8E0F7" width="100">
-	              제목
-	            </th>
-	            <td style=" font-size:15px;" colspan="3" bgcolor="#EFFBEF" >
-	               <!-- 특징 -->
-	               ${vo.subject }
-	            </td>
-	         </tr>
-	         <tr>
-	            <th style="font-size:20px;" align="center" bgcolor="#F8E0F7" width="100">
-	              작성일
-	            </th>
-	            <td style=" font-size:15px;" colspan="3" bgcolor="#EFFBEF" >
-	               <!-- 공고기한 -->
-	               ${vo.write_date }
-	            </td>
-	         </tr>
-	         <tr>
-	            <th style="font-size:20px;" align="center" bgcolor="#F8E0F7" width="100">
-	               조회수
-	            </th>
-	            <td style=" font-size:15px;" colspan="3" bgcolor="#EFFBEF" >
-	               <!-- 특징 -->
-	              ${vo.hit }
-	            </td>
-	         </tr>
-	         <tr>
-	         	<th style="font-size:20px;" align="center" bgcolor="#F8E0F7" width="100">
-	              내용
-	            </th>
-				<td style=" font-size:15px;" colspan="3" bgcolor="#EFFBEF">
-					${vo.content }
-				</td>
-			</tr>
-			<tr>
-				<th style="font-size:20px;" align="center" bgcolor="#F8E0F7" width="100">
-					첨부파일
-				</th>
-				<td style=" font-size:15px;" colspan="3" bgcolor="#EFFBEF" >
-				
-				<c:if test="${vo.file_name != null and fn:length(vo.file_name) > 4}">
-					<a href="javascript:fDown('${vo.file_name }')">	
-						<b><u>${vo.file_name }</u></b>
-					</a>
-				</c:if>
-				</td>
-			</tr>
-			<!-- m_id가 master일 때만 수행하는 수정기능 -->
-			<tr>
-				<td colspan="4" style="text-align: right;">
-					<input type="button" value="수정" class="btn btn-info btn-xs"  style="color: white;" onclick="javascript:location.href='bbsedit.inc?b_idx=${vo.b_idx}&nowPage=${param.nowPage }'"/>
-				</td>
-			</tr>
-	   </table>
-		<hr style="margin-top: 80px;">
-		<form name="frm" method="post">
-			<input type="hidden" name="f_name" />
-			<input type="hidden" name="b_idx" value="${param.b_idx }">
-			<input type="hidden" name="nowPage" value="${param.nowPage }">
-			<!-- bname추가함 -->
-			<input type="hidden" name="bname" value="${param.bname }">
-		</form>
-	
-</div>
-	<!-- Bootstrap core JavaScript -->
+
+ <div class="container" id="tourpackages-carousel">       
+    <h1>총 ${rowTotal } 건</h1>          
+    <hr>
+	<div class="table-responsive">	
+		<table class="table table-striped table-sm" height="400px" style="text-align: center;">
+			<thead>
+	            <tr bgcolor="#F8E0F7" >
+	                <td style="font-size: 20px; font-weight: bold;" >번호</td>
+	                <td style="width: 50%; font-size: 20px; font-weight: bold;">제목</td>
+	                <td style="font-size: 20px; font-weight: bold;">작성일</td>              
+	                <td style="font-size: 20px; font-weight: bold;">조회수</td>                
+	            </tr>
+	        </thead>	        
+	        <tbody >	
+	        	<c:forEach var="vo" items="${infoList}" varStatus="st">
+	        	<tr >
+	        		<td style="font-size: 15px">
+	        		<!-- 번호
+					전체게시물수-((현재페이지-1)*한페이지당 보여질 게시물 수+인덱스)
+                    --> 
+	        		${rowTotal-((nowPage-1)*blockList+st.index) }
+	        		<!-- 작은수부터 찍을 때는 st.index -->
+	        		</td>
+	        		<td style="font-size: 15px">
+	        		<!-- 제목 (get 요청에 bname추가함)-->
+	        		<a href="infoview.inc?b_idx=${vo.b_idx }&nowPage=${nowPage}&bname=${vo.bname}">
+	        			${vo.subject }
+	        		</a>
+	        		</td>
+	        		<td style="font-size: 15px">
+	        		<!-- 작성일 -->
+	        		${fn:substring(vo.write_date,0,10) }
+	        		</td>
+	        		<td style="font-size: 15px">
+	        		<!-- 조회수 -->
+	        		${vo.hit }
+	        		</td>
+	        	</tr>
+	        	</c:forEach>        	
+	        </tbody>
+	        <tfoot>
+	       		<tr>
+	       			<td colspan="4" style="text-align: right;">
+		       			<div style="width: 400px; display: inline-block; margin-right: 200px; padding: 5px;">
+		       				${infoPageCode }
+		       			</div>
+		       			<button type="button" class="btn btn-info btn-xs"  style="color: white;" onclick="javascript:location.href='infowrite.inc?bname=${bname }'">${bname }쓰기</button>
+			        </td>	
+	        	</tr>
+	        </tfoot>	
+	      </table>
+	</div>
+	 <hr>
+</div>	
+  <!-- Bootstrap core JavaScript -->
    <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
    
-	<script src="resources/js/jquery-3.4.1.min.js"></script>
-	<script src="resources/js/jquery-ui.min.js"></script>
-	<script>
-		
-		function fDown(fname) {
-			console.log(fname);
-			document.frm.f_name.value = fname;
-			document.frm.action = "FileDownload";
-			
-			
-			document.frm.submit();
-		}
-		
-		
-	</script>
+	
+   <script src="resources/js/jquery-3.4.1.min.js"></script>
+   <script src="resources/js/jquery-ui.min.js"></script>
+  
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.pub.animal;
+package com.pub.bbs;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.pub.dao.ShelterDAO;
 import com.pub.vo.ShelterVO;
 
-import spring.util.care_Paging;
+import spring.util.S_Paging;
 
 @Controller
 public class ShelterAction {
@@ -46,7 +46,7 @@ public class ShelterAction {
 		rowTotal = s_dao.getTotalCount();
 		
 		//페이징 처리
-		care_Paging page = new care_Paging(this.nowPage, rowTotal, BLOCK_LIST, BLOCK_PAGE);
+		S_Paging page = new S_Paging(this.nowPage, rowTotal, BLOCK_LIST, BLOCK_PAGE);
 		
 		//생성된 페이지 기법의 html코드를 만들자
 		pageCode = page.getSb().toString();

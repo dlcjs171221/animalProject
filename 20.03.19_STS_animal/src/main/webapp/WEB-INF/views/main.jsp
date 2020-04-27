@@ -43,6 +43,9 @@
 	.card-body{
 		padding: 0;
 	}
+	.fa{
+		color: red;
+	}
 		
 </style>
 <!--head-->
@@ -161,7 +164,7 @@
                 <h1 class="jumbotron-heading">카테고리</h1>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                     <div class="box-part text-center">
                         <i class="text-primary fas fa-upload fa-3x mb-3" aria-hidden="true"></i>
                         <div class="title">
@@ -173,7 +176,7 @@
                         <a class="btn btn-outline-primary" href="ugiwrite.inc?bname=유기">페이지 이동</a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                     <div class="box-part text-center">
                         <i class="text-success fas fa-book fa-3x mb-3" aria-hidden="true"></i>
                         <div class="title">
@@ -185,7 +188,19 @@
                         <a class="btn btn-outline-success" href="bbslist.inc?bname=정책">페이지 이동</a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <div class="box-part text-center">
+                        <i class="text-success fas fa-book fa-3x mb-3" aria-hidden="true"></i>
+                        <div class="title">
+                            <h4>유기동물 공지</h4>
+                        </div>
+                        <div class="text mb-3">
+                            <span>동물보호법과 관련하여 여러가지 정보들을 자세하게 볼 수 있습니다.</span>
+                        </div>
+                        <a class="btn btn-outline-success" href="bbslist.inc?bname=공지">페이지 이동</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                     <div class="box-part text-center">
                         <i class="text-danger fas fa-home fa-3x mb-3" aria-hidden="true"></i>
                         <div class="title">

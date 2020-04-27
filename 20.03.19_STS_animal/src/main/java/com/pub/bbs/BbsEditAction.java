@@ -64,7 +64,7 @@ public class BbsEditAction {
 	}
 	
 	//( 정책, 공지 )수정
-	@RequestMapping("/bbsedit.inc")
+	@RequestMapping("/infoedit.inc")
 	public ModelAndView bbs_edit(String b_idx, String nowPage) {
 		ModelAndView mv = new ModelAndView();
 		
@@ -72,17 +72,21 @@ public class BbsEditAction {
 		
 		mv.addObject("vo", vo);
 		mv.addObject("nowPage", nowPage);
-		mv.setViewName("bbsedit");
+		mv.setViewName("infoedit");
 		
 		return mv;
 	}
-	@RequestMapping(value = "/bbsedit.inc", method=RequestMethod.POST)
-	public ModelAndView bbs_edit(AniBbsVO vo) {
-		ModelAndView mv = new ModelAndView();
+	
+	@RequestMapping(value = "/infoedit.inc", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Boolean> bbs_edit(AniBbsVO vo) {
+		boolean value = false;
 		
-		a_dao.editbbs(vo);
+		value = a_dao.editbbs(vo);
+		
+		Map<String, Boolean> map = new HashMap<String, Boolean>();
+		map.put("value",value);
 					
-		mv.setViewName("");
-		return mv;
+		return map;
 	}
 }

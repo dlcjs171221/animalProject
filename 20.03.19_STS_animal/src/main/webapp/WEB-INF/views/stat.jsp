@@ -7,82 +7,72 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
- <link href="resources/css/text.css" rel="stylesheet" type="text/css">
-<link href="resources/css/bootstrap.min.css"  rel="stylesheet" id="bootstrap-css">
+<!-- 파이썬을 호출하여 데이터를 통계로 표현 -->
 
-
-<script src="resources/js/bootstrap.min.js"></script>
-<script src="resources/js/jquery.min.js"></script>
 <style type="text/css">
-	#table{
-		margin: 0 auto;
-		width: 1000px;
-		height: 200px;
+	#chart_div{
+		width : 100%;
+		height: 400px;
 	}
-	#month{
-		text-align: center;
+	#totalcount{
+	 	width: 900px;
+		margin: auto;
+		padding: 30px;
 	}
-	#m1,#m2,#m3,#m4,#m5,
-	#m6,#m7,#m8,#m9,#m10, 
-	#m11,#m12,#go{
-		padding: 15px;
-	}
-	       
-	#main{ 
-		text-align: right;  
-		padding: 15px;
-	} 
-</style> 
-</head> 
+</style>
+</head>
 <body>
-
 	
-	<table id="table">   
-		<thead>
-		<tr>
-			<th style="text-align: center;">
-				<h1><b><u>${year }년도 월별 유기견 통계</u></b></h1> 
-			</th>
-		</tr>
-		<tr>
-			<td id="month">
-				<input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" value="1월" id="m1" onclick="goStat('01',${year })"/>&nbsp;&nbsp;
-				<input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" value="2월" id="m2" onclick="goStat('02',${year })"/>&nbsp;&nbsp;
-				<input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" value="3월" id="m3" onclick="goStat('03',${year })"/>&nbsp;&nbsp; 
-				<input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" value="4월" id="m4" onclick="goStat('04',${year })"/>&nbsp;&nbsp;
-				<input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" value="5월" id="m5" onclick="goStat('05',${year })"/>&nbsp;&nbsp;
-				<input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" value="6월" id="m6" onclick="goStat('06',${year })"/>&nbsp;&nbsp;
-				<input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" value="7월" id="m7" onclick="goStat('07',${year })"/>&nbsp;&nbsp;
-				<input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" value="8월" id="m8" onclick="goStat('08',${year })"/>&nbsp;&nbsp;
-				<input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" value="9월" id="m9" onclick="goStat('09',${year })"/>&nbsp;&nbsp;
-				<input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" value="10월" id="m10" onclick="goStat('10',${year })"/>&nbsp;&nbsp;
-				<input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" value="11월" id="m11" onclick="goStat('11',${year })"/>&nbsp;&nbsp;
-				<input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" value="12월" id="m12" onclick="goStat('12',${year })"/>&nbsp;&nbsp;
-				<input type="button" class="btn btn-info btn-xs" role="button" style="color: white;" value="HOME" id="go" onclick="javascript:location.href='main.inc'"/>
-			</td>
-		</tr>
-		</thead>
-		<tbody> 
-		<br/><br/>
-		</tbody>
-	</table>
-	<div id="include_stat"></div>
-	<script src="resources/js/jquery-3.4.1.min.js"></script>
-	<script src="//www.amcharts.com/lib/4/core.js"></script>
-	<script src="//www.amcharts.com/lib/4/charts.js"></script>
-	<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+	<h1 id="totalcount"></h1>
+	<div id="chart_div"></div>
 	
-	
-
-	<script type="text/javascript">
+<script type="text/javascript">
+	$(function(){
 		
-		function goStat(num,year){
-			console.log(num+"/"+year);
-			$("#include_stat").load("stat1.inc?num="+num+"&year="+year);
-		}
-		 $(function(){
-				$("#include_header").load("header.inc");
-			  });
-	</script>
-	</body>
+		$.ajax({
+			url : "http://localhost:5000/ugiChart?num=${num }&year=${year }",
+			type : "post",
+			dataType : "json"
+			
+		}).done(function(data){
+			viewChart(data)
+			$("#totalcount").text("총 "+data[0].totalCount+"건수");
+		});
+		
+	});
+	
+	function viewChart(json_data){
+		am4core.ready(function() {
+
+			// Themes begin
+			am4core.useTheme(am4themes_animated);
+			// Themes end
+
+			// Create chart instance
+			var chart = am4core.create("chart_div", am4charts.PieChart);
+
+			// Add data
+			chart.data = json_data
+
+			// Add and configure Series
+			var pieSeries = chart.series.push(new am4charts.PieSeries());
+			pieSeries.dataFields.value = "counts";
+			pieSeries.dataFields.category = "city";
+			pieSeries.slices.template.stroke = am4core.color("#fff");
+			pieSeries.slices.template.strokeWidth = 2;
+			pieSeries.slices.template.strokeOpacity = 1;
+
+			// This creates initial animation
+			pieSeries.hiddenState.properties.opacity = 1;
+			pieSeries.hiddenState.properties.endAngle = -90;
+			pieSeries.hiddenState.properties.startAngle = -90;
+
+			}); // end am4core.ready()
+		
+	}
+	
+	
+</script>	
+
+</body>
 </html>

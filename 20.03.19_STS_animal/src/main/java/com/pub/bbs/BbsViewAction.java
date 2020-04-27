@@ -90,7 +90,7 @@ public class BbsViewAction {
 	}
 	
 	//정책List에서 제목선택시 Action
- 	@RequestMapping("pubview.inc")
+ 	@RequestMapping("infoview.inc")
  	public ModelAndView pubView(String bname, String nowPage, String b_idx) {
  		ModelAndView mv = new ModelAndView();
  		
@@ -142,7 +142,7 @@ public class BbsViewAction {
 			
  		mv.addObject("vo", vo);
  		
- 		mv.setViewName("pubView");	
+ 		mv.setViewName("infoView");	
  		
  		return mv;
  	}
